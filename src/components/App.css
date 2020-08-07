@@ -4,16 +4,17 @@
 .app__container { overflow: hidden; margin: 30px auto 40px auto;  height: auto; width: 1200px; background: #20232a; border: 1px solid#e3e3e4; border-radius: 1%; }
 
 
-.sideNav { float: left; min-height: 1080px; width: 300px; background-color: #20232a; color: white; }
-.sideNavItem { background-color: #282c34; font-size: 1rem; }
-.sideNavItem__link { display: block; padding-left: 20px; height: 50px; color: white; } 
-.sideNavItem__link span { line-height: 50px; }
-.sideNavItem__link_active { background-color: #61dafb; }
-.sideNavItem__link:hover { color: #61dafb; }
 
-.sideNavList { max-height: 800px; font-size: 1.3rem; }
-.sideNavList__box { height: 80px; border-bottom: 1px solid #1e1e1e; line-height: 80px; cursor: pointer; }
-.sideNavList__boxIcon { display: inline-block; margin-right: 25px; margin-left: 25px; vertical-align: middle; transform: scale(1.1); }
+.sideNav { float: left; min-height: 1080px; width: 300px; background-color: #20232a; color: white; }
+.sideNavItem__main { max-height: 800px; height: 80px; border-bottom: 1px solid #1e1e1e;  font-size: 1.3rem; line-height: 80px; cursor: pointer; }
+.sideNavItem__mainIcon { display: inline-block; margin-right: 25px; margin-left: 25px; vertical-align: middle; transform: scale(1.1); }
+
+.sideNavItemSub { background-color: #282c34; font-size: 1rem; }
+.sideNavItemSub__link { display: block; padding-left: 20px; height: 50px; color: white; } 
+.sideNavItemSub__link span { line-height: 50px; }
+.sideNavItemSub__link_active { background-color: #61dafb; }
+.sideNavItemSub__link:hover { color: #61dafb; }
+
 
 
 .page { float: left; min-height: 1080px; padding: 30px; width: 840px; background-color: white; }

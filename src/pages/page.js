@@ -2,9 +2,9 @@ import React from "react";
 import ImageCat from "../img/cat.jpg";
 import { defaultData } from "../constants";
 
-function page({ match }) {
-    const page = match.url.split("/")[1] || "page1";
-    const pageId = match.url.split("/")[2] || "product1";
+function page({ history }) {
+    const page = history.location.pathname.split("/")[1] || "page1";
+    const pageId = history.location.pathname.split("/")[2] || "product1";
     const color = defaultData.filter((data) => data.productId === pageId)[0]
         .class;
 

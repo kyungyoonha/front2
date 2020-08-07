@@ -1,32 +1,73 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useState, useEffect, useCallback } from "react";
+import SideNavItemSub from "./SideNavItemSub";
+import history from "../history";
 
-const pagesMap = {
-    page1: ["product1", "product2", "product3", "product4"],
-    page2: ["about1", "about2", "about3"],
-    page3: ["intro1", "intro2", "intro3", "intro4"],
-    page4: ["price1", "price2", "price3", "price4"],
+//Icons
+import HomeIcon from "@material-ui/icons/Home";
+import AssessmentIcon from "@material-ui/icons/Assessment";
+import BackupIcon from "@material-ui/icons/Backup";
+import SettingsIcon from "@material-ui/icons/Settings";
+
+const IconsMap = {
+    page1: <HomeIcon className="sideMenu__pageIcon" />,
+    page2: <AssessmentIcon className="sideMenu__pageIcon" />,
+    page3: <BackupIcon className="sideMenu__pageIcon" />,
+    page4: <SettingsIcon className="sideMenu__pageIcon" />,
 };
 
-function SideNavItem({ page, onClick }) {
-    const subPages = pagesMap[page];
+function SideNavItem({ page }) {
+    const currentPage = history.location.pathname.split("/")[1];
+
+    const [open, setOpen] = useState(false);
+    const [fix, setFix] = useState(false);
+
+    // currentPage 고정
+    useEffect(() => {
+        if (currentPage) {
+            currentPage === page && setFix(true);
+        }
+    }, [currentPage, page]);
+
+    // open 마우스 들어올 때
+    const handleMouseEnter = useCallback(() => {
+        setOpen(true);
+    }, []);
+
+    // close 마우스 나갈 때
+    const handleMouseLeave = useCallback(() => {
+        setOpen(false);
+    }, []);
+
+    // 메인 페이지 클릭시
+    const handleClickMain = useCallback(() => {
+        setFix(!fix);
+    }, [fix]);
+
+    // 서브 페이지 클릭시
+    const handleClickSub = useCallback(() => {
+        setFix(true);
+    }, []);
 
     return (
-        <div className="sideNavItem">
-            {subPages.map((subPage) => (
-                <NavLink
-                    key={subPage}
-                    to={`/${page}/${subPage}`}
-                    className="sideNavItem__link"
-                    activeClassName="sideNavItem__link_active"
-                    onClick={onClick}
-                >
-                    <span>
-                        {"▶ "}
-                        {subPage}
-                    </span>
-                </NavLink>
-            ))}
+        <div onMouseLeave={handleMouseLeave} className="sideNavItem">
+            <div
+                onMouseEnter={handleMouseEnter}
+                onClick={handleClickMain}
+                className="sideNavItem__main"
+            >
+                <div className="sideNavItem__mainIcon">{IconsMap[page]}</div>
+                {page}
+            </div>
+
+            {/* 
+                메인 페이지 클릭시 오픈 고정, 
+                메인 페이지 미클릭시 마우스오버 될 경우 오픈 
+            */}
+            {fix ? (
+                <SideNavItemSub page={page} onClick={handleClickSub} />
+            ) : (
+                open && <SideNavItemSub page={page} onClick={handleClickSub} />
+            )}
         </div>
     );
 }

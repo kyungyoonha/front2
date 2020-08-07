@@ -1,13 +1,13 @@
 import React from "react";
-import SideNavList from "./SideNavList";
+import SideNavItem from "./SideNavItem";
 
 function SideNav() {
     return (
         <div className="sideNav">
-            <SideNavList page="page1" />
-            <SideNavList page="page2" />
-            <SideNavList page="page3" />
-            <SideNavList page="page4" />
+            <SideNavItem page="page1" />
+            <SideNavItem page="page2" />
+            <SideNavItem page="page3" />
+            <SideNavItem page="page4" />
         </div>
     );
 }
