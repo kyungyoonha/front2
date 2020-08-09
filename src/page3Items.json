@@ -1,0 +1,45 @@
+{
+    "data": [
+        {
+            "name": "제품",
+            "url": "/item1",
+            "children": [
+                { "name": "product1", "url": "/product1" },
+                { "name": "product2", "url": "/product2" },
+                { "name": "product3", "url": "/product3" },
+                { "name": "product4", "url": "/product4" }
+            ]
+        },
+        {
+            "name": "상세정보",
+            "url": "/item2",
+            "children": [
+                { "name": "detail1", "url": "/detail1" },
+                { "name": "detail2", "url": "/detail2" },
+                { "name": "detail3", "url": "/detail3" },
+                { "name": "detail4", "url": "/detail4" }
+            ]
+        },
+        {
+            "name": "소개",
+            "url": "/item3",
+            "children": [
+                { "name": "about1", "url": "/about1" },
+                { "name": "about2", "url": "/about2" },
+                { "name": "about3", "url": "/about3" },
+                { "name": "about4", "url": "/about4" },
+                { "name": "about5", "url": "/about5" }
+            ]
+        },
+        {
+            "name": "패키지",
+            "url": "/item4",
+            "children": [
+                { "name": "package1", "url": "/package1" },
+                { "name": "package2", "url": "/package2" },
+                { "name": "package3", "url": "/package3" },
+                { "name": "package4", "url": "/package4" }
+            ]
+        }
+    ]
+}

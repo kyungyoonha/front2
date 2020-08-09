@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import SideNavItemSub from "./SideNavItemSub";
+import SideNavItemChild from "./SideNavItemChild";
 import history from "../history";
 
 //Icons
@@ -15,8 +15,8 @@ const IconsMap = {
     page4: <SettingsIcon className="sideMenu__pageIcon" />,
 };
 
-function SideNavItem({ page }) {
-    const currentPage = history.location.pathname.split("/")[1];
+function SideNavItem({ menuItem }) {
+    const currentPage = "/" + history.location.pathname.split("/")[1];
 
     const [open, setOpen] = useState(false);
     const [fix, setFix] = useState(false);
@@ -24,9 +24,12 @@ function SideNavItem({ page }) {
     // currentPage 고정
     useEffect(() => {
         if (currentPage) {
-            currentPage === page && setFix(true);
+            if (currentPage === menuItem.url) {
+                setFix(true);
+                setOpen(true);
+            }
         }
-    }, [currentPage, page]);
+    }, [currentPage, menuItem.url]);
 
     // open 마우스 들어올 때
     const handleMouseEnter = useCallback(() => {
@@ -34,13 +37,17 @@ function SideNavItem({ page }) {
     }, []);
 
     // close 마우스 나갈 때
+    // 고정되어 있지 않으면 open=false
     const handleMouseLeave = useCallback(() => {
-        setOpen(false);
-    }, []);
+        if (!fix) {
+            setOpen(false);
+        }
+    }, [fix]);
 
     // 메인 페이지 클릭시
     const handleClickMain = useCallback(() => {
         setFix(!fix);
+        setOpen(true);
     }, [fix]);
 
     // 서브 페이지 클릭시
@@ -53,20 +60,21 @@ function SideNavItem({ page }) {
             <div
                 onMouseEnter={handleMouseEnter}
                 onClick={handleClickMain}
-                className="sideNavItem__main"
+                className={`sideNavItem__main ${
+                    fix && "sideNavItem__mainTrue"
+                }`}
             >
-                <div className="sideNavItem__mainIcon">{IconsMap[page]}</div>
-                {page}
+                <div className="sideNavItem__mainIcon">
+                    {IconsMap[menuItem.name]}
+                </div>
+                {menuItem.name}
             </div>
 
-            {/* 
-                메인 페이지 클릭시 오픈 고정, 
-                메인 페이지 미클릭시 마우스오버 될 경우 오픈 
-            */}
-            {fix ? (
-                <SideNavItemSub page={page} onClick={handleClickSub} />
-            ) : (
-                open && <SideNavItemSub page={page} onClick={handleClickSub} />
+            {open && (
+                <SideNavItemChild
+                    menuItem={menuItem}
+                    onClick={handleClickSub}
+                />
             )}
         </div>
     );

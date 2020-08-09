@@ -3,25 +3,34 @@
 .app { overflow-y: scroll; height: 100vh; background-color:#f7f7f7;}
 .app__container { overflow: hidden; margin: 30px auto 40px auto;  height: auto; width: 1200px; background: #20232a; border: 1px solid#e3e3e4; border-radius: 1%; }
 
-
-
 .sideNav { float: left; min-height: 1080px; width: 300px; background-color: #20232a; color: white; }
 .sideNavItem__main { max-height: 800px; height: 80px; border-bottom: 1px solid #1e1e1e;  font-size: 1.3rem; line-height: 80px; cursor: pointer; }
+
+.sideNavItem__main:hover { color: #61dafb; }
+.sideNavItem__mainTrue { color: #61dafb; }
 .sideNavItem__mainIcon { display: inline-block; margin-right: 25px; margin-left: 25px; vertical-align: middle; transform: scale(1.1); }
 
 .sideNavItemSub { background-color: #282c34; font-size: 1rem; }
 .sideNavItemSub__link { display: block; padding-left: 20px; height: 50px; color: white; } 
 .sideNavItemSub__link span { line-height: 50px; }
-.sideNavItemSub__link_active { background-color: #61dafb; }
+.sideNavItemSub__link_active { background-color: #61dafb; color: #20232a}
 .sideNavItemSub__link:hover { color: #61dafb; }
 
-
-
 .page { float: left; min-height: 1080px; padding: 30px; width: 840px; background-color: white; }
-.page div{ margin-bottom: 30px;}
-.page__img { width: 100%; height: 200px; background-color: #ffff00; text-align: center; line-height: 200px; }
+.page__title { margin-bottom: 30px; }
+.page__content{ margin-bottom: 30px;}
+.page__img { margin-bottom: 30px; width: 100%; height: 200px; background-color: #ffff00; text-align: center; line-height: 200px; }
 .page__contentImage { float: right; margin: 20px; width: 200px; border: 1px solid #e3e3e4; }
 .page__color1 { background-color: greenyellow; }
 .page__color2 { background-color: orange; }
 .page__color3 { background-color: orchid; }
 .page__color4 { background-color: sienna; }
+
+.tabs { display: flex; flex-direction: column; justify-content: space-between; width: 100%; border: 1px solid #b7b7b7; color: #a1a1a1; font-size: 1.2rem }
+.tabs__menu { display: flex; height: 60px; line-height: 60px; }
+.tabs__menuItem { flex:1; border: 1px solid#b7b7b7; text-align: center; cursor: pointer;}
+.tabs__menuItem > a { display: inline-block; width: 100%; height: 100%; text-decoration: none; color: #b7b7b7;}
+.tabs__menuItem.active { background-color: tomato; color: white; font-weight: bold;}
+.tabs__content  { flex:1; margin:0px; padding:20px; border: 1px solid #a9a9a9;}
+
+.content {width:100%; height: 400px; background-color: orchid; border-radius: 2%; text-align: center; line-height: 400px; font-size: 2rem; color: black;}
