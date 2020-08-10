@@ -1,12 +1,16 @@
 import React, { useState, useEffect, useCallback } from "react";
-import SideNavItemChild from "./SideNavItemChild";
-import history from "../history";
+import { NavLink } from "react-router-dom";
+import ChildMenu from "./common/ChildMenu";
 
 //Icons
 import HomeIcon from "@material-ui/icons/Home";
 import AssessmentIcon from "@material-ui/icons/Assessment";
 import BackupIcon from "@material-ui/icons/Backup";
 import SettingsIcon from "@material-ui/icons/Settings";
+
+// redux
+import { useSelector, useDispatch } from "react-redux";
+import { setPathMain } from "../store/actions";
 
 const IconsMap = {
     page1: <HomeIcon className="sideMenu__pageIcon" />,
@@ -16,20 +20,14 @@ const IconsMap = {
 };
 
 function SideNavItem({ menuItem }) {
-    const currentPage = "/" + history.location.pathname.split("/")[1];
+    const { pathMain } = useSelector((state) => state.path);
+    const dispatch = useDispatch();
 
     const [open, setOpen] = useState(false);
-    const [fix, setFix] = useState(false);
 
-    // currentPage 고정
     useEffect(() => {
-        if (currentPage) {
-            if (currentPage === menuItem.url) {
-                setFix(true);
-                setOpen(true);
-            }
-        }
-    }, [currentPage, menuItem.url]);
+        menuItem.url === pathMain ? setOpen(true) : setOpen(false);
+    }, [menuItem, pathMain]);
 
     // open 마우스 들어올 때
     const handleMouseEnter = useCallback(() => {
@@ -39,41 +37,45 @@ function SideNavItem({ menuItem }) {
     // close 마우스 나갈 때
     // 고정되어 있지 않으면 open=false
     const handleMouseLeave = useCallback(() => {
-        if (!fix) {
+        if (menuItem.url !== pathMain) {
             setOpen(false);
         }
-    }, [fix]);
+    }, [menuItem, pathMain]);
 
     // 메인 페이지 클릭시
-    const handleClickMain = useCallback(() => {
-        setFix(!fix);
-        setOpen(true);
-    }, [fix]);
-
-    // 서브 페이지 클릭시
-    const handleClickSub = useCallback(() => {
-        setFix(true);
-    }, []);
+    const handleClickMain = useCallback(
+        (path) => {
+            setOpen(true);
+            dispatch(setPathMain(path));
+        },
+        [dispatch]
+    );
 
     return (
-        <div onMouseLeave={handleMouseLeave} className="sideNavItem">
-            <div
+        <div
+            key={menuItem.url}
+            onMouseLeave={handleMouseLeave}
+            className="sideNav__box"
+        >
+            <NavLink
+                key={menuItem.url}
+                to={menuItem.url}
+                activeClassName="active"
                 onMouseEnter={handleMouseEnter}
-                onClick={handleClickMain}
-                className={`sideNavItem__main ${
-                    fix && "sideNavItem__mainTrue"
-                }`}
+                onClick={() => handleClickMain(menuItem.url)}
             >
-                <div className="sideNavItem__mainIcon">
+                <div className="sideNav__mainIcon">
                     {IconsMap[menuItem.name]}
                 </div>
                 {menuItem.name}
-            </div>
+            </NavLink>
 
+            {/* fix 있으면 보이고 open 되도 보이고 */}
             {open && (
-                <SideNavItemChild
+                <ChildMenu
+                    styleName="sideNav"
                     menuItem={menuItem}
-                    onClick={handleClickSub}
+                    onClick={() => handleClickMain(menuItem.url)}
                 />
             )}
         </div>

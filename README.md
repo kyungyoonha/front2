@@ -9,7 +9,7 @@
 7. 부모탭메뉴 1~4 번 누를시 컨텐츠에 2차 탭메뉴 노출.
 8. 각 2차 탭메뉴 클릭시 하단에 컨텐츠가 바뀜
 
-![미션4 GIF](./src/img/react_mission_4_Tabs.gif).
+![미션4 GIF](./src/images/react_mission_4_Tabs.gif).
 
 ## 미션3
 
@@ -20,4 +20,4 @@
 5. 하위 메뉴 클릭시 우측 컨텐츠 영역에 컨텐츠 노출
 6. 하위 메뉴 클릭시마다 컨텐츠 내용은 바뀌어야 함.
 
-![미션3 Gif](./src/img/react_mission_3_LNB.gif).
+![미션3 Gif](./src/images/react_mission_3_LNB.gif).
