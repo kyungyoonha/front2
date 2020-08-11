@@ -7,4 +7,4 @@
 5. 컨텐츠 구현시 게시판 구현할 것
 6. 게시판 구성 요소 : 리스트, 글등록, 글삭제, 글상세보기 팝업
 
-<!-- ![미션4 GIF](./src/images/react_mission_4_Tabs.gif). -->
+![미션5 GIF](./src/images/react_mission_5_게시판.gif).

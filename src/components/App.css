@@ -4,8 +4,8 @@
 .app__container { overflow: hidden; margin: 10px auto 40px auto;  height: auto; width: 1200px; background: #20232a; border: 1px solid#e3e3e4; border-radius: 1%; }
 
 .header { display: flex; flex-direction: column; align-items: center; padding-top: 40px; max-height: 300px; background-color: #20232a;}
-.header__Logo { display: flex; align-items: center; justify-content: center; height: 100px; width: 100%; text-align: center; }
-.header__Logo > a { font-size: 40px; color: white; }
+.header__Logo { display: flex; align-items: center; justify-content: center; height: 100px; width: 100%; text-align: center;}
+.header__Logo > a { font-size: 40px; color: white; color: #61dafb;}
 .header__mainMenu { display: flex; justify-content: space-between; align-items: center; height: 90px; width: 1200px; color: white; }
 .header__mainMenu > a { padding: 25px; font-size: 1.4rem; color: white; }
 .header__mainMenu > a:hover { color: #61dafb;}
