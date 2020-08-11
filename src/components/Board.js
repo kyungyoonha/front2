@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
-import ModalContainer from "./common/ModalContainer";
+import BoardWrite from "./BoardWrite";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
 
+// redux
 import { useSelector, useDispatch } from "react-redux";
 import {
     dataAction_fetch,
@@ -12,11 +15,14 @@ import {
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 
+dayjs.extend(relativeTime);
+
 function Board() {
     const items = useSelector((state) => state.data);
     const dispatch = useDispatch();
 
     const [modalShow, setModalShow] = useState(false);
+    const [editItem, setEditItem] = useState("");
 
     useEffect(() => {
         dispatch(dataAction_fetch());
@@ -24,38 +30,51 @@ function Board() {
 
     const handleUpdate = (item) => {
         dispatch(dataAction_update(item));
+        setEditItem("");
+        setModalShow(false);
     };
     const handleDelete = (item) => {
         dispatch(dataAction_delete(item));
+        setEditItem(""); //
     };
 
-    const handleShow = () => {
+    const handleShow = (item) => {
+        if (item) {
+            setEditItem(item);
+        }
         setModalShow(true);
     };
 
     const handleHide = () => {
         setModalShow(false);
+        setEditItem(""); //
     };
 
     return (
         <div className="board">
+            <div className="board__title">
+                <h2>게시판</h2>
+            </div>
+
             <Table striped hover>
                 <thead className="thead">
                     <tr>
-                        <th className="thead__title">Title</th>
-                        <th className="thead__writer">Writer</th>
-                        <th className="thead__date">Date</th>
-                        <th className="thead__actions">Actions</th>
+                        <th>Title</th>
+                        <th>Writer</th>
+                        <th>Date</th>
+                        <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody className="tbody">
                     {items.map((item) => (
-                        <tr key={item.id}>
-                            <td className="tbody__title">{item.title}</td>
-                            <td className="tbody__write">{item.name}</td>
-                            <td className="tbody__date">{item.date}</td>
-                            <td className="tbody__actions">
-                                <i className="fas fa-pencil-alt"></i>
+                        <tr key={item.id} onClick={() => handleShow(item)}>
+                            <td>{item.title}</td>
+                            <td>{item.name}</td>
+                            <td>{dayjs(item.date).fromNow()}</td>
+                            <td
+                                className="board__delete"
+                                onClick={(e) => e.stopPropagation()}
+                            >
                                 <i
                                     className="far fa-trash-alt"
                                     onClick={() => handleDelete(item)}
@@ -69,15 +88,16 @@ function Board() {
                 <Button
                     className="board__buttomBtn"
                     variant="dark"
-                    onClick={handleShow}
+                    onClick={() => handleShow()}
                 >
                     글쓰기
                 </Button>
             </div>
-            <ModalContainer
+            <BoardWrite
                 show={modalShow}
                 onHide={handleHide}
-                onUpdate={handleUpdate}
+                editItem={editItem}
+                handleUpdate={handleUpdate}
             />
         </div>
     );

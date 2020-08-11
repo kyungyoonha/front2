@@ -1,43 +1,47 @@
 {
     "data": [
         {
-            "name": "page1",
+            "name": "상품",
             "url": "/page1",
+            "icon": "fa-home",
             "children": [
-                { "name": "page1-product1", "url": "/product1" },
-                { "name": "page1-product2", "url": "/product2" },
-                { "name": "page1-product3", "url": "/product3" },
-                { "name": "page1-product4", "url": "/product4" }
+                { "name": "상품1", "url": "/product1" },
+                { "name": "상품2", "url": "/product2" },
+                { "name": "상품3", "url": "/product3" },
+                { "name": "상품4", "url": "/product4" }
             ]
         },
         {
-            "name": "page2",
+            "name": "소개",
             "url": "/page2",
+            "icon": "fa-question-circle",
             "children": [
-                { "name": "page2-about1", "url": "/about1" },
-                { "name": "page2-about2", "url": "/about2" },
-                { "name": "page2-about3", "url": "/about3" },
-                { "name": "page2-about4", "url": "/about4" }
+                { "name": "소개1", "url": "/about1" },
+                { "name": "소개2", "url": "/about2" },
+                { "name": "소개3", "url": "/about3" },
+                { "name": "소개4", "url": "/about4" }
             ]
         },
         {
-            "name": "page3",
+            "name": "정보",
             "url": "/page3",
+            "icon": "fa-address-book",
             "children": [
                 { "name": "Single Tab Page", "url": "/intro1" },
-                { "name": "page3-intro2", "url": "/intro2" },
-                { "name": "page3-intro3", "url": "/intro3" },
+                { "name": "정보2", "url": "/intro2" },
+                { "name": "정보3", "url": "/intro3" },
                 { "name": "Double Tabs Page", "url": "/intro4" }
             ]
         },
         {
-            "name": "page4",
+            "name": "가격",
             "url": "/page4",
+            "icon": "fa-cogs",
             "children": [
-                { "name": "page4-price1", "url": "/price1" },
-                { "name": "page4-price2", "url": "/price2" },
-                { "name": "page4-price3", "url": "/price3" },
-                { "name": "page4-price4", "url": "/price4" }
+                { "name": "가격1", "url": "/price1" },
+                { "name": "가격2", "url": "/price2" },
+                { "name": "가격3", "url": "/price3" },
+                { "name": "가격4", "url": "/price4" }
             ]
         }
     ]
