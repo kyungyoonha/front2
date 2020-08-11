@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Content from "./Content";
+import Content from "../Content";
 
 function Tabs({ baseurl, menuItems, children, history }) {
     const [path, setPath] = useState("");

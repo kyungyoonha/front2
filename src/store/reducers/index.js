@@ -1,6 +1,8 @@
 import { combineReducers } from "redux";
-import pathReducer from "./pathReducers";
+import pathReducers from "./pathReducers";
+import dataReducers from "./dataReducers";
 
 export default combineReducers({
-    path: pathReducer,
+    path: pathReducers,
+    data: dataReducers,
 });

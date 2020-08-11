@@ -11,7 +11,7 @@ function HeaderSub({ styleName, menuItem, onClick }) {
                 <NavLink
                     key={item.url}
                     to={menuItem.url + item.url}
-                    onClick={onClick}
+                    onClick={() => onClick(menuItem.url + item.url)}
                     activeClassName="active"
                 >
                     {styleName === "sideNav" && "▶ "}

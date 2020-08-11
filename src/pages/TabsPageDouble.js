@@ -1,5 +1,5 @@
 import React from "react";
-import Tabs from "../components/Tabs";
+import Tabs from "../components/common/Tabs";
 import { data as menuItemsStructure } from "../page3Items.json";
 
 function TabsPageDouble({ history }) {

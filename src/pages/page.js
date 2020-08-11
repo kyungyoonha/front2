@@ -1,5 +1,6 @@
 import React from "react";
 import ImageCat from "../images/cat.jpg";
+import Board from "../components/Board";
 
 import { useSelector } from "react-redux";
 import { getMenuItemsFromPath } from "../util/functions";
@@ -16,10 +17,10 @@ function Page() {
     return (
         <div className="page">
             <div className="page__title">
-                <h1>{pathMain}</h1>
+                <h1>{pathMain || "HOME"}</h1>
             </div>
-
-            <div className={`page__img`}>
+            <Board />
+            <div className="page__img">
                 <h2>{`${pathSub} 이미지`}</h2>
             </div>
             <div className="page__content">

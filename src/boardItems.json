@@ -1,0 +1,32 @@
+{
+    "data": [
+        {
+            "id": 1,
+            "name": "yoon",
+            "title": "오늘도 알차게",
+            "content": "컨텐츠 내용",
+            "date": "작성일"
+        },
+        {
+            "id": 2,
+            "name": "Jack",
+            "title": "반갑습니다.",
+            "content": "컨텐츠 내용",
+            "date": "작성일"
+        },
+        {
+            "id": 3,
+            "name": "Cate",
+            "title": "행복하세요.",
+            "content": "컨텐츠 내용",
+            "date": "작성일"
+        },
+        {
+            "id": 4,
+            "name": "Hugo",
+            "title": "좋은하루 입니다.",
+            "content": "컨텐츠 내용",
+            "date": "작성일"
+        }
+    ]
+}

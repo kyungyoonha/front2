@@ -2,21 +2,15 @@ import React, { useState, useEffect, useCallback } from "react";
 import { NavLink } from "react-router-dom";
 import ChildMenu from "./common/ChildMenu";
 
-//Icons
-import HomeIcon from "@material-ui/icons/Home";
-import AssessmentIcon from "@material-ui/icons/Assessment";
-import BackupIcon from "@material-ui/icons/Backup";
-import SettingsIcon from "@material-ui/icons/Settings";
-
 // redux
 import { useSelector, useDispatch } from "react-redux";
-import { setPathMain } from "../store/actions";
+import { pathAction_setMain } from "../store/actions";
 
 const IconsMap = {
-    page1: <HomeIcon className="sideMenu__pageIcon" />,
-    page2: <AssessmentIcon className="sideMenu__pageIcon" />,
-    page3: <BackupIcon className="sideMenu__pageIcon" />,
-    page4: <SettingsIcon className="sideMenu__pageIcon" />,
+    page1: <i className="fas fa-home"></i>,
+    page2: <i className="fas fa-question-circle"></i>,
+    page3: <i className="fas fa-address-book"></i>,
+    page4: <i className="fas fa-cogs"></i>,
 };
 
 function SideNavItem({ menuItem }) {
@@ -46,7 +40,7 @@ function SideNavItem({ menuItem }) {
     const handleClickMain = useCallback(
         (path) => {
             setOpen(true);
-            dispatch(setPathMain(path));
+            dispatch(pathAction_setMain(path));
         },
         [dispatch]
     );

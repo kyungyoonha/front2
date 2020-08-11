@@ -1,4 +1,4 @@
-import { PATH_MAIN, PATH_SUB, SET_PATH } from "../types";
+import { PATH_MAIN, PATH_SUB, PATH_SET } from "../types";
 
 const INITIAL_STATE = {
     pathMain: "",
@@ -7,7 +7,7 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
-        case SET_PATH:
+        case PATH_SET:
             return action.payload;
         case PATH_MAIN:
             return {

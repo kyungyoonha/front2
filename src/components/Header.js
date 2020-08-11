@@ -5,7 +5,7 @@ import ChildMenu from "./common/ChildMenu";
 import { getMenuItemsFromPath } from "../util/functions";
 // redux
 import { useSelector, useDispatch } from "react-redux";
-import { setPath, setPathMain } from "../store/actions";
+import { pathAction_setPath, pathAction_setMain } from "../store/actions";
 
 function Header({ history }) {
     const dispatch = useDispatch();
@@ -14,29 +14,34 @@ function Header({ history }) {
     // 초기 PATH 설정
     // Refresh 후에도 path 유지
     useEffect(() => {
-        dispatch(setPath(history.location.pathname));
+        dispatch(pathAction_setPath(history.location.pathname));
     }, [dispatch, history]); // currentPage
 
     const menuItemChildren = useMemo(() => getMenuItemsFromPath(pathMain), [
         pathMain,
     ]);
 
-    // page 클릭시 서브메뉴 활성화
+    // 메인 로고 클릭시 홈으로
+    const onClickLogo = () => {
+        dispatch(pathAction_setPath("/"));
+        history.push("/");
+    };
+
+    // 메인 메뉴 클릭시 서브메뉴 활성화
     const onClick = (page) => {
-        dispatch(setPathMain(page));
+        dispatch(pathAction_setMain(page));
         history.push(page);
     };
 
-    // 메인 로고 클릭시 홈으로
-    const onClickLogo = () => {
-        dispatch(setPath("/"));
-        history.push("/");
+    const onClickSetPath = (newPath) => {
+        dispatch(pathAction_setPath(newPath));
     };
 
     return (
         <div className="header">
             <div className="header__Logo">
                 <Link to="/" onClick={onClickLogo}>
+                    <i className="fab fa-react"></i>
                     REACT MISSION
                 </Link>
             </div>
@@ -59,7 +64,7 @@ function Header({ history }) {
                 <ChildMenu
                     styleName="header"
                     menuItem={menuItemChildren}
-                    onClick={() => onClick(menuItemChildren.url)}
+                    onClick={onClickSetPath}
                 />
             )}
         </div>
