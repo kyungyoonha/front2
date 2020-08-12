@@ -28,9 +28,9 @@
             "icon": "fa-address-book",
             "children": [
                 { "name": "Single Tab Page", "url": "/intro1" },
-                { "name": "정보2", "url": "/intro2" },
+                { "name": "Double Tabs Page", "url": "/intro2" },
                 { "name": "정보3", "url": "/intro3" },
-                { "name": "Double Tabs Page", "url": "/intro4" }
+                { "name": "정보4", "url": "/intro4" }
             ]
         },
         {

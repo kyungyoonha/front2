@@ -9,7 +9,7 @@ import {
     dataAction_fetch,
     dataAction_update,
     dataAction_delete,
-} from "../store/actions";
+} from "../redux/actions";
 
 // BS
 import Table from "react-bootstrap/Table";

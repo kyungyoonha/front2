@@ -1,11 +1,11 @@
 import React, { useEffect, useMemo } from "react";
 import { NavLink, Link } from "react-router-dom";
-import { data as menuItems } from "../menuItems.json";
+import { data as menuItems } from "../json/menuItems.json";
 import ChildMenu from "./common/ChildMenu";
 import { getMenuItemsFromPath } from "../util/functions";
 // redux
 import { useSelector, useDispatch } from "react-redux";
-import { pathAction_setPath, pathAction_setMain } from "../store/actions";
+import { pathAction_setPath, pathAction_setMain } from "../redux/actions";
 
 function Header({ history }) {
     const dispatch = useDispatch();

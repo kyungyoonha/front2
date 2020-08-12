@@ -4,14 +4,7 @@ import ChildMenu from "./common/ChildMenu";
 
 // redux
 import { useSelector, useDispatch } from "react-redux";
-import { pathAction_setPath, pathAction_setMain } from "../store/actions";
-
-const IconsMap = {
-    home: <i className="fas fa-home"></i>,
-    ques: <i className="fas fa-question-circle"></i>,
-    page3: <i className="fas fa-address-book"></i>,
-    page4: <i className="fas fa-cogs"></i>,
-};
+import { pathAction_setPath, pathAction_setMain } from "../redux/actions";
 
 function SideNavItem({ menuItem }) {
     const { pathMain } = useSelector((state) => state.path);
@@ -54,13 +47,13 @@ function SideNavItem({ menuItem }) {
             key={menuItem.url}
             onMouseLeave={onMouseLeave}
             className="sideNav__box"
+            onClick={() => onClickSetMain(menuItem.url)}
         >
             <NavLink
                 key={menuItem.url}
                 to={menuItem.url}
                 activeClassName="active"
                 onMouseEnter={onMouseEnter}
-                onClick={() => onClickSetMain(menuItem.url)}
             >
                 <div className="sideNav__mainIcon">
                     <i className={`fas ${menuItem.icon}`}></i>

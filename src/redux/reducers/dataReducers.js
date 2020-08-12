@@ -1,4 +1,4 @@
-import { DATA_FETCH, DATA_INSERT, DATA_Edit, DATA_DELETE } from "../types";
+import { DATA_FETCH, DATA_INSERT, DATA_EDIT, DATA_DELETE } from "../types";
 
 const INITIAL_STATE = [];
 
@@ -12,7 +12,7 @@ export default (state = INITIAL_STATE, action) => {
             return [...state, action.payload];
 
         // id 일치하는 item 업데이트
-        case DATA_Edit:
+        case DATA_EDIT:
             return state.map((item) =>
                 item.id === action.payload.id ? action.payload : item
             );

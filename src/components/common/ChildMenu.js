@@ -2,8 +2,8 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 function HeaderSub({ styleName, menuItem, onClick }) {
+    if (!menuItem) return null;
     const children = menuItem.children;
-    if (!children) return null;
 
     return (
         <div className={`${styleName}__childMenu`}>

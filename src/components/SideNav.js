@@ -1,6 +1,6 @@
 import React from "react";
 import SideNavItem from "./SideNavItem";
-import menuItems from "../menuItems";
+import menuItems from "../json/menuItems.json";
 
 function SideNav() {
     return (

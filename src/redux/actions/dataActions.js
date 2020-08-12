@@ -1,5 +1,5 @@
-import { DATA_FETCH, DATA_INSERT, DATA_Edit, DATA_DELETE } from "../types";
-import { data as boardItems } from "../../boardItems.json";
+import { DATA_FETCH, DATA_INSERT, DATA_EDIT, DATA_DELETE } from "../types";
+import { data as boardItems } from "../../json/boardItems.json";
 import { makeRandomId } from "../../util/functions";
 
 // Fetch data
@@ -28,7 +28,7 @@ export const dataAction_update = (item) => {
     // Edit data
     else {
         return {
-            type: DATA_Edit,
+            type: DATA_EDIT,
             payload: item,
         };
     }

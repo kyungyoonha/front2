@@ -6,15 +6,15 @@ function Tabs({ baseurl, menuItems, children, history }) {
     const currentPath = history.location.pathname;
 
     // 처음 클릭 & 대메뉴 클릭시 => 기본 아이템 띄움
-    // path: /page3/intro4       => item1 => product1
-    // path: /page3/intro4/item1 => item1 => product1
-    // path: /page3/intro4/item2 => item2 => detail1
-    // path: /page3/intro4/item3 => item3 => about1
-    // path: /page3/intro4/item4 => item4 => package1
+    // path: /page3/intro2       => item1 => product1
+    // path: /page3/intro2/item1 => item1 => product1
+    // path: /page3/intro2/item2 => item2 => detail1
+    // path: /page3/intro2/item3 => item3 => about1
+    // path: /page3/intro2/item4 => item4 => package1
     useEffect(() => {
-        const menuItem = menuItems.filter(
+        const menuItem = menuItems.find(
             (item) => currentPath.indexOf(item.url) > -1
-        )[0];
+        );
 
         menuItem ? setPath(menuItem.url) : setPath(menuItems[0].url);
     }, [currentPath, menuItems]);
@@ -51,9 +51,8 @@ function Tabs({ baseurl, menuItems, children, history }) {
                 {children ? (
                     React.cloneElement(children, {
                         baseurl: baseurl + path,
-                        menuItems: menuItems.filter(
-                            (items) => items.url === path
-                        )[0].children,
+                        menuItems: menuItems.find((items) => items.url === path)
+                            .children,
                         history: history,
                         currentPath: path,
                     })
