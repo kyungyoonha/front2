@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import BoardWrite from "./BoardWrite";
 import Pagination from "./common/Pagination";
 import paginate from "../util/paginate";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+import history from "../history";
 
 // redux
 import { useSelector, useDispatch } from "react-redux";
@@ -16,24 +17,31 @@ import {
 // BS
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import Col from "react-bootstrap/Col";
 
 dayjs.extend(relativeTime);
 
 function Board() {
     const fetchitems = useSelector((state) => state.data);
+    const { user } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
 
     // Board Detail
     const [modalShow, setModalShow] = useState(false);
-    const [editItem, setEditItem] = useState("");
+    const [selectedItem, setSelectedItem] = useState("");
+    const [isEdit, setIsEdit] = useState(false);
+
+    // search
+    const [input, setInput] = useState("");
 
     // paginate
     const [currentPage, setCurrentPage] = useState(1);
-    const pageSize = 3;
+    const pageSize = 4;
     const totalPage = Math.ceil(fetchitems.length / pageSize);
 
+    // items
     const items = paginate(fetchitems, currentPage, pageSize);
-    console.log(items);
 
     // Fetch Items
     useEffect(() => {
@@ -42,74 +50,115 @@ function Board() {
 
     // Update Data
     const handleUpdate = (item) => {
+        // 유저 ID 정보 추가
+        item.userId = user.id;
+
         dispatch(dataAction_update(item));
-        setEditItem("");
+        setSelectedItem("");
         setModalShow(false);
     };
 
     // Delete Data
     const handleDelete = (item) => {
         dispatch(dataAction_delete(item));
-        setEditItem(""); //
+        setSelectedItem("");
     };
 
     // Show Detail
     const handleShow = (item) => {
-        if (item) {
-            setEditItem(item);
+        setSelectedItem(item);
+        setIsEdit(false);
+        setModalShow(true);
+    };
+
+    // Edit Detail
+    const handleEdit = (item) => {
+        // 유저 정보 없을 시, 로그인 화면 이동
+        if (!user.id) {
+            history.push("/login");
         }
+
+        setSelectedItem(item);
+        setIsEdit(true);
         setModalShow(true);
     };
 
     // Hide Detail
     const handleHide = () => {
         setModalShow(false);
-        setEditItem(""); //
+        setSelectedItem("");
+        setIsEdit(false);
     };
 
     // Change Current Page
     const handlePageChange = (page) => {
+        console.log(page);
         if (page === "before" && currentPage > 1) {
             setCurrentPage((state) => state - 1);
         } else if (page === "next" && currentPage < totalPage)
             setCurrentPage((state) => state + 1);
-        else {
+        else if (page !== "before" && page !== "next") {
             setCurrentPage(page);
         }
     };
 
-    // ==========================
-    console.log(currentPage);
-    // ==========================
+    const onChange = (e) => {
+        setInput(e.target.value);
+    };
+
     return (
         <div className="board">
             <div className="board__title">
                 <h2>게시판</h2>
             </div>
 
+            {/* <Form.Row>
+                <Col>
+                    <Form.Group>
+                        <Form.Control
+                            type="input"
+                            name="title"
+                            value={input.title}
+                            placeholder="검색"
+                            onChange={onChange}
+                        />
+                    </Form.Group>
+                </Col>
+                <Col>
+                    <Button>검색하기</Button>
+                </Col>
+            </Form.Row> */}
             <Table striped hover>
                 <thead className="thead">
                     <tr>
-                        <th>Title</th>
-                        <th>Writer</th>
-                        <th>Date</th>
-                        <th>Delete</th>
+                        <th>제목</th>
+                        <th>작성자</th>
+                        <th>작성날짜</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody className="tbody">
                     {items.map((item) => (
                         <tr key={item.id} onClick={() => handleShow(item)}>
                             <td>{item.title}</td>
-                            <td>{item.name}</td>
+                            <td>{item.userId}</td>
                             <td>{dayjs(item.date).fromNow()}</td>
                             <td
-                                className="board__delete"
+                                className="board__actions"
                                 onClick={(e) => e.stopPropagation()}
                             >
-                                <i
-                                    className="far fa-trash-alt"
-                                    onClick={() => handleDelete(item)}
-                                ></i>
+                                {item.userId === user.id && (
+                                    <Fragment>
+                                        <i
+                                            className="fas fa-edit"
+                                            onClick={() => handleEdit(item)}
+                                        ></i>
+                                        <i
+                                            className="far fa-trash-alt"
+                                            onClick={() => handleDelete(item)}
+                                        ></i>
+                                    </Fragment>
+                                )}
                             </td>
                         </tr>
                     ))}
@@ -119,7 +168,7 @@ function Board() {
                 <Button
                     className="board__buttomBtn"
                     variant="dark"
-                    onClick={() => handleShow()}
+                    onClick={() => handleEdit()}
                 >
                     글쓰기
                 </Button>
@@ -131,8 +180,9 @@ function Board() {
             />
             <BoardWrite
                 show={modalShow}
+                isEdit={isEdit}
                 onHide={handleHide}
-                editItem={editItem}
+                item={selectedItem}
                 handleUpdate={handleUpdate}
             />
         </div>

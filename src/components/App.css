@@ -50,7 +50,8 @@
 table td, table th { cursor: pointer; } 
 .board { display: flex; flex-direction: column; min-height: 400px; }
 .board__title { margin-bottom: 30px; }
-.board__delete { width: 30px; text-align: center;}
+.board__actions { width: 100px; text-align: center;}
+.board__actions i { margin: 0 10px;}
 .board__buttom { display: flex; justify-content: flex-end;}
 .board__buttomBtn { width: 150px; float: right;}
 
@@ -59,5 +60,5 @@ table td, table th { cursor: pointer; }
 
 .errorBox {color: #dc3545; font-size: 0.8rem;}
 
-.pagination__item { width: 40px; height: 40px; text-align: center; line-height: 40px; border: 1px solid red;}
-.pagination__item.active {background-color: greenyellow; font-weight: bold;}
+.pagination__item { margin-right: -1px; width: 40px; height: 40px; text-align: center; line-height: 40px; border: 1px solid #b7b7b7; color: #b7b7b7}
+.pagination__item.active {background-color: #61dafb; font-weight: bold; color: white;}

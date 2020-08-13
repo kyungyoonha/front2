@@ -35,7 +35,6 @@ function Login() {
         };
         dispatch(authAction_login(userData));
     };
-    console.log(user);
     return (
         <div className="auth">
             <div className="auth__container">
