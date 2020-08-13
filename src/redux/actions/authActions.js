@@ -35,7 +35,8 @@ export const authAction_checkId = (id) => {
 export const authAction_signup = (userData) => {
     const { valid, errors } = validateSignUp(userData);
     if (valid) {
-        localStorage.setItem("FBIdToken", "few");
+        history.push("/login");
+        alert("회원가입에 성공하였습니다.");
         return {
             type: AUTH_SIGNUP,
             payload: userData,
@@ -57,7 +58,10 @@ export const authAction_login = (userData) => {
             payload: errors,
         };
     }
-    const user = authUsers.find((user) => user.id === userData.id);
+
+    // 회원가입 후에 LocalStroage에 저장된 userDB 가져옴
+    const userDB = JSON.parse(localStorage.getItem("usersDB")) || authUsers;
+    const user = userDB.find((user) => user.id === userData.id);
     if (user && user.password === userData.password) {
         history.push("/");
         return {

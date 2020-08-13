@@ -22,9 +22,11 @@ export default (state = INITIAL_STATE, action) => {
                 isCheckId: action.payload,
             };
         case AUTH_SIGNUP:
+            const newUsersDB = [...state.users, action.payload];
+            localStorage.setItem("usersDB", JSON.stringify(newUsersDB));
             return {
                 ...state,
-                users: [...state.users, action.payload],
+                users: newUsersDB,
                 user: action.payload,
                 errors: {},
             };

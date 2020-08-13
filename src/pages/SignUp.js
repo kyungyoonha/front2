@@ -56,27 +56,24 @@ function SignUp() {
     const handleSubmit = () => {
         if (!isCheckId) {
             alert("아이디 중복확인을 해주세요.");
+        } else {
+            const userData = {
+                id: inputs.id,
+                password: inputs.password,
+                passwordConfirm: inputs.passwordConfirm,
+                gender: inputs.gender,
+                birth: inputs.year + "/" + inputs.month + "/" + inputs.day,
+                checkbox: inputs.checkbox,
+                content: inputs.content,
+            };
+            dispatch(authAction_signup(userData));
         }
-
-        const userData = {
-            id: inputs.id,
-            password: inputs.password,
-            passwordConfirm: inputs.passwordConfirm,
-            gender: inputs.gender,
-            birth: inputs.year + "/" + inputs.month + "/" + inputs.day,
-            checkbox: inputs.checkbox,
-            content: inputs.content,
-        };
-        dispatch(authAction_signup(userData));
     };
 
     const handleClickValidateId = (e) => {
         e.preventDefault();
         dispatch(authAction_checkId(inputs.id));
     };
-    // ==========================
-
-    // ==========================
 
     return (
         <div className="auth">
