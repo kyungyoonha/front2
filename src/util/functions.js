@@ -49,7 +49,14 @@ export const makeOptions = (category) => {
             );
         }
     } else if (category === "day") {
-        for (var day = 1; day < 32; day++) {
+        var date = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+        // 윤년인 경우 2월달에 +1을 해준다.
+        if (isLeapYear(year)) {
+            date[1] = 29;
+        }
+
+        for (var day = 1; day <= 32; day++) {
             optionsList.push(
                 <option key={day} value={day}>
                     {day} 일
@@ -60,4 +67,32 @@ export const makeOptions = (category) => {
     return optionsList;
 };
 
-export const makeOptionsDay = (yaer, month) => {};
+export const makeOptionsDay = (year, month) => {
+    const optionsList = [];
+    var date = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+    // 윤년인 경우 2월달에 +1을 해준다.
+    if (isLeapYear(year)) {
+        date[1] = 29;
+    }
+
+    var endDate = date[month - 1];
+    for (var day = 1; day <= endDate; day++) {
+        optionsList.push(
+            <option key={day} value={day}>
+                {day} 일
+            </option>
+        );
+    }
+
+    return optionsList;
+};
+
+// 윤년 계산
+const isLeapYear = (year) => {
+    if ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) {
+        return true;
+    } else {
+        return false;
+    }
+};

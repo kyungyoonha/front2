@@ -11,8 +11,12 @@ export const validateSignUp = (userData) => {
     }
 
     // Validate user [Password]
-    if (isEmpty(password) || isEmpty(passwordConfirm)) {
+    if (isEmpty(password)) {
         errors.password = "비밀번호를 작성해주세요.";
+    }
+
+    if (isEmpty(passwordConfirm)) {
+        errors.passwordConfirm = "비밀번호 확인을 작성해주세요.";
     }
 
     if (!checkRegPassword(password)) {

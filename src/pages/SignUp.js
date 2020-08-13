@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { makeOptions } from "../util/functions";
+import { makeOptions, makeOptionsDay } from "../util/functions";
 
 // BS
 import Form from "react-bootstrap/form";
@@ -10,20 +10,19 @@ import Button from "react-bootstrap/Button";
 import { useSelector, useDispatch } from "react-redux";
 import {
     authAction_signup,
-    authAction_validateId,
+    authAction_checkId,
 } from "../redux/actions/authActions";
 
 function SignUp() {
-    const { errors } = useSelector((state) => state.auth);
+    const { isCheckId, errors } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
-
     const [inputs, setInputs] = useState({
         id: "",
         password: "",
         passwordConfirm: "",
-        gender: "",
-        year: "",
-        month: "",
+        gender: "woman",
+        year: 2019,
+        month: 1,
         day: "",
         checkbox: {},
         content: "",
@@ -57,6 +56,10 @@ function SignUp() {
     };
 
     const handleSubmit = () => {
+        if (!isCheckId) {
+            alert("아이디 중복확인을 해주세요.");
+        }
+
         const userData = {
             id: inputs.id,
             password: inputs.password,
@@ -71,26 +74,10 @@ function SignUp() {
 
     const handleClickValidateId = (e) => {
         e.preventDefault();
-        authAction_validateId(inputs.id);
+        dispatch(authAction_checkId(inputs.id));
     };
     // ==========================
-    // 기준일자
-    let date = new Date(2020, 0, 10);
 
-    // 1달 후의 1일
-    let nextMonthFirstDate = new Date(
-        date.getFullYear(),
-        date.getMonth() + 1,
-        1
-    );
-
-    // 1달 후의 말일
-    let nextMonthLastDate = new Date(
-        nextMonthFirstDate.getFullYear(),
-        nextMonthFirstDate.getMonth() + 1,
-        0
-    );
-    console.log(nextMonthLastDate.getDate());
     // ==========================
 
     return (
@@ -120,11 +107,13 @@ function SignUp() {
                                 </Col>
                                 <Col>
                                     <Button
-                                        variant="success"
+                                        variant={
+                                            isCheckId ? "secondary" : "success"
+                                        }
                                         block
                                         onClick={handleClickValidateId}
                                     >
-                                        중복확인
+                                        {isCheckId ? "다시 체크" : "중복 확인"}
                                     </Button>
                                 </Col>
                             </Form.Row>
@@ -155,7 +144,13 @@ function SignUp() {
                                 autoComplete="false"
                                 value={inputs.passwordConfirm}
                                 onChange={handleChange}
+                                isInvalid={
+                                    errors.passwordConfirm ? true : false
+                                }
                             />
+                            <Form.Control.Feedback type="invalid">
+                                {errors.passwordConfirm}
+                            </Form.Control.Feedback>
                         </Form.Group>
 
                         <Form.Group>
@@ -221,7 +216,10 @@ function SignUp() {
                                         value={inputs.day}
                                         onChange={handleChange}
                                     >
-                                        {makeOptions("day")}
+                                        {makeOptionsDay(
+                                            inputs.year,
+                                            inputs.month
+                                        )}
                                     </Form.Control>
                                 </Col>
                             </Form.Row>

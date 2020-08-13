@@ -1,8 +1,14 @@
-import { AUTH_SIGNUP, AUTH_LOGIN, AUTH_LOGOUT, AUTH_ERRORS } from "../types";
+import {
+    AUTH_CHECKID,
+    AUTH_SIGNUP,
+    AUTH_LOGIN,
+    AUTH_LOGOUT,
+    AUTH_ERRORS,
+} from "../types";
 import { data as authUsers } from "../../json/authUsers.json";
 import { validateSignUp, validateLogin, checkRegId } from "../../util/validate";
 
-export const authAction_validateId = (id) => {
+export const authAction_checkId = (id) => {
     if (!checkRegId(id)) {
         alert(
             "아이디는 10자 이상이어야 하며, 숫자/영어/특수문자를 모두 포함해야 합니다."
@@ -10,11 +16,19 @@ export const authAction_validateId = (id) => {
     } else {
         // 기존 유저
         if (authUsers.findIndex((user) => user.id === id) === -1) {
-            alert("사용가능한 아이디 입니다.");
+            alert("사용 가능한 아이디입니다.");
+            return {
+                type: AUTH_CHECKID,
+                payload: true,
+            };
         } else {
             alert("이미 가입되어 있는 아이디 입니다.");
         }
     }
+    return {
+        type: AUTH_CHECKID,
+        payload: false,
+    };
 };
 
 export const authAction_signup = (userData) => {

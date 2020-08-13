@@ -1,7 +1,14 @@
-import { AUTH_SIGNUP, AUTH_LOGIN, AUTH_LOGOUT, AUTH_ERRORS } from "../types";
+import {
+    AUTH_CHECKID,
+    AUTH_SIGNUP,
+    AUTH_LOGIN,
+    AUTH_LOGOUT,
+    AUTH_ERRORS,
+} from "../types";
 import { data as authUsers } from "../../json/authUsers.json";
 
 const INITIAL_STATE = {
+    isCheckId: false,
     users: authUsers,
     user: {},
     errors: {},
@@ -9,8 +16,14 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
+        case AUTH_CHECKID:
+            return {
+                ...state,
+                isCheckId: action.payload,
+            };
         case AUTH_SIGNUP:
             return {
+                ...state,
                 users: [...state.users, action.payload],
                 user: action.payload,
                 errors: {},

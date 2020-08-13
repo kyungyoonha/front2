@@ -57,4 +57,4 @@ table td, table th { cursor: pointer; }
 .signup { overflow: hidden; margin: 0 auto; height: auto; padding: 30px; width: 700px; background-color: white; }
 .signup__header { margin-bottom: 30px; height: 60px; border-bottom: 1px solid #b7b7b7; }
 
-.errorBox {color: red; font-size: 0.8rem;}
+.errorBox {color: #dc3545; font-size: 0.8rem;}
