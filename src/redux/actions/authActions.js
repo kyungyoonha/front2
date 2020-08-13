@@ -5,6 +5,7 @@ import {
     AUTH_LOGOUT,
     AUTH_ERRORS,
 } from "../types";
+import history from "../../history";
 import { data as authUsers } from "../../json/authUsers.json";
 import { validateSignUp, validateLogin, checkRegId } from "../../util/validate";
 
@@ -34,6 +35,7 @@ export const authAction_checkId = (id) => {
 export const authAction_signup = (userData) => {
     const { valid, errors } = validateSignUp(userData);
     if (valid) {
+        localStorage.setItem("FBIdToken", "few");
         return {
             type: AUTH_SIGNUP,
             payload: userData,
@@ -48,14 +50,25 @@ export const authAction_signup = (userData) => {
 
 export const authAction_login = (userData) => {
     const { valid, errors } = validateLogin(userData);
-    if (valid) {
-        return {
-            type: AUTH_LOGIN,
-        };
-    } else {
+
+    if (!valid) {
         return {
             type: AUTH_ERRORS,
             payload: errors,
+        };
+    }
+    const user = authUsers.find((user) => user.id === userData.id);
+    if (user && user.password === userData.password) {
+        history.push("/");
+        return {
+            type: AUTH_LOGIN,
+            payload: userData,
+        };
+    } else {
+        alert("아이디 또는 비밀번호가 일치하지 않습니다.");
+        return {
+            type: AUTH_ERRORS,
+            payload: { total: "아이디 또는 비밀번호가 일치하지 않습니다." },
         };
     }
 };

@@ -51,13 +51,8 @@ export const validateLogin = (userData) => {
         errors.id = "아이디를 작성해주세요.";
     }
 
-    if (!checkRegId(id)) {
-        errors.id =
-            "아이디는 10자 이상이어야 하며, 숫자/영어/특수문자를 모두 포함해야 합니다.";
-    }
-
     if (isEmpty(password)) {
-        errors.id = "패스워드를 입력해주세요.";
+        errors.password = "패스워드를 입력해주세요.";
     }
 
     // 에러가 있으면 false 에러 없으면 true

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { makeOptions, makeOptionsDay } from "../util/functions";
 
 // BS
@@ -8,10 +9,7 @@ import Button from "react-bootstrap/Button";
 
 // Redux
 import { useSelector, useDispatch } from "react-redux";
-import {
-    authAction_signup,
-    authAction_checkId,
-} from "../redux/actions/authActions";
+import { authAction_signup, authAction_checkId } from "../redux/actions";
 
 function SignUp() {
     const { isCheckId, errors } = useSelector((state) => state.auth);
@@ -81,12 +79,12 @@ function SignUp() {
     // ==========================
 
     return (
-        <div className="signup">
-            <div className="signup__container">
-                <div className="signup__header">
+        <div className="auth">
+            <div className="auth__container">
+                <div className="auth__header">
                     <h2>회원 가입</h2>
                 </div>
-                <div className="signup__body">
+                <div className="auth__body">
                     <Form>
                         <Form.Group>
                             <Form.Label>아이디</Form.Label>
@@ -283,9 +281,11 @@ function SignUp() {
                         <br />
                         <Form.Row>
                             <Col>
-                                <Button variant="secondary" block>
-                                    취소
-                                </Button>
+                                <Link to="/login">
+                                    <Button variant="secondary" block>
+                                        취소
+                                    </Button>
+                                </Link>
                             </Col>
                             <Col>
                                 <Button
@@ -299,7 +299,7 @@ function SignUp() {
                         </Form.Row>
                     </Form>
                 </div>
-                <div className="signup__bottom"></div>
+                <div className="auth__bottom"></div>
             </div>
         </div>
     );

@@ -6,6 +6,7 @@ import Page from "../pages/Page";
 import TabsPageSingle from "../pages/TabsPageSingle";
 import TabsPageDouble from "../pages/TabsPageDouble";
 import SignUp from "../pages/SignUp";
+import Login from "../pages/Login";
 import history from "../history";
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
                         <Route path="/page3/intro4" exact component={Page} />
                     </div>
                     <Route path="/signup" exact component={SignUp} />
+                    <Route path="/login" exact component={Login} />
                 </div>
             </Router>
         </div>
