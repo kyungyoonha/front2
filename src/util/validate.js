@@ -36,6 +36,8 @@ export const validateSignUp = (userData) => {
     // 컨텐츠 20자 이상
     if (content.length < 20) {
         errors.content = "20자 이상 입력해주세요.";
+    }else( content.length > 300){
+        errors.content = "300자 이하로 입력해주세요.";
     }
 
     // 에러가 있으면 false 에러 없으면 true

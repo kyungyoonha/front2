@@ -274,6 +274,9 @@ function SignUp() {
                                 onChange={handleChange}
                                 isInvalid={errors.content ? true : false}
                             />
+                            <div className="auth__contentCount">
+                                <span>{`${inputs.content.length} / 300`}</span>
+                            </div>
                             <Form.Control.Feedback type="invalid">
                                 {errors.content}
                             </Form.Control.Feedback>
