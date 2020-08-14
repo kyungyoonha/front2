@@ -9,9 +9,9 @@ import history from "../history";
 // redux
 import { useSelector, useDispatch } from "react-redux";
 import {
-    dataAction_fetch,
-    dataAction_update,
-    dataAction_delete,
+    boardAction_fetch,
+    boardAction_update,
+    boardAction_delete,
 } from "../redux/actions";
 
 // BS
@@ -23,7 +23,7 @@ import Col from "react-bootstrap/Col";
 dayjs.extend(relativeTime);
 
 function Board() {
-    const fetchitems = useSelector((state) => state.data);
+    const fetchitems = useSelector((state) => state.board);
     const { user } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
 
@@ -45,22 +45,22 @@ function Board() {
 
     // Fetch Items
     useEffect(() => {
-        dispatch(dataAction_fetch());
+        dispatch(boardAction_fetch());
     }, [dispatch]);
 
     // Update Data
     const handleUpdate = (item) => {
         // 유저 ID 정보 추가
-        item.userId = user.id;
+        item.userId = user.userId;
 
-        dispatch(dataAction_update(item));
+        dispatch(boardAction_update(item));
         setSelectedItem("");
         setModalShow(false);
     };
 
     // Delete Data
     const handleDelete = (item) => {
-        dispatch(dataAction_delete(item));
+        dispatch(boardAction_delete(item));
         setSelectedItem("");
     };
 
@@ -74,7 +74,7 @@ function Board() {
     // Edit Detail
     const handleEdit = (item) => {
         // 유저 정보 없을 시, 로그인 화면 이동
-        if (!user.id) {
+        if (!user.userId) {
             history.push("/login");
         }
 
@@ -147,7 +147,7 @@ function Board() {
                                 className="board__actions"
                                 onClick={(e) => e.stopPropagation()}
                             >
-                                {item.userId === user.id && (
+                                {item.userId === user.userId && (
                                     <Fragment>
                                         <i
                                             className="fas fa-edit"

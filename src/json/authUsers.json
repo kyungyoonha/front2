@@ -1,7 +1,7 @@
 {
     "data": [
         {
-            "id": "test",
+            "userId": "test",
             "name": "test",
             "password": "test123",
             "gender": "man",
@@ -13,7 +13,6 @@
             }
         },
         {
-            "id": "admin",
             "name": "admin",
             "password": "admin123",
             "gender": "woman",
@@ -24,7 +23,7 @@
             }
         },
         {
-            "id": "userid",
+            "userId": "userid",
             "name": "userid",
             "password": "userid123",
             "gender": "woman",

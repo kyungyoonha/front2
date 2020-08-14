@@ -1,5 +1,5 @@
 import React from "react";
-import { Router, Route } from "react-router-dom";
+import { Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 import Header from "./Header";
 import Page from "../pages/Page";
@@ -15,25 +15,15 @@ function App() {
             <Router history={history}>
                 <div>
                     <Header history={history} />
-                    <div className="app__container">
+                    <Switch>
                         <Route path="/" exact component={Page} />
+                        <Route path="/signup" exact component={SignUp} />
+                        <Route path="/login" exact component={Login} />
                         <Route path="/page1" component={Page} />
                         <Route path="/page2" component={Page} />
-                        <Route path="/page3" exact component={TabsPageSingle} />
-                        <Route path="/page4" component={Page} />
-                        <Route
-                            path="/page3/intro1"
-                            component={TabsPageSingle}
-                        />
-                        <Route
-                            path="/page3/intro2"
-                            component={TabsPageDouble}
-                        />
-                        <Route path="/page3/intro3" exact component={Page} />
-                        <Route path="/page3/intro4" exact component={Page} />
-                    </div>
-                    <Route path="/signup" exact component={SignUp} />
-                    <Route path="/login" exact component={Login} />
+                        <Route path="/page3" component={TabsPageSingle} />
+                        <Route path="/page4" component={TabsPageDouble} />
+                    </Switch>
                 </div>
             </Router>
         </div>

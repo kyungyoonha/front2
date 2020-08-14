@@ -5,10 +5,10 @@
             "url": "/page1",
             "icon": "fa-home",
             "children": [
-                { "name": "상품1", "url": "/product1" },
-                { "name": "상품2", "url": "/product2" },
-                { "name": "상품3", "url": "/product3" },
-                { "name": "상품4", "url": "/product4" }
+                { "name": "상품1", "url": "/product1", "color": "greenyellow" },
+                { "name": "상품2", "url": "/product2", "color": "orange" },
+                { "name": "상품3", "url": "/product3", "color": "orchid" },
+                { "name": "상품4", "url": "/product4", "color": "yellow" }
             ]
         },
         {
@@ -16,33 +16,21 @@
             "url": "/page2",
             "icon": "fa-question-circle",
             "children": [
-                { "name": "소개1", "url": "/about1" },
-                { "name": "소개2", "url": "/about2" },
-                { "name": "소개3", "url": "/about3" },
-                { "name": "소개4", "url": "/about4" }
+                { "name": "소개1", "url": "/about1", "color": "greenyellow" },
+                { "name": "소개2", "url": "/about2", "color": "orange" },
+                { "name": "소개3", "url": "/about3", "color": "orchid" },
+                { "name": "소개4", "url": "/about4", "color": "yellow" }
             ]
         },
         {
-            "name": "정보",
+            "name": "싱글탭",
             "url": "/page3",
-            "icon": "fa-address-book",
-            "children": [
-                { "name": "Single Tab Page", "url": "/intro1" },
-                { "name": "Double Tabs Page", "url": "/intro2" },
-                { "name": "정보3", "url": "/intro3" },
-                { "name": "정보4", "url": "/intro4" }
-            ]
+            "icon": "fa-address-book"
         },
         {
-            "name": "가격",
+            "name": "멀티탭",
             "url": "/page4",
-            "icon": "fa-cogs",
-            "children": [
-                { "name": "가격1", "url": "/price1" },
-                { "name": "가격2", "url": "/price2" },
-                { "name": "가격3", "url": "/price3" },
-                { "name": "가격4", "url": "/price4" }
-            ]
+            "icon": "fa-cogs"
         }
     ]
 }

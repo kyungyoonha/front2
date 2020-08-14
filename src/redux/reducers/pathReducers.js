@@ -11,8 +11,8 @@ export default (state = INITIAL_STATE, action) => {
             return action.payload;
         case PATH_MAIN:
             return {
-                ...state,
                 pathMain: action.payload,
+                pathSub: "",
             };
         case PATH_SUB:
             return {

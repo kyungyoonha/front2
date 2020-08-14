@@ -34,7 +34,9 @@ export default (state = INITIAL_STATE, action) => {
         case AUTH_LOGIN:
             return {
                 ...state,
-                user: state.users.find((user) => user.id === action.payload.id),
+                user: state.users.find(
+                    (user) => user.userId === action.payload.userId
+                ),
                 errors: {},
             };
 

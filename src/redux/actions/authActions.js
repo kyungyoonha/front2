@@ -33,6 +33,7 @@ export const authAction_checkId = (id) => {
 };
 
 export const authAction_signup = (userData) => {
+    console.log(userData);
     const { valid, errors } = validateSignUp(userData);
     if (valid) {
         history.push("/login");
@@ -61,7 +62,7 @@ export const authAction_login = (userData) => {
 
     // 회원가입 후에 LocalStroage에 저장된 userDB 가져옴
     const userDB = JSON.parse(localStorage.getItem("usersDB")) || authUsers;
-    const user = userDB.find((user) => user.id === userData.id);
+    const user = userDB.find((user) => user.userId === userData.userId);
     if (user && user.password === userData.password) {
         history.push("/");
         return {

@@ -1,9 +1,9 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-function HeaderSub({ styleName, menuItem, onClick }) {
-    if (!menuItem) return null;
+function ChildMenu({ styleName, menuItem, onClick }) {
     const children = menuItem.children;
+    if (!children) return null;
 
     return (
         <div className={`${styleName}__childMenu`}>
@@ -22,4 +22,4 @@ function HeaderSub({ styleName, menuItem, onClick }) {
     );
 }
 
-export default React.memo(HeaderSub);
+export default React.memo(ChildMenu);

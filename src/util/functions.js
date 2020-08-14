@@ -2,18 +2,19 @@ import React from "react";
 import { data as menuItemsStructure } from "../json/menuItems.json";
 
 export const getMenuItemsFromPath = (path) => {
-    if (path === "/" || !path) {
+    try {
+        // /page3/intro3 => ['', page3, intro3]
+        const pathSplit = path.split("/");
+        let menuItems = menuItemsStructure;
+        for (var i = 1; i < pathSplit.length; i++) {
+            let pathItem = pathSplit[i];
+            menuItems = menuItems.find((item) => item.url === "/" + pathItem);
+        }
+
+        return menuItems;
+    } catch (e) {
         return menuItemsStructure;
     }
-    // /page3/intro3 => ['', page3, intro3]
-    const pathSplit = path.split("/");
-    let menuItems = menuItemsStructure;
-    for (var i = 1; i < pathSplit.length; i++) {
-        let pathItem = pathSplit[i];
-        menuItems = menuItems.find((item) => item.url === "/" + pathItem);
-    }
-
-    return menuItems;
 };
 
 export const makeRandomId = () => {

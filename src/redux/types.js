@@ -3,9 +3,11 @@ export const PATH_MAIN = "path/PATH_MAIN";
 export const PATH_SUB = "path/PATH_SUB";
 
 export const DATA_FETCH = "data/DATA_FETCH";
-export const DATA_INSERT = "data/DATA_INSERT";
-export const DATA_EDIT = "data/DATA_EDIT";
-export const DATA_DELETE = "data/DATA_DELETE";
+
+export const BOARD_FETCH = "board/BOARD_FETCH";
+export const BOARD_INSERT = "board/BOARD_INSERT";
+export const BOARD_EDIT = "board/BOARD_EDIT";
+export const BOARD_DELETE = "board/BOARD_DELETE";
 
 export const AUTH_CHECKID = "auth/AUTH_CHECKID";
 export const AUTH_SIGNUP = "auth/AUTH_SIGNUP";

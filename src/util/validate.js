@@ -1,9 +1,9 @@
 export const validateSignUp = (userData) => {
-    const { id, password, passwordConfirm, checkbox, content } = userData;
+    const { userId, password, passwordConfirm, checkbox, content } = userData;
     const errors = {};
     // Validate user [Id]
-    if (isEmpty(id)) {
-        errors.id = "아이디를 작성해주세요.";
+    if (isEmpty(userId)) {
+        errors.userId = "아이디를 작성해주세요.";
     }
 
     if (password !== passwordConfirm) {
@@ -46,11 +46,11 @@ export const validateSignUp = (userData) => {
 };
 
 export const validateLogin = (userData) => {
-    const { id, password } = userData;
+    const { userId, password } = userData;
     const errors = {};
 
-    if (isEmpty(id)) {
-        errors.id = "아이디를 작성해주세요.";
+    if (isEmpty(userId)) {
+        errors.userId = "아이디를 작성해주세요.";
     }
 
     if (isEmpty(password)) {

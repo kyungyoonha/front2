@@ -15,7 +15,7 @@ function Login() {
     const dispatch = useDispatch();
 
     const [inputs, setInputs] = useState({
-        id: "",
+        userId: "",
         password: "",
         errors: {},
     });
@@ -30,7 +30,7 @@ function Login() {
 
     const handleSubmit = () => {
         const userData = {
-            id: inputs.id,
+            userId: inputs.userId,
             password: inputs.password,
         };
         dispatch(authAction_login(userData));
@@ -47,15 +47,15 @@ function Login() {
                             <Form.Label>아이디</Form.Label>
                             <Form.Control
                                 type="input"
-                                name="id"
+                                name="userId"
                                 placeholder="아이디를 입력해주세요."
                                 autoComplete="false"
-                                value={inputs.id}
+                                value={inputs.userId}
                                 onChange={handleChange}
-                                isInvalid={errors.id ? true : false}
+                                isInvalid={errors.userId ? true : false}
                             />
                             <Form.Control.Feedback type="invalid">
-                                {errors.id}
+                                {errors.userId}
                             </Form.Control.Feedback>
                         </Form.Group>
 

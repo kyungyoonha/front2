@@ -15,7 +15,7 @@ function SignUp() {
     const { isCheckId, errors } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
     const [inputs, setInputs] = useState({
-        id: "",
+        userId: "",
         password: "",
         passwordConfirm: "",
         gender: "woman",
@@ -58,7 +58,7 @@ function SignUp() {
             alert("아이디 중복확인을 해주세요.");
         } else {
             const userData = {
-                id: inputs.id,
+                userId: inputs.userId,
                 password: inputs.password,
                 passwordConfirm: inputs.passwordConfirm,
                 gender: inputs.gender,
@@ -72,7 +72,7 @@ function SignUp() {
 
     const handleClickValidateId = (e) => {
         e.preventDefault();
-        dispatch(authAction_checkId(inputs.id));
+        dispatch(authAction_checkId(inputs.userId));
     };
 
     return (
@@ -89,15 +89,15 @@ function SignUp() {
                                 <Col xs={9}>
                                     <Form.Control
                                         type="input"
-                                        name="id"
+                                        name="userId"
                                         placeholder="아이디를 입력해주세요."
                                         autoComplete="false"
-                                        value={inputs.id}
+                                        value={inputs.userId}
                                         onChange={handleChange}
-                                        isInvalid={errors.id ? true : false}
+                                        isInvalid={errors.userId ? true : false}
                                     />
                                     <Form.Control.Feedback type="invalid">
-                                        {errors.id}
+                                        {errors.userId}
                                     </Form.Control.Feedback>
                                 </Col>
                                 <Col>

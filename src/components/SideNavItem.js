@@ -47,13 +47,13 @@ function SideNavItem({ menuItem }) {
             key={menuItem.url}
             onMouseLeave={onMouseLeave}
             className="sideNav__box"
-            onClick={() => onClickSetMain(menuItem.url)}
         >
             <NavLink
                 key={menuItem.url}
                 to={menuItem.url}
                 activeClassName="active"
                 onMouseEnter={onMouseEnter}
+                onClick={() => onClickSetMain(menuItem.url)}
             >
                 <div className="sideNav__mainIcon">
                     <i className={`fas ${menuItem.icon}`}></i>
