@@ -11,7 +11,7 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 
 function Login() {
-    const { user, errors } = useSelector((state) => state.auth);
+    const { errors } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
 
     const [inputs, setInputs] = useState({

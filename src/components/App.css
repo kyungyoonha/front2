@@ -64,6 +64,11 @@ table td, table th { cursor: pointer; }
 .board__buttom { display: flex; justify-content: flex-end;}
 .board__buttomBtn { width: 150px; float: right;}
 
+.boardSearch { overflow: hidden;}
+.boardSearch__container { float: right;}
+.boardSearch__input { float: left; margin-right: 10px;}
+.boardSearch__button { float: left }
+
 .auth { background-color: #b7b7b7; padding: 50px 0; height: 100vh;}
 .auth__container { overflow: hidden; margin: 0 auto; height: auto; padding: 30px; width: 700px; background-color: white; }
 .auth__header { margin-bottom: 30px; height: 60px; background-color: white; border-bottom: 1px solid #b7b7b7; }

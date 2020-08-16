@@ -1,7 +1,8 @@
 import React, { Fragment } from "react";
 import SideNav from "../SideNav";
 
-function PageContainer({ history, children }) {
+// page Template
+function PageTemplate({ history, children }) {
     return (
         <Fragment>
             <div className="app_img">슬라이딩 이미지</div>
@@ -15,4 +16,4 @@ function PageContainer({ history, children }) {
     );
 }
 
-export default PageContainer;
+export default PageTemplate;

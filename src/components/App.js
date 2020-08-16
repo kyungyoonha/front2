@@ -30,4 +30,6 @@ function App() {
     );
 }
 
+// authRoute 구현할것  ★
+
 export default App;

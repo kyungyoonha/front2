@@ -1,13 +1,13 @@
 import React from "react";
 import Tabs from "../components/common/Tabs";
 import { data as menuItemsStructure } from "../json/page3Items.json";
-import PageContainer from "../components/common/PageContainer";
+import PageTemplate from "../components/common/PageTemplate";
 
 function TabsPageDouble({ history }) {
     const pathname = "/page3";
 
     return (
-        <PageContainer>
+        <PageTemplate>
             <div className="pageTabs">
                 <div className="page__title">
                     <h1>Double Tabs Pages</h1>
@@ -18,7 +18,7 @@ function TabsPageDouble({ history }) {
                     history={history}
                 />
             </div>
-        </PageContainer>
+        </PageTemplate>
     );
 }
 

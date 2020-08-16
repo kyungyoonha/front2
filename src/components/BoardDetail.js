@@ -11,7 +11,7 @@ const INITIAL_INPUTS = {
     content: "",
 };
 
-function BoardWrite({ show, onHide, isEdit, item, handleUpdate }) {
+function BoardDetail({ show, onHide, isEdit, item, handleUpdate }) {
     const [inputs, setInputs] = useState(INITIAL_INPUTS);
 
     useEffect(() => {
@@ -102,4 +102,4 @@ function BoardWrite({ show, onHide, isEdit, item, handleUpdate }) {
     );
 }
 
-export default BoardWrite;
+export default BoardDetail;

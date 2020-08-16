@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import ImageCat from "../images/cat.jpg";
 import Board from "../components/Board";
-import PageContainer from "../components/common/PageContainer";
+import PageTemplate from "../components/common/PageTemplate";
 
 // redux
 import { useSelector, useDispatch } from "react-redux";
@@ -9,15 +9,21 @@ import { dataAction_fetch } from "../redux/actions";
 
 function Page({ history }) {
     const { pathMain, pathSub } = useSelector((state) => state.path);
+    const { auth } = useSelector((state) => state.auth);
     const data = useSelector((state) => state.data);
     const dispatch = useDispatch();
+
+    // 로그인 정보 없으면 로그인 페이지로
+    if (!auth) {
+        history.push("/login");
+    }
 
     useEffect(() => {
         dispatch(dataAction_fetch(pathMain, pathSub));
     }, [dispatch, pathMain, pathSub]);
-    console.log("zz", data);
+
     return (
-        <PageContainer history={history}>
+        <PageTemplate history={history}>
             <Board />
             <div className="page__title">
                 <h1>{data.name}</h1>
@@ -52,7 +58,7 @@ function Page({ history }) {
                 설명 설명 설명 설명 설명 설명 설명 설명 설명 설명 설명 설명 설명
                 설명 설명
             </div>
-        </PageContainer>
+        </PageTemplate>
     );
 }
 

@@ -1,6 +1,8 @@
 import React, { useState, useEffect, Fragment } from "react";
-import BoardWrite from "./BoardWrite";
+import BoardDetail from "./BoardDetail";
+import BoardSearch from './BoardSearch';
 import Pagination from "./common/Pagination";
+
 import paginate from "../util/paginate";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
@@ -17,8 +19,7 @@ import {
 // BS
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import Col from "react-bootstrap/Col";
+
 
 dayjs.extend(relativeTime);
 
@@ -27,13 +28,13 @@ function Board() {
     const { user } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
 
+    // Board Search
+    const [keyword, setKeyword] = useState('');
+
     // Board Detail
     const [modalShow, setModalShow] = useState(false);
     const [selectedItem, setSelectedItem] = useState("");
     const [isEdit, setIsEdit] = useState(false);
-
-    // search
-    const [input, setInput] = useState("");
 
     // paginate
     const [currentPage, setCurrentPage] = useState(1);
@@ -41,7 +42,7 @@ function Board() {
     const totalPage = Math.ceil(fetchitems.length / pageSize);
 
     // items
-    const items = paginate(fetchitems, currentPage, pageSize);
+    const items = paginate(fetchitems, currentPage, pageSize, keyword);
 
     // Fetch Items
     useEffect(() => {
@@ -64,12 +65,7 @@ function Board() {
         setSelectedItem("");
     };
 
-    // Show Detail
-    const handleShow = (item) => {
-        setSelectedItem(item);
-        setIsEdit(false);
-        setModalShow(true);
-    };
+    
 
     // Edit Detail
     const handleEdit = (item) => {
@@ -83,6 +79,13 @@ function Board() {
         setModalShow(true);
     };
 
+    // Show Detail
+    const handleShow = (item) => {
+        setSelectedItem(item);
+        setIsEdit(false);
+        setModalShow(true);
+    };
+
     // Hide Detail
     const handleHide = () => {
         setModalShow(false);
@@ -92,19 +95,14 @@ function Board() {
 
     // Change Current Page
     const handlePageChange = (page) => {
-        console.log(page);
-        if (page === "before" && currentPage > 1) {
-            setCurrentPage((state) => state - 1);
-        } else if (page === "next" && currentPage < totalPage)
-            setCurrentPage((state) => state + 1);
-        else if (page !== "before" && page !== "next") {
-            setCurrentPage(page);
-        }
+        setCurrentPage(page)
     };
 
-    const onChange = (e) => {
-        setInput(e.target.value);
-    };
+    // Seach
+    const handleSearch = (keyword) => {
+        setKeyword(keyword);
+    }
+
 
     return (
         <div className="board">
@@ -112,22 +110,7 @@ function Board() {
                 <h2>게시판</h2>
             </div>
 
-            {/* <Form.Row>
-                <Col>
-                    <Form.Group>
-                        <Form.Control
-                            type="input"
-                            name="title"
-                            value={input.title}
-                            placeholder="검색"
-                            onChange={onChange}
-                        />
-                    </Form.Group>
-                </Col>
-                <Col>
-                    <Button>검색하기</Button>
-                </Col>
-            </Form.Row> */}
+            <BoardSearch handleSearch={handleSearch}/>
             <Table striped hover>
                 <thead className="thead">
                     <tr>
@@ -178,7 +161,7 @@ function Board() {
                 totalPage={totalPage}
                 handlePageChange={handlePageChange}
             />
-            <BoardWrite
+            <BoardDetail
                 show={modalShow}
                 isEdit={isEdit}
                 onHide={handleHide}
