@@ -9,7 +9,28 @@ import SignUp from "../pages/SignUp";
 import Login from "../pages/Login";
 import history from "../history";
 
+// redux
+import { useSelector } from "react-redux";
+
 function App() {
+    const { user } = useSelector((state) => state.auth);
+
+    // 로그인 안되어 있을 시 로그인 페이지로 이동
+    const AuthRoute = ({ component: Component, ...rest }) => (
+        <Route
+            {...rest}
+            render={(props) => {
+                if (!user.userId) {
+                    return <Login />;
+                }
+
+                if (Component) {
+                    return <Component {...props} />;
+                }
+            }}
+        />
+    );
+
     return (
         <div className="app">
             <Router history={history}>
@@ -18,11 +39,11 @@ function App() {
                     <Switch>
                         <Route path="/" exact component={Page} />
                         <Route path="/signup" exact component={SignUp} />
-                        <Route path="/login" exact component={Login} />
-                        <Route path="/page1" component={Page} />
-                        <Route path="/page2" component={Page} />
-                        <Route path="/page3" component={TabsPageSingle} />
-                        <Route path="/page4" component={TabsPageDouble} />
+                        <AuthRoute path="/login" exact component={Login} />
+                        <AuthRoute path="/page1" component={Page} />
+                        <AuthRoute path="/page2" component={Page} />
+                        <AuthRoute path="/page3" component={TabsPageSingle} />
+                        <AuthRoute path="/page4" component={TabsPageDouble} />
                     </Switch>
                 </div>
             </Router>

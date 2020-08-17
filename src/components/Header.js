@@ -1,21 +1,17 @@
 import React, { Fragment, useEffect, useMemo } from "react";
-import { NavLink, Link } from "react-router-dom";
-import { data as menuItems } from "../json/menuItems.json";
+import { Link } from "react-router-dom";
 import ChildMenu from "./common/ChildMenu";
 import { getMenuItemsFromPath } from "../util/functions";
 import logo from "../images/logo.png";
-import HeaderUtil from './HeaderUtil';
+import HeaderUtil from "./HeaderUtil";
 // redux
 import { useSelector, useDispatch } from "react-redux";
-import {
-    pathAction_setPath,
-    pathAction_setMain,
-} from "../redux/actions";
+import { pathAction_setPath, pathAction_setMain } from "../redux/actions";
+import HeaderNav from "./HeaderNav";
 
 function Header({ history }) {
     const dispatch = useDispatch();
     const { pathMain } = useSelector((state) => state.path);
-    
 
     // 초기 PATH 설정
     // Refresh 후에도 path 유지
@@ -27,15 +23,13 @@ function Header({ history }) {
         pathMain,
     ]);
 
-    
-
     // 메인 로고 클릭시 홈으로
-    const onClickLogo = () => {
+    const handleClickLogo = () => {
         dispatch(pathAction_setPath("/"));
     };
 
     // 메인 메뉴 클릭시 서브메뉴 활성화
-    const onClick = (page) => {
+    const handleClickMain = (page) => {
         dispatch(pathAction_setMain(page));
         history.push(page);
     };
@@ -44,35 +38,25 @@ function Header({ history }) {
         dispatch(pathAction_setPath(newPath));
     };
     // ========================
-    console.log(pathMain);
+
     // ========================
 
     return (
         <Fragment>
             <HeaderUtil />
             <div className="header">
-                <div className="header__container">
-                    <div className="header__log">
-                        <Link to="/" onClick={onClickLogo}>
-                            <img src={logo} alt="logo" />
-                        </Link>
-                    </div>
-                    {/* MAIN PAGE NAV */}
-                    <div className="header__mainMenu">
-                        {menuItems.map((item) => (
-                            <NavLink
-                                key={item.url}
-                                to={item.url}
-                                activeClassName="active"
-                                onClick={() => onClick(item.url)}
-                            >
-                                {item.name}
-                            </NavLink>
-                        ))}
-                    </div>
-                    <div className="header__event">기타기능</div>
+                <div className="headerLogo">
+                    <Link to="/" onClick={handleClickLogo}>
+                        <img src={logo} alt="logo" />
+                    </Link>
                 </div>
+                <HeaderNav
+                    handleClickLogo={handleClickLogo}
+                    handleClickMain={handleClickMain}
+                />
+                <div className="headerEvent">기타기능</div>
             </div>
+
             {/* SUB PAGE NAV */}
             {pathMain && menuItemChildren && (
                 <div className="header__childMenuContainer">

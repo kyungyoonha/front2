@@ -14,11 +14,12 @@ const INITIAL_INPUTS = {
 function BoardDetail({ show, onHide, isEdit, item, handleUpdate }) {
     const [inputs, setInputs] = useState(INITIAL_INPUTS);
 
+    // 초기 데이터 값 설정
     useEffect(() => {
         if (item) {
-            setInputs(item);
+            setInputs(item); // 기존 글 클릭시
         } else {
-            setInputs(INITIAL_INPUTS);
+            setInputs(INITIAL_INPUTS); // 새글 작성
         }
     }, [item]);
 
@@ -30,7 +31,7 @@ function BoardDetail({ show, onHide, isEdit, item, handleUpdate }) {
         }));
     };
 
-    const onClick = () => {
+    const onClickUpdate = () => {
         handleUpdate(inputs);
         setInputs(INITIAL_INPUTS);
     };
@@ -93,7 +94,7 @@ function BoardDetail({ show, onHide, isEdit, item, handleUpdate }) {
                 </Button>
 
                 {isEdit && (
-                    <Button onClick={onClick}>
+                    <Button onClick={onClickUpdate}>
                         {item ? "수정하기" : "추가하기"}
                     </Button>
                 )}

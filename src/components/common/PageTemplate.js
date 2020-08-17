@@ -1,11 +1,12 @@
 import React, { Fragment } from "react";
 import SideNav from "../SideNav";
+import Slider from "./Slider";
 
 // page Template
 function PageTemplate({ history, children }) {
     return (
         <Fragment>
-            <div className="app_img">슬라이딩 이미지</div>
+            <Slider />
             <div className="app__container">
                 <div className="page">
                     <SideNav history={history} />

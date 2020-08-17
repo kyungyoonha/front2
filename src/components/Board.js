@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Fragment } from "react";
 import BoardDetail from "./BoardDetail";
-import BoardSearch from './BoardSearch';
+import BoardSearch from "./BoardSearch";
 import Pagination from "./common/Pagination";
 
 import paginate from "../util/paginate";
@@ -20,7 +20,6 @@ import {
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 
-
 dayjs.extend(relativeTime);
 
 function Board() {
@@ -29,7 +28,7 @@ function Board() {
     const dispatch = useDispatch();
 
     // Board Search
-    const [keyword, setKeyword] = useState('');
+    const [keyword, setKeyword] = useState("");
 
     // Board Detail
     const [modalShow, setModalShow] = useState(false);
@@ -41,7 +40,8 @@ function Board() {
     const pageSize = 4;
     const totalPage = Math.ceil(fetchitems.length / pageSize);
 
-    // items
+    // genertate items
+    // 현재 페이지랑 페이지 사이즈에 맞게 데이터 자름
     const items = paginate(fetchitems, currentPage, pageSize, keyword);
 
     // Fetch Items
@@ -64,8 +64,6 @@ function Board() {
         dispatch(boardAction_delete(item));
         setSelectedItem("");
     };
-
-    
 
     // Edit Detail
     const handleEdit = (item) => {
@@ -95,14 +93,13 @@ function Board() {
 
     // Change Current Page
     const handlePageChange = (page) => {
-        setCurrentPage(page)
+        setCurrentPage(page);
     };
 
     // Seach
     const handleSearch = (keyword) => {
         setKeyword(keyword);
-    }
-
+    };
 
     return (
         <div className="board">
@@ -110,7 +107,7 @@ function Board() {
                 <h2>게시판</h2>
             </div>
 
-            <BoardSearch handleSearch={handleSearch}/>
+            <BoardSearch handleSearch={handleSearch} />
             <Table striped hover>
                 <thead className="thead">
                     <tr>

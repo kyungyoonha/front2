@@ -7,17 +7,13 @@ import PageTemplate from "../components/common/PageTemplate";
 import { useSelector, useDispatch } from "react-redux";
 import { dataAction_fetch } from "../redux/actions";
 
-function Page({ history }) {
+function Page({ history, user }) {
+    console.log("z", user);
     const { pathMain, pathSub } = useSelector((state) => state.path);
-    const { auth } = useSelector((state) => state.auth);
     const data = useSelector((state) => state.data);
     const dispatch = useDispatch();
 
-    // 로그인 정보 없으면 로그인 페이지로
-    if (!auth) {
-        history.push("/login");
-    }
-
+    // fetch page data
     useEffect(() => {
         dispatch(dataAction_fetch(pathMain, pathSub));
     }, [dispatch, pathMain, pathSub]);

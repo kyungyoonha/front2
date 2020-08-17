@@ -15,15 +15,15 @@ function HeaderUtil() {
     };
 
     return (
-        <div className="util">
-            <div className="util__container">
+        <div className="headerUtil">
+            <div className="headerUtil__container">
                 {!user.userId ? (
-                    <div className="util__items">
+                    <div className="headerUtil__items">
                         <Link to="/login">로그인</Link>
                         <Link to="/signup">회원가입</Link>
                     </div>
                 ) : (
-                    <div className="util__items">
+                    <div className="headerUtil__items">
                         {`${user.userId} 님 반갑습니다.`}
                         <Link to="/" onClick={onClickLogout}>
                             로그아웃

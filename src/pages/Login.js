@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import history from "../history";
 
 // redux
 import { useSelector, useDispatch } from "react-redux";
@@ -10,9 +11,14 @@ import Form from "react-bootstrap/form";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 
-function Login() {
-    const { errors } = useSelector((state) => state.auth);
+function Login({ auth }) {
+    console.log(auth);
+    const { user, errors } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
+
+    if (user.userId) {
+        history.push("/page1");
+    }
 
     const [inputs, setInputs] = useState({
         userId: "",
@@ -35,6 +41,13 @@ function Login() {
         };
         dispatch(authAction_login(userData));
     };
+
+    const handleKeyPress = (e) => {
+        if (e.key === "Enter") {
+            handleSubmit();
+        }
+    };
+
     return (
         <div className="auth">
             <div className="auth__container">
@@ -42,7 +55,7 @@ function Login() {
                     <h2>로그인</h2>
                 </div>
                 <div className="auth__body">
-                    <Form>
+                    <Form onKeyPress={handleKeyPress}>
                         <Form.Group>
                             <Form.Label>아이디</Form.Label>
                             <Form.Control
