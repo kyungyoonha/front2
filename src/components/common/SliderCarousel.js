@@ -1,6 +1,6 @@
 import React from "react";
 
-function SliderCarousel({ totalLength, currentSlide }) {
+function SliderCarousel({ totalLength, currentSlide, handleClickMove }) {
     const items = [...new Array(totalLength).keys()];
 
     return (
@@ -12,6 +12,7 @@ function SliderCarousel({ totalLength, currentSlide }) {
                     className={`sliderCarousel__item ${
                         index === currentSlide && "active"
                     }`}
+                    onClick={() => handleClickMove(index)}
                 ></div>
             ))}
         </div>

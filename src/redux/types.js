@@ -1,6 +1,6 @@
-export const PATH_SET = "path/PATH_SET";
-export const PATH_MAIN = "path/PATH_MAIN";
-export const PATH_SUB = "path/PATH_SUB";
+export const MENU_FETCH_ALL = "menu/MENU_FETCH_ALL";
+export const MENU_FETCH = "menu/MENU_FETCH";
+export const MENU_INSERT = "menu/MENU_INSERT";
 
 export const DATA_FETCH = "data/DATA_FETCH";
 

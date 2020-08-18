@@ -1,26 +1,25 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { NavLink } from "react-router-dom";
 
-function ChildMenu({ styleName, path, menuItem }) {
+function ChildMenu2({ menuItem }) {
     const children = menuItem.children;
     if (!children) return null;
 
-    const onClick = () => {};
     return (
-        <div className={`${styleName}__childMenu`}>
+        <Fragment>
             {children.map((item) => (
                 <NavLink
+                    className="child"
                     key={item.path}
                     to={menuItem.path + item.path}
                     activeClassName="active"
-                    onClick={onClick}
                 >
-                    {styleName === "sideNav" && "▶ "}
+                    {"▶ "}
                     {item.name}
                 </NavLink>
             ))}
-        </div>
+        </Fragment>
     );
 }
 
-export default React.memo(ChildMenu);
+export default React.memo(ChildMenu2);

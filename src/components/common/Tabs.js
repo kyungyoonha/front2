@@ -16,7 +16,7 @@ function Tabs({ baseurl, menuItems, children, history }) {
             (item) => currentPath.indexOf(item.url) > -1
         );
 
-        menuItem ? setPath(menuItem.url) : setPath(menuItems[0].url);
+        menuItem ? setPath(menuItem.path) : setPath(menuItems[0].path);
     }, [currentPath, menuItems]);
 
     if (!path) return <div>loading...</div>;
@@ -31,12 +31,12 @@ function Tabs({ baseurl, menuItems, children, history }) {
         <div className="tabs">
             <div className="tabs__menu">
                 {menuItems.map((item) => {
-                    const active = item.url === path && "active";
+                    const active = item.path === path && "active";
                     return (
                         <div
                             key={item.name}
                             className={`tabs__menuItem ${active}`}
-                            onClick={() => onClick(item.url)}
+                            onClick={() => onClick(item.path)}
                         >
                             {item.name}
                         </div>
@@ -51,8 +51,9 @@ function Tabs({ baseurl, menuItems, children, history }) {
                 {children ? (
                     React.cloneElement(children, {
                         baseurl: baseurl + path,
-                        menuItems: menuItems.find((items) => items.url === path)
-                            .children,
+                        menuItems: menuItems.find(
+                            (items) => items.path === path
+                        ).children,
                         history: history,
                         currentPath: path,
                     })

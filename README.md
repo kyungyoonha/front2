@@ -12,3 +12,6 @@
 9. 글 제목을 클릭시 상세화면으로 이동
 
 ![미션6 GIF](./src/images/react_mission_7.gif).
+
+-   slider 코드 리펙토링
+-   캐러셀 클릭시 이동 가능

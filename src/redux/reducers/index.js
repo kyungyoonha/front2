@@ -1,12 +1,12 @@
 import { combineReducers } from "redux";
-import pathReducers from "./pathReducers";
 import authReducers from "./authReducers";
 import dataReducers from "./dataReducers";
 import boardReducers from "./boardReducers";
+import menuReducers from "./menuReducers";
 
 export default combineReducers({
-    path: pathReducers,
     auth: authReducers,
     data: dataReducers,
     board: boardReducers,
+    menu: menuReducers,
 });

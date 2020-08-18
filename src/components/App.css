@@ -5,31 +5,52 @@
 .app__container { overflow: hidden; margin: 10px auto 40px auto;  height: auto; width: 1200px; background: #20232a; border: 1px solid#e3e3e4; border-radius: 1.5%; }
 
 /* 헤더 Util */
-.headerUtil { height: 40px; background-color: #f6f6f6; line-height: 40px; font-size: 0.8rem; font-weight: bold;}
-.headerUtil__container { padding: 0 40px; margin: 0 auto; max-width: 1200px; }
-.headerUtil__items { float: right; }
-.headerUtil__items > a { text-decoration: none; margin-left: 30px; color: #787878;}
+.headerUtil { height: 60px; background-color: #f6f6f6; line-height: 60px; font-size: 0.8rem; font-weight: bold; }
+.headerUtil__container { overflow: hidden; padding-right: 40px; margin: 0 auto; max-width: 1200px;}
+.headerUtil__left { float: left; font-size: 2rem; }
+.headerUtil__left img{ height: 60px; }
+.headerUtil__left span { color: black;}
+
+.headerUtil__right { float: right; }
+.headerUtil__right > a { text-decoration: none; margin-left: 30px; color: #787878;}
+
 
 /* 헤더 Nav */
-.header { overflow:hidden; height: auto; background-color: white; border-bottom: 1px solid #e3e3e4; display: flex; align-items: center; margin: 0 auto; max-width: 1200px; height: 100px; text-align:center; line-height: 100px; }
-.headerLogo { width: 200px; height: 100%;}
-.headerLogo img{ height: 90px; }
-.headerEvent { width: 200px; height: 100%; font-size: 0.8rem; font-weight: bold; color: #787878;}
+.headerContainer { position: relative; display: flex;  margin: 0 auto; width: 1200px; height: 100px; text-align:center; background-color: white;  }
+.headerNav { display: flex; justify-content: space-between; margin: 0 auto; width: 100%; height: 100px; line-height: 100px; border-bottom: 1px solid #e3e3e4;}
+.headerNav__container { position: relative; margin: 0 auto; width: 1200px; }
 
-.headerNav { float: left;  width: 100%; }
-.headerNav__item { position: relative; display: inline-block; height: 100%;}
-.headerNav__underbar { position: absolute; width: 120px;left:0px; bottom:5px; width: 0; margin: 0 30px; height: 5px; background: #f4ac19;  -webkit-transition: 0.5s ease;} 
+/* 1차 메뉴 */
+.headerNav__item { position: relative; display: inline-block; width: 180px;  text-align: center;}
+.headerNav__item > a { display: inline-block; width: 100%; font-size: 1.2rem; font-weight: bold;  color: black;}
+.headerNav__item > a:hover {  color:#f4ac19; text-decoration: none; }
+.headerNav__item > a:hover + .headerNav__underbar { width: 180px; }
+.headerNav__item > a.active { color:#f4ac19; }
+.headerNav__item > a.active + .headerNav__underbar { width: 180px; background: blue;}
+.headerNav__underbar { position: absolute; left:0px; bottom:5px; width: 0; height: 5px; background: #f4ac19;  transition: 0.5s ease;} 
 
-.headerNav__item > a { display: inline-block; margin: 0 30px; height: 100%; width: 120px; font-size: 1.2rem; font-weight: bold;  color: black; }
-.headerNav__item > a:hover { margin: 0 30px; width: 120px; color:#f4ac19; text-decoration: none; }
-.headerNav__item > a:hover + .headerNav__underbar { width: 120px; }
+
+/* 2차 메뉴 */
+.headerNavInner { overflow: hidden; position: absolute;  left: 0; right:0; top: 100px; margin: 0 auto;  width: 1200px; height: 400px;  z-index: 1; background-color: white;}
+.headerNavInner__left { padding-top: 30px; width: 180px; height: 100%; font-size: 1rem; font-weight: bold; color:white; background: #f4ac19; }
+.headerNavInner__leftItem {  height: 40px; line-height: 40px; text-align: center;}
+.headerNavInner__leftItem:hover { color: black;}
+.headerNavInner__leftItem:active { color: black;}
 
 
-.header__childMenuContainer { width: 1200px; margin: 0 auto; }
-.header__childMenu { display: flex; justify-content: center; align-items: center; height: 50px; width: 100%;   text-align: center; line-height: 50px;}
-.header__childMenu > a { flex: 1; margin: 0 50px; height: 100%; font-weight: bold; color: #787878; }
-.header__childMenu > a:hover { color: #61dafb; text-decoration:none;}
-.header__childMenu > a.active {  color: #f4ac19; font-weight: bold; }
+
+/* .headerNavInner__item { position: relative; }
+.headerNavInner__item > i { display: block; height: 40px; line-height: 40px; font-size: 0.8rem; color: #787878; cursor: pointer;}
+.headerNavInner__item > a { display: block; margin-left: 40px; height: 40px; line-height: 40px; font-size: 0.8rem; color: #787878; text-align: left;}
+.headerNavInner__item > a:hover { color: #f4ac19; }
+.headerNavInner__item > a.active { color: #f4ac19; font-weight: bold; }
+.headerNavInner__itemMore { float: right; margin-right: 40px; height: 40px; line-height: 40px; }
+
+
+.headerNavIneer__child  { position: absolute; left: 130px; top: 0px; margin-left: 50px; font-size: 0.7rem; width: 120px; height: auto; border: 1px solid red; background: yellow;}
+.headerNavIneer__child > a.child {display: block; height: 30px; line-height: 30px; } */
+
+/* ============================================================ */
 
 .sideNav { float: left; min-height: 1080px; width: 25%; background-color: #20232a; color: white; }
 .sideNav__box > a { display: inline-block; width: 100%; height: 80px; line-height: 80px; font-size: 1.2rem; text-decoration: none; color: white;}
@@ -84,7 +105,7 @@ table td, table th { cursor: pointer; }
 .pagination__item { margin-right: -1px; width: 40px; height: 40px; text-align: center; line-height: 40px; border: 1px solid #b7b7b7; color: #b7b7b7}
 .pagination__item.active {background-color: #61dafb; font-weight: bold; color: white;}
 
-.slider { overflow: hidden;display: flex; align-items:center;  position: relative; margin:0; padding: 0; width: 100%; height: 60vh; background: black;  box-sizing: border-box;}
+.slider { overflow: hidden;display: flex; align-items:center;  position: relative; margin:0; padding: 0; width: 100%; height: 560px; background: black;  box-sizing: border-box;}
 .slider__slide { overflow: hidden; min-width: 100%;  height: 100%; transition: 0.5s}
 .slider button { position: absolute; top: 50%; transform: translateY(-50%); width: 10%; height: 100%; background: none; outline: none; border: none; transition: 0.5s}
 .slider button:hover { background: rgba(0, 0, 0, 0.356); cursor: pointer; color: white}
@@ -93,5 +114,14 @@ table td, table th { cursor: pointer; }
 .slider__image { width: 100%; height: auto;}
 
 .sliderCarousel {position: absolute; bottom:20px; left: 50%; transform: translateX(-50%)}
-.sliderCarousel__item { float: left; margin: 0 5px; width: 15px; height: 15px; border: 1px solid white;; border-radius: 50%}
+.sliderCarousel__item { float: left; margin: 0 5px; width: 15px; height: 15px; border: 1px solid white; border-radius: 50%}
 .sliderCarousel__item.active { background-color: white;}
+
+
+
+
+
+@keyframes fading {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}

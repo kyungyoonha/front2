@@ -40,8 +40,10 @@ function App() {
                         <Route path="/" exact component={Page} />
                         <Route path="/signup" exact component={SignUp} />
                         <AuthRoute path="/login" exact component={Login} />
-                        <AuthRoute path="/page1" component={Page} />
-                        <AuthRoute path="/page2" component={Page} />
+                        <AuthRoute path="/page1" exact component={Page} />
+                        <AuthRoute path="/page2" exact component={Page} />
+                        <AuthRoute path="/page1/:id/:id" component={Page} />
+                        <AuthRoute path="/page2/:id/:id" component={Page} />
                         <AuthRoute path="/page3" component={TabsPageSingle} />
                         <AuthRoute path="/page4" component={TabsPageDouble} />
                     </Switch>

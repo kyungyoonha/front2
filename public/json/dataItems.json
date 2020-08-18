@@ -1,0 +1,62 @@
+{
+    "data": [
+        {
+            "id": "product1",
+            "title": "상품1",
+            "color": "greenyellow",
+            "image": "",
+            "content": ""
+        },
+        {
+            "id": "product2",
+            "title": "상품2",
+            "color": "orange",
+            "image": "",
+            "content": ""
+        },
+
+        {
+            "id": "product3",
+            "title": "상품3",
+            "color": "orchid",
+            "image": "",
+            "content": ""
+        },
+        {
+            "id": "product4",
+            "title": "상품4",
+            "color": "yellow",
+            "image": "",
+            "content": ""
+        },
+        {
+            "id": "about1",
+            "title": "소개1",
+            "color": "greenyellow",
+            "image": "",
+            "content": ""
+        },
+        {
+            "id": "about2",
+            "title": "소개2",
+            "color": "orange",
+            "image": "",
+            "content": ""
+        },
+
+        {
+            "id": "about3",
+            "title": "소개3",
+            "color": "orchid",
+            "image": "",
+            "content": ""
+        },
+        {
+            "id": "about4",
+            "title": "소개4",
+            "color": "yellow",
+            "image": "",
+            "content": ""
+        }
+    ]
+}

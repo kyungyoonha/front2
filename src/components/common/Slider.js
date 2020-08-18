@@ -16,18 +16,17 @@ const Slider = () => {
 
     const [slide, setSlide] = useState(0); // 현재 슬라이드
     const [isMouseOn, setMouseOn] = useState(false); // 마우스 오버 여부
-
     // 왼쪽으로 넘기기
     const onClickLeft = useCallback(() => {
         slide === 0
-            ? setSlide(-100 * (sliderArr.length - 1)) // 첫번째 슬라이드 일 경우, 제일 마지막 슬라이드로 이동
-            : setSlide(slide + 100);
+            ? setSlide(sliderArr.length - 1) // 첫번째 슬라이드 일 경우, 제일 마지막 슬라이드로 이동
+            : setSlide(slide - 1);
     }, [sliderArr, slide]);
 
     const onClickRight = useCallback(() => {
-        slide === -100 * (sliderArr.length - 1)
+        slide === sliderArr.length - 1
             ? setSlide(0) // 마지막 슬라이드 일경우, 첫번째 슬라이드로 이동
-            : setSlide(slide - 100);
+            : setSlide(slide + 1);
     }, [sliderArr, slide]);
 
     // 마우스 오버
@@ -38,6 +37,10 @@ const Slider = () => {
     // 마우스 아웃
     const onMouseLeave = useCallback(() => {
         setMouseOn(false);
+    }, []);
+
+    const handleClickMove = useCallback((slideNum) => {
+        setSlide(slideNum);
     }, []);
 
     // 3초 마다 슬라이드 이동
@@ -62,7 +65,7 @@ const Slider = () => {
                     <div
                         key={index}
                         className="slider__slide"
-                        style={{ transform: `translateX(${slide}%)` }}
+                        style={{ transform: `translateX(${-slide * 100}%)` }}
                     >
                         {item}
                     </div>
@@ -75,7 +78,11 @@ const Slider = () => {
                 <i className="fas fa-chevron-right"></i>
             </button>
             {/* 캐러셀 추가 */}
-            <Carousel totalLength={4} currentSlide={-slide / 100} />
+            <Carousel
+                totalLength={4}
+                currentSlide={slide}
+                handleClickMove={handleClickMove}
+            />
         </div>
     );
 };

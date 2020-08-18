@@ -1,59 +1,30 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import { NavLink } from "react-router-dom";
 import ChildMenu from "./common/ChildMenu";
 
-// redux
-import { useSelector, useDispatch } from "react-redux";
-import { pathAction_setPath, pathAction_setMain } from "../redux/actions";
-
 function SideNavItem({ menuItem }) {
-    const { pathMain } = useSelector((state) => state.path);
-    const dispatch = useDispatch();
-
-    const [open, setOpen] = useState(false);
-
-    useEffect(() => {
-        menuItem.url === pathMain ? setOpen(true) : setOpen(false);
-    }, [menuItem, pathMain]);
-
+    const [path, setPath] = useState("");
     // open 마우스 들어올 때
-    const onMouseEnter = useCallback(() => {
-        setOpen(true);
+    const onMouseEnter = useCallback((path) => {
+        setPath(path);
     }, []);
 
-    // close 마우스 나갈 때
-    // 고정되어 있지 않으면 open=false
+    // 마우스 나갈 때
     const onMouseLeave = useCallback(() => {
-        if (menuItem.url !== pathMain) {
-            setOpen(false);
-        }
-    }, [menuItem, pathMain]);
-
-    // 메인 페이지 클릭시
-    const onClickSetMain = useCallback(
-        (path) => {
-            setOpen(true);
-            dispatch(pathAction_setMain(path));
-        },
-        [dispatch]
-    );
-
-    const onClickSetPath = (newPath) => {
-        dispatch(pathAction_setPath(newPath));
-    };
+        setPath("");
+    }, []);
 
     return (
         <div
-            key={menuItem.url}
+            key={menuItem.path}
             onMouseLeave={onMouseLeave}
             className="sideNav__box"
         >
             <NavLink
-                key={menuItem.url}
-                to={menuItem.url}
+                key={menuItem.path}
+                to={menuItem.path}
                 activeClassName="active"
-                onMouseEnter={onMouseEnter}
-                onClick={() => onClickSetMain(menuItem.url)}
+                onMouseEnter={() => onMouseEnter(menuItem.path)}
             >
                 <div className="sideNav__mainIcon">
                     <i className={`fas ${menuItem.icon}`}></i>
@@ -61,14 +32,7 @@ function SideNavItem({ menuItem }) {
                 {menuItem.name}
             </NavLink>
 
-            {/* fix 있으면 보이고 open 되도 보이고 */}
-            {open && (
-                <ChildMenu
-                    styleName="sideNav"
-                    menuItem={menuItem}
-                    onClick={onClickSetPath}
-                />
-            )}
+            {path && <ChildMenu styleName="sideNav" path={path} />}
         </div>
     );
 }

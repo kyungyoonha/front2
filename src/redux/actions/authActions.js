@@ -33,7 +33,6 @@ export const authAction_checkId = (id) => {
 };
 
 export const authAction_signup = (userData) => {
-    console.log(userData);
     const { valid, errors } = validateSignUp(userData);
     if (valid) {
         history.push("/login");

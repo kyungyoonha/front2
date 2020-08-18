@@ -3,13 +3,13 @@ import SideNav from "../SideNav";
 import Slider from "./Slider";
 
 // page Template
-function PageTemplate({ history, children }) {
+function PageTemplate({ children }) {
     return (
         <Fragment>
             <Slider />
             <div className="app__container">
                 <div className="page">
-                    <SideNav history={history} />
+                    <SideNav />
                     <div className="page__right">{children}</div>
                 </div>
             </div>
