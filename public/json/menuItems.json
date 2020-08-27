@@ -7,20 +7,112 @@
             "children": [
                 {
                     "name": "상품1",
-                    "path": "/product1",
-                    "color": "greenyellow"
+                    "path": "/page1/product1",
+                    "color": "green",
+                    "children": [
+                        {
+                            "name": "타입1",
+                            "path": "/page1/product1/type1",
+                            "color": "blue"
+                        },
+                        {
+                            "name": "타입2",
+                            "path": "/page1/product1/type2",
+                            "color": "pink"
+                        },
+                        {
+                            "name": "타입3",
+                            "path": "/page1/product1/type3",
+                            "color": "orchid"
+                        },
+                        {
+                            "name": "타입4",
+                            "path": "/page1/product1/type4",
+                            "color": "greenyellow"
+                        },
+                        {
+                            "name": "타입5",
+                            "path": "/page1/product1/type5",
+                            "color": "skyblue"
+                        }
+                    ]
                 },
                 {
                     "name": "상품2",
-                    "path": "/product2",
+                    "path": "/page1/product2",
+                    "color": "orange",
                     "children": [
-                        { "name": "타입1", "path": "/type1" },
-                        { "name": "타입2", "path": "/type2" },
-                        { "name": "타입3", "path": "/type3" }
+                        {
+                            "name": "타입6",
+                            "path": "/page1/product2/type1",
+                            "color": "blue"
+                        },
+                        {
+                            "name": "타입7",
+                            "path": "/page1/product2/type2",
+                            "color": "pink"
+                        },
+                        {
+                            "name": "타입8",
+                            "path": "/page1/product2/type3",
+                            "color": "orchid"
+                        }
                     ]
                 },
-                { "name": "상품3", "path": "/product3" },
-                { "name": "상품4", "path": "/product4" }
+                {
+                    "name": "상품3",
+                    "path": "/page1/product3",
+                    "color": "yellow",
+                    "children": [
+                        {
+                            "name": "타입9",
+                            "path": "/page1/product3/type1",
+                            "color": "blue"
+                        },
+                        {
+                            "name": "타입10",
+                            "path": "/page1/product3/type2",
+                            "color": "pink"
+                        },
+                        {
+                            "name": "타입11",
+                            "path": "/page1/product3/type3",
+                            "color": "orchid"
+                        },
+                        {
+                            "name": "타입12",
+                            "path": "/page1/product3/type4",
+                            "color": "greenyellow"
+                        },
+                        {
+                            "name": "타입13",
+                            "path": "/page1/product3/type5",
+                            "color": "skyblue"
+                        },
+                        {
+                            "name": "타입14",
+                            "path": "/page1/product3/type6",
+                            "color": "red"
+                        }
+                    ]
+                },
+                {
+                    "name": "상품4",
+                    "path": "/page1/product4",
+                    "color": "green",
+                    "children": [
+                        {
+                            "name": "타입15",
+                            "path": "/page1/product4/type1",
+                            "color": "green"
+                        },
+                        {
+                            "name": "타입16",
+                            "path": "/page1/product4/type2",
+                            "color": "blue"
+                        }
+                    ]
+                }
             ]
         },
         {
@@ -28,19 +120,133 @@
             "path": "/page2",
             "icon": "fa-question-circle",
             "children": [
-                { "name": "소개1", "path": "/about1" },
-                { "name": "소개2", "path": "/about2" },
-                { "name": "소개3", "path": "/about3" },
-                { "name": "소개4", "path": "/about4" }
+                {
+                    "name": "소개1",
+                    "path": "/page2/about1",
+                    "color": "red",
+                    "children": [
+                        {
+                            "name": "인사1",
+                            "path": "/page2/about1/type1",
+                            "color": "skyblue"
+                        },
+                        {
+                            "name": "인사2",
+                            "path": "/page2/about1/type2",
+                            "color": "blue"
+                        },
+                        {
+                            "name": "인사3",
+                            "path": "/page2/about1/type3",
+                            "color": "red"
+                        },
+                        {
+                            "name": "인사4",
+                            "path": "/page2/about1/type4",
+                            "color": "pink"
+                        }
+                    ]
+                },
+                {
+                    "name": "소개2",
+                    "path": "/page2/about2",
+                    "color": "orange",
+                    "children": [
+                        {
+                            "name": "인사5",
+                            "path": "/page2/about2/type1",
+                            "color": "skyblue"
+                        },
+                        {
+                            "name": "인사6",
+                            "path": "/page2/about2/type2",
+                            "color": "blue"
+                        },
+                        {
+                            "name": "인사7",
+                            "path": "/page2/about2/type3",
+                            "color": "pink"
+                        },
+                        {
+                            "name": "인사8",
+                            "path": "/page2/about2/type4",
+                            "color": "yellow"
+                        },
+                        {
+                            "name": "인사9",
+                            "path": "/page2/about2/type5",
+                            "color": "greenyellow"
+                        },
+                        {
+                            "name": "인사10",
+                            "path": "/page2/about2/type6",
+                            "color": "red"
+                        },
+                        {
+                            "name": "인사11",
+                            "path": "/page2/about2/type7",
+                            "color": "orange"
+                        }
+                    ]
+                },
+                {
+                    "name": "소개3",
+                    "path": "/page2/about3",
+                    "color": "yellow",
+                    "children": [
+                        {
+                            "name": "인사12",
+                            "path": "/page2/about3/type1",
+                            "color": "red"
+                        },
+                        {
+                            "name": "인사13",
+                            "path": "/page2/about3/type2",
+                            "color": "skyblue"
+                        },
+                        {
+                            "name": "인사14",
+                            "path": "/page2/about3/type3",
+                            "color": "blue"
+                        },
+                        {
+                            "name": "인사15",
+                            "path": "/page2/about3/type4",
+                            "color": "pink"
+                        },
+                        {
+                            "name": "인사16",
+                            "path": "/page2/about3/type5",
+                            "color": "greenyellow"
+                        },
+                        {
+                            "name": "인사17",
+                            "path": "/page2/about3/type6",
+                            "color": "orange"
+                        }
+                    ]
+                },
+                {
+                    "name": "소개4",
+                    "path": "/page2/about4",
+                    "color": "green",
+                    "children": [
+                        {
+                            "name": "타입18",
+                            "path": "/page2/about4/type1",
+                            "color": "red"
+                        }
+                    ]
+                }
             ]
         },
         {
-            "name": "싱글탭",
+            "name": "정보",
             "path": "/page3",
             "icon": "fa-address-book"
         },
         {
-            "name": "멀티탭",
+            "name": "구매",
             "path": "/page4",
             "icon": "fa-cogs"
         }

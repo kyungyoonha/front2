@@ -1,12 +1,12 @@
 import React, { useState, useEffect, Fragment } from "react";
 import BoardDetail from "./BoardDetail";
 import BoardSearch from "./BoardSearch";
-import Pagination from "./common/Pagination";
+import Pagination from "../common/Pagination";
 
-import paginate from "../util/paginate";
+import paginate from "../../util/paginate";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
-import history from "../history";
+import history from "../../history";
 
 // redux
 import { useSelector, useDispatch } from "react-redux";
@@ -14,7 +14,7 @@ import {
     boardAction_fetch,
     boardAction_update,
     boardAction_delete,
-} from "../redux/actions";
+} from "../../redux/actions";
 
 // BS
 import Table from "react-bootstrap/Table";
@@ -108,7 +108,7 @@ function Board() {
             </div>
 
             <BoardSearch handleSearch={handleSearch} />
-            <Table striped hover>
+            <Table striped bordered hover>
                 <thead className="thead">
                     <tr>
                         <th>제목</th>

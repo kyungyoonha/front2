@@ -1,21 +1,23 @@
 import { DATA_FETCH } from "../types";
-
 import axios from "axios";
 
-export const dataAction_fetch = (id) => async (dispatch) => {
-    const apiUrl = "./json/dataItems.json";
+export const dataAction_fetch = (ctg) => async (dispatch) => {
+    try {
+        const apiUrl = "http://localhost:3000/json/product.json";
+        const response = await axios.get(apiUrl);
 
-    if (!id) {
-        return;
+        let result = response.data.data;
+        if (ctg) {
+            result = result.filter((item) => item.ctg === ctg);
+        } else {
+            result = [];
+        }
+
+        dispatch({
+            type: DATA_FETCH,
+            payload: result,
+        });
+    } catch (err) {
+        console.error("dataAction_fetch error:", err);
     }
-
-    axios
-        .get(apiUrl)
-        .then((response) => {
-            dispatch({
-                type: DATA_FETCH,
-                payload: response.data.data.find((item) => item.id === id),
-            });
-        })
-        .catch((error) => console.error(error));
 };

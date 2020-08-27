@@ -26,7 +26,6 @@ function SignUp() {
         content: "",
         errors: {},
     });
-
     useEffect(() => {
         setInputs((state) => ({
             ...state,
@@ -86,7 +85,7 @@ function SignUp() {
                         <Form.Group>
                             <Form.Label>아이디</Form.Label>
                             <Form.Row>
-                                <Col xs={9}>
+                                <Col xs={8}>
                                     <Form.Control
                                         type="input"
                                         name="userId"

@@ -1,43 +1,30 @@
 import {
     AUTH_CHECKID,
-    AUTH_SIGNUP,
-    AUTH_LOGIN,
+    AUTH_CLEAR_ERRORS,
     AUTH_LOGOUT,
     AUTH_ERRORS,
+    AUTH_AUTHENTICATED,
 } from "../types";
-import { data as authUsers } from "../../json/authUsers.json";
 
 const INITIAL_STATE = {
+    isAuthenticated: false,
     isCheckId: false,
-    users: authUsers,
     user: {},
     errors: {},
 };
 
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
+        case AUTH_AUTHENTICATED:
+            return {
+                ...state,
+                isAuthenticated: true,
+            };
+
         case AUTH_CHECKID:
             return {
                 ...state,
                 isCheckId: action.payload,
-            };
-        case AUTH_SIGNUP:
-            const newUsersDB = [...state.users, action.payload];
-            localStorage.setItem("usersDB", JSON.stringify(newUsersDB));
-            return {
-                ...state,
-                users: newUsersDB,
-                user: action.payload,
-                errors: {},
-            };
-
-        case AUTH_LOGIN:
-            return {
-                ...state,
-                user: state.users.find(
-                    (user) => user.userId === action.payload.userId
-                ),
-                errors: {},
             };
 
         case AUTH_LOGOUT:
@@ -52,6 +39,11 @@ export default (state = INITIAL_STATE, action) => {
                 ...state,
                 user: {},
                 errors: action.payload,
+            };
+        case AUTH_CLEAR_ERRORS:
+            return {
+                ...state,
+                errors: {},
             };
 
         default:

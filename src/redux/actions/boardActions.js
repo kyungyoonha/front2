@@ -1,14 +1,17 @@
 import { BOARD_FETCH, BOARD_INSERT, BOARD_EDIT, BOARD_DELETE } from "../types";
-import { data as boardItems } from "../../json/boardItems.json";
 import { makeRandomId } from "../../util/functions";
+import axios from "axios";
 
+const apiUrl = "http://localhost:3000/json/boardItems.json";
 // Fetch data
-export const boardAction_fetch = () => {
+export const boardAction_fetch = () => async (dispatch) => {
+    const response = await axios.get(apiUrl);
+    const data = response.data.data;
     // API data fetch
-    return {
+    dispatch({
         type: BOARD_FETCH,
-        payload: boardItems,
-    };
+        payload: data,
+    });
 };
 
 // Insert or Edit data
