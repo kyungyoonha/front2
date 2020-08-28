@@ -2,10 +2,11 @@ require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-// const jwt = require("jsonwebtoken");
+const jwt = require("jsonwebtoken");
 
 const app = express();
 const port = 8080;
+const verifyToken = require("./lib/verifyToken");
 
 // DB
 const mongoose = require("mongoose");
@@ -19,20 +20,22 @@ mongoose.connect("mongodb://127.0.0.1:27017/mission", {
 });
 
 const auth = require("./routes/auth");
-// const apis = require("./routes/apis");
+const apis = require("./routes/apis");
 
 // 미들웨어
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 
 // 라우터
-app.use("/auth", auth);
-// app.use("/apis", apis);
+app.use("/auth", auth); // verifyToken
+app.use("/apis", verifyToken, apis);
 
 // const token =
 //     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjIsInVzZXJJZCI6ImVlZWVlZWVlZWUxISIsImlhdCI6MTU5ODM1NTYxNn0.B47awMu2go8ccrnJQR8SadLiuhV7h9uI62ErRV0QTB4";
 // const decoded = jwt.verify(token, process.env.JWT_SECRET);
+// console.log(decoded);
 
 app.listen(port, () => {
     console.log("Express listening on port", port);

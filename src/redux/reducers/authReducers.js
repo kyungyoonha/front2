@@ -4,6 +4,7 @@ import {
     AUTH_LOGOUT,
     AUTH_ERRORS,
     AUTH_AUTHENTICATED,
+    AUTH_FETCH_USER,
 } from "../types";
 
 const INITIAL_STATE = {
@@ -46,6 +47,11 @@ export default (state = INITIAL_STATE, action) => {
                 errors: {},
             };
 
+        case AUTH_FETCH_USER:
+            return {
+                ...state,
+                user: action.payload,
+            };
         default:
             return state;
     }

@@ -82,7 +82,7 @@ a:link { text-decoration: none !important; }
 .footer__right { float: left; width: 25%; height: 300px; padding: 30px; }
 .footer__right i { font-size: 2.2rem; margin-right: 10px; }
 /* 회원가입 */
-.auth { background-color: #b7b7b7; padding: 50px 0; height: auto; }
+.auth { background-color: #b7b7b7; padding: 100px 0; height: auto; }
 .auth__container { overflow: hidden; margin: 0 auto; height: auto; padding: 30px; width: 60%; background-color: white; }
 .auth__header { margin-bottom: 30px; height: 60px; background-color: white; border-bottom: 1px solid #b7b7b7; }
 /* 텝 페이지 */

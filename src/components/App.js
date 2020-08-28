@@ -27,9 +27,7 @@ function App() {
         <Route
             {...rest}
             render={(props) => {
-                if (user.userId) {
-                    // ★
-                    // if (!user.userId) {
+                if (!user.userId) {
                     return <Login />;
                 }
 

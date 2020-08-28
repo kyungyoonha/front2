@@ -28,7 +28,6 @@ function Page({ match }) {
 
         dispatch(dataAction_fetch(match.params.id));
     }, [currentPath, dispatch, match]);
-    console.log(pageData);
     // // fetch page data
     // useEffect(() => {
     //     // dispatch(menuAction_fetch(match.url));
