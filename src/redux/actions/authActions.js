@@ -26,6 +26,7 @@ export const authAction_checkId = (id) => (dispatch) => {
                 });
             })
             .catch((err) => {
+                console.log(err);
                 if (err.response.data.alert) {
                     alert(err.response.data.alert);
                 }
@@ -35,7 +36,7 @@ export const authAction_checkId = (id) => (dispatch) => {
 
 export const authAction_signup = (userData) => (dispatch) => {
     const { valid, errors } = validateSignUp(userData);
-
+    console.log({ valid, errors });
     if (!valid) {
         return {
             type: AUTH_ERRORS,

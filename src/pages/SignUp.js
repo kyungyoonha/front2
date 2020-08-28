@@ -26,6 +26,7 @@ function SignUp() {
         content: "",
         errors: {},
     });
+
     useEffect(() => {
         setInputs((state) => ({
             ...state,
@@ -73,7 +74,7 @@ function SignUp() {
         e.preventDefault();
         dispatch(authAction_checkId(inputs.userId));
     };
-
+    console.log(errors.password);
     return (
         <div className="auth">
             <div className="auth__container">
