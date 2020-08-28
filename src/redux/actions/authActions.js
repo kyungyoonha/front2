@@ -17,7 +17,7 @@ export const authAction_checkId = (id) => (dispatch) => {
     } else {
         // 기존 유저
         axios
-            .post("/accounts/checkid", id)
+            .post("/auth/checkid", id)
             .then((res) => {
                 alert("사용 가능한 아이디 입니다.");
                 dispatch({
@@ -45,7 +45,7 @@ export const authAction_signup = (userData) => (dispatch) => {
     }
 
     axios
-        .post("/accounts/signup", userData)
+        .post("/auth/signup", userData)
         .then((res) => {
             alert("회원가입에 성공하였습니다.");
             setAuthHeader(res.data.token);
@@ -76,7 +76,7 @@ export const authAction_login = (userData) => (dispatch) => {
     }
 
     axios
-        .post("/accounts/login", userData)
+        .post("/auth/login", userData)
         .then((res) => {
             setAuthHeader(res.data.token);
             dispatch({
