@@ -2,7 +2,7 @@ import React, { useState, Fragment } from "react";
 import { NavLink } from "react-router-dom";
 
 import logo from "../../images/logo.png";
-import HeaderNavInner from "./HeaderNavDepth1";
+import HeaderNavDepth1 from "./HeaderNavDepth1";
 import HeaderModal from "./HeaderModal";
 
 //redux
@@ -14,18 +14,14 @@ import {
 
 const HeaderNav = ({ history }) => {
     const dispatch = useDispatch();
-    const { menuItemsAll } = useSelector((state) => state.menu); // 전체 메뉴 아이템
+    const { menuItems } = useSelector((state) => state.menu); // 전체 메뉴 아이템
+    const [parentPath, setParentPath] = useState(""); // 3차 메뉴 추가시 설정
     const [menuPath, setMenuPath] = useState(""); // 자식 메뉴 오픈 여부
-
     const [isOpen, setOpen] = useState(false); // 입력창 오픈 여부
 
-    const [parentPath, setParentPath] = useState(""); // 3차 메뉴 추가시 설정
-
     //=======================================================================
-
     const query = new URLSearchParams(history.location.search);
-    const value = query.get("value");
-
+    const genre = query.get("genre");
     //=======================================================================
 
     // Open Menu
@@ -87,7 +83,7 @@ const HeaderNav = ({ history }) => {
 
                 <div>
                     <div className="headerNav__items">
-                        {menuItemsAll.map((item) => (
+                        {menuItems.map((item) => (
                             <Fragment key={item.path}>
                                 <NavLink
                                     to={item.path}
@@ -99,9 +95,9 @@ const HeaderNav = ({ history }) => {
                                     {item.name}
                                 </NavLink>
                                 {item.path === menuPath && item.children && (
-                                    <HeaderNavInner
+                                    <HeaderNavDepth1
                                         menuItem={item}
-                                        handleOpen={handleOpenModal}
+                                        handleOpenModal={handleOpenModal}
                                     />
                                 )}
                             </Fragment>
@@ -120,41 +116,3 @@ const HeaderNav = ({ history }) => {
 };
 
 export default HeaderNav;
-
-/*
-
-return (
-        <div className="headerNav" onMouseLeave={handleMouseLeave}>
-            <div className="_container">
-                <NavLink to="/">
-                    <img src={logo} alt="logo" /> 리액트
-                </NavLink>
-
-                <div>
-                    <div className="headerNav__items">
-                        {menuItemsAll.map((item) => (
-                            <NavLink
-                                key={item.path}
-                                to={item.path}
-                                activeClassName="active"
-                                onMouseEnter={() => handleMouseEnter(item.path)}
-                            >
-                                {item.name}
-                            </NavLink>
-                        ))}
-                    </div>
-                    <HeaderNavInner
-                        menuPath={menuPath}
-                        handleOpen={handleOpenInner}
-                    />
-                </div>
-            </div>
-            
-            <HeaderModal
-                isOpen={isOpen}
-                handleClose={handleClose}
-                handleSubmit={handleSubmit}
-            />
-        </div>
-    );
-*/

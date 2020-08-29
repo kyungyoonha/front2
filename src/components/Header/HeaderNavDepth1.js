@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import HeaderNavDepth2 from "./HeaderNavDepth2";
 
-function HeaderNavDepth1({ menuItem, handleOpen }) {
+function HeaderNavDepth1({ menuItem, handleOpenModal }) {
     const children = menuItem.children || [];
     return (
         <div className="headerNavDepth1">
@@ -14,7 +14,7 @@ function HeaderNavDepth1({ menuItem, handleOpen }) {
                         </NavLink>
                         <HeaderNavDepth2
                             menuItem={item}
-                            handleOpen={handleOpen}
+                            handleOpenModal={handleOpenModal}
                         />
                     </div>
                 ))}
@@ -22,7 +22,7 @@ function HeaderNavDepth1({ menuItem, handleOpen }) {
                 <div className="headerNavDepth1__item">
                     <i
                         className="fas fa-plus-circle"
-                        onClick={() => handleOpen()}
+                        onClick={() => handleOpenModal()}
                     ></i>
                 </div>
             </div>

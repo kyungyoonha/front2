@@ -1,22 +1,18 @@
 import { DATA_FETCH } from "../types";
-import axios from "axios";
 
-export const dataAction_fetch = (ctg) => async (dispatch) => {
+export const dataAction_fetch = (genre) => async (dispatch) => {
     try {
-        const apiUrl = "http://localhost:3000/json/product.json";
-        const response = await axios.get(apiUrl);
-
-        let result = response.data.data;
-        if (ctg) {
-            result = result.filter((item) => item.ctg === ctg);
-        } else {
-            result = [];
-        }
-
-        dispatch({
-            type: DATA_FETCH,
-            payload: result,
-        });
+        // 헤더설정 되어있는 axios 사용 x => cors 오류 발생
+        const apiUrl =
+            "https://yts-proxy.now.sh/list_movies.json?limit=6&genre=" + genre;
+        fetch(apiUrl)
+            .then((response) => response.json())
+            .then((data) => {
+                dispatch({
+                    type: DATA_FETCH,
+                    payload: data.data.movies,
+                });
+            });
     } catch (err) {
         console.error("dataAction_fetch error:", err);
     }

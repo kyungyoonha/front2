@@ -79,7 +79,7 @@ function HeaderModal({ isOpen, handleClose, handleSubmit }) {
                 <Button variant="secondary" onClick={handleClose}>
                     닫기
                 </Button>
-                <Button onClick={onSubmit}>저장하기</Button>)
+                <Button onClick={onSubmit}>저장하기</Button>
             </Modal.Footer>
         </Modal>
     );

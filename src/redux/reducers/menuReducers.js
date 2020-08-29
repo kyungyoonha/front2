@@ -1,13 +1,11 @@
 import {
-    MENU_FETCH,
     MENU_UPDATE_THIRD,
     MENU_UPDATE_SECOND,
     MENU_ERRORS,
-    MENU_FETCH_ALL,
+    MENU_FETCH,
 } from "../types";
 
 const INITIAL_STATE = {
-    menuItemsAll: [],
     menuItems: [],
     errors: {},
 };
@@ -15,13 +13,6 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
         // 전체 메뉴 패치
-        case MENU_FETCH_ALL:
-            return {
-                ...state,
-                menuItemsAll: action.payload,
-            };
-
-        // 메뉴 패치
         case MENU_FETCH:
             return {
                 ...state,

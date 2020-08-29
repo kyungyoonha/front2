@@ -30,7 +30,7 @@ app.use(cors());
 
 // 라우터
 app.use("/auth", auth); // verifyToken
-app.use("/apis", verifyToken, apis);
+app.use("/apis", verifyToken, apis); // 리프레시 토큰, 자동 재갱신
 
 // const token =
 //     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjIsInVzZXJJZCI6ImVlZWVlZWVlZWUxISIsImlhdCI6MTU5ODM1NTYxNn0.B47awMu2go8ccrnJQR8SadLiuhV7h9uI62ErRV0QTB4";

@@ -42,7 +42,7 @@ function Board() {
 
     // genertate items
     // 현재 페이지랑 페이지 사이즈에 맞게 데이터 자름
-    const items = paginate(fetchitems, currentPage, pageSize, keyword);
+    const items = paginate(fetchitems, currentPage, pageSize, keyword); // 서버로 , 전체 건수
 
     // Fetch Items
     useEffect(() => {

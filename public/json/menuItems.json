@@ -1,114 +1,124 @@
 {
     "data": [
         {
-            "name": "상품",
-            "path": "/page1",
+            "name": "영화",
+            "path": "/movies",
             "icon": "fa-home",
             "children": [
                 {
-                    "name": "상품1",
-                    "path": "/page1/product1",
+                    "name": "장르1",
+                    "path": "/movies/product1",
                     "color": "green",
                     "children": [
                         {
-                            "name": "타입1",
-                            "path": "/page1/product1/type1",
+                            "name": "comdy",
+                            "value": "comedy",
+                            "path": "/movies/product1/type1",
                             "color": "blue"
                         },
                         {
-                            "name": "타입2",
-                            "path": "/page1/product1/type2",
+                            "name": "sci-fi",
+                            "value": "sci-fi",
+                            "path": "/movies/product1/type2",
                             "color": "pink"
                         },
                         {
-                            "name": "타입3",
-                            "path": "/page1/product1/type3",
+                            "name": "horror",
+                            "value": "horror",
+                            "path": "/movies/product1/type3",
                             "color": "orchid"
                         },
                         {
-                            "name": "타입4",
-                            "path": "/page1/product1/type4",
+                            "name": "romance",
+                            "value": "romance",
+                            "path": "/movies/product1/type4",
                             "color": "greenyellow"
-                        },
-                        {
-                            "name": "타입5",
-                            "path": "/page1/product1/type5",
-                            "color": "skyblue"
                         }
                     ]
                 },
                 {
-                    "name": "상품2",
-                    "path": "/page1/product2",
+                    "name": "장르2",
+                    "path": "/movies/product2",
                     "color": "orange",
                     "children": [
                         {
-                            "name": "타입6",
-                            "path": "/page1/product2/type1",
+                            "name": "action",
+                            "value": "action",
+                            "path": "/movies/product2/type1",
                             "color": "blue"
                         },
                         {
-                            "name": "타입7",
-                            "path": "/page1/product2/type2",
+                            "name": "thriller",
+                            "value": "thriller",
+                            "path": "/movies/product2/type2",
                             "color": "pink"
                         },
                         {
-                            "name": "타입8",
-                            "path": "/page1/product2/type3",
+                            "name": "drama",
+                            "value": "drama",
+                            "path": "/movies/product2/type3",
                             "color": "orchid"
                         }
                     ]
                 },
                 {
-                    "name": "상품3",
-                    "path": "/page1/product3",
+                    "name": "장르3",
+                    "path": "/movies/product3",
                     "color": "yellow",
                     "children": [
                         {
-                            "name": "타입9",
-                            "path": "/page1/product3/type1",
+                            "name": "mystery",
+                            "value": "mystery",
+                            "path": "/movies/product3/type1",
                             "color": "blue"
                         },
                         {
-                            "name": "타입10",
-                            "path": "/page1/product3/type2",
+                            "name": "crime",
+                            "value": "crime",
+                            "path": "/movies/product3/type2",
                             "color": "pink"
                         },
                         {
-                            "name": "타입11",
-                            "path": "/page1/product3/type3",
+                            "name": "animation",
+                            "value": "animation",
+                            "path": "/movies/product3/type3",
                             "color": "orchid"
                         },
                         {
-                            "name": "타입12",
-                            "path": "/page1/product3/type4",
+                            "name": "adventure",
+                            "value": "adventure",
+                            "path": "/movies/product3/type4",
                             "color": "greenyellow"
                         },
                         {
-                            "name": "타입13",
-                            "path": "/page1/product3/type5",
+                            "name": "fantasy",
+                            "value": "fantasy",
+                            "path": "/movies/product3/type5",
                             "color": "skyblue"
                         },
                         {
-                            "name": "타입14",
-                            "path": "/page1/product3/type6",
+                            "name": "comedy-romance",
+                            "value": "comedy-romance",
+                            "path": "/movies/product3/type6",
                             "color": "red"
                         }
                     ]
                 },
                 {
-                    "name": "상품4",
-                    "path": "/page1/product4",
+                    "name": "장르4",
+                    "path": "/movies/product4",
                     "color": "green",
                     "children": [
                         {
-                            "name": "타입15",
-                            "path": "/page1/product4/type1",
+                            "name": "action-comedy",
+                            "value": "action-comedy",
+                            "path": "/movies/product4/type1",
                             "color": "green"
                         },
                         {
-                            "name": "타입16",
-                            "path": "/page1/product4/type2",
+                            "name": "superhero",
+                            "value": "superhero",
+                            "path": "/movies/product4/type2",
                             "color": "blue"
                         }
                     ]

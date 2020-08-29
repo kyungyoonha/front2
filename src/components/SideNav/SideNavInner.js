@@ -6,8 +6,8 @@ import SideNavInnerChild from "./SideNavInnerChild";
 import { useSelector } from "react-redux";
 
 function SideNavInner({ menuPath, handleOpen }) {
-    const { menuItemsAll } = useSelector((state) => state.menu);
-    const menuItem = menuItemsAll.find((item) => item.path === menuPath);
+    const { menuItems } = useSelector((state) => state.menu);
+    const menuItem = menuItems.find((item) => item.path === menuPath);
 
     const [path, setPath] = useState("");
 
@@ -18,8 +18,6 @@ function SideNavInner({ menuPath, handleOpen }) {
     const onMouseLeave = () => {
         setPath("");
     };
-
-    // const menuItem = { name: "상품", path: "/page1", icon: "fa-home" };
 
     if (!menuItem || !menuItem.children) {
         return;

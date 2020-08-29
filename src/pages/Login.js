@@ -15,7 +15,7 @@ function Login({ auth }) {
     const { user, errors } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
     if (user.userId) {
-        history.push("/page1");
+        history.push("/movies");
     }
 
     const [inputs, setInputs] = useState({

@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function HeaderNavDepth2({ menuItem, handleOpen }) {
+function HeaderNavDepth2({ menuItem, handleOpenModal }) {
     const children = menuItem.children || [];
     const query = new URLSearchParams(window.location.search);
-    const value = query.get("value");
+    const genre = query.get("genre");
 
     return (
         <div className="headerNavDepth2">
@@ -12,15 +12,15 @@ function HeaderNavDepth2({ menuItem, handleOpen }) {
                 {children.map((item) => (
                     <Link
                         key={item.path}
-                        to={menuItem.path + "?value=" + item.name}
-                        className={`${value === item.name && "active"}`}
+                        to={menuItem.path + "?genre=" + item.name}
+                        className={`${genre === item.name && "active"}`}
                     >
                         {item.name}
                     </Link>
                 ))}
                 <i
                     className="fas fa-plus-circle"
-                    onClick={() => handleOpen(menuItem.path)}
+                    onClick={() => handleOpenModal(menuItem.path)}
                 ></i>
             </div>
         </div>

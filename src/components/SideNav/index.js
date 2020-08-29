@@ -12,7 +12,7 @@ import {
 
 const SideNav = () => {
     const dispatch = useDispatch();
-    const { menuItemsAll } = useSelector((state) => state.menu); // 전체 메뉴 아이템
+    const { menuItems } = useSelector((state) => state.menu); // 전체 메뉴 아이템
     const [menuPath, setMenuPath] = useState(""); // 자식 메뉴 오픈 여부
     const [isOpen, setOpen] = useState(false); // 입력창 오픈 여부
     const [parentPath, setParentPath] = useState(""); // 3차 메뉴 추가시 설정
@@ -72,7 +72,7 @@ const SideNav = () => {
         setToggle(!isToggle);
     };
 
-    if (!menuItemsAll) {
+    if (!menuItems) {
         return;
     }
 
@@ -84,7 +84,7 @@ const SideNav = () => {
                     onClick={handleOpenToggle}
                 ></i>
                 <div className={`sideNav__items ${isToggle && "on"}`}>
-                    {menuItemsAll.map((item) => (
+                    {menuItems.map((item) => (
                         <div className="sideNav__item" key={item.path}>
                             <NavLink
                                 to={item.path}

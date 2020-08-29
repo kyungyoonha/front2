@@ -1,4 +1,3 @@
-export const MENU_FETCH_ALL = "menu/MENU_FETCH_ALL";
 export const MENU_FETCH = "menu/MENU_FETCH";
 export const MENU_INSERT = "menu/MENU_INSERT";
 export const MENU_UPDATE_SECOND = "menu/MENU_UPDATE_SECOND";
