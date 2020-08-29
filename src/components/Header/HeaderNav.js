@@ -98,7 +98,7 @@ const HeaderNav = ({ history }) => {
                                 >
                                     {item.name}
                                 </NavLink>
-                                {item.path === menuPath && (
+                                {item.path === menuPath && item.children && (
                                     <HeaderNavInner
                                         menuItem={item}
                                         handleOpen={handleOpenModal}

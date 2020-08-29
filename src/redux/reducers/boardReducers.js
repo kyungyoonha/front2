@@ -14,12 +14,12 @@ export default (state = INITIAL_STATE, action) => {
         // id 일치하는 item 업데이트
         case BOARD_EDIT:
             return state.map((item) =>
-                item.id === action.payload.id ? action.payload : item
+                item._id === action.payload._id ? action.payload : item
             );
 
         // id 일치 하는 item 삭제
         case BOARD_DELETE:
-            return state.filter((item) => item.id !== action.payload.id);
+            return state.filter((item) => item._id !== action.payload._id);
 
         default:
             return state;

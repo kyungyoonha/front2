@@ -7,8 +7,6 @@ import { authAction_logout } from "../../redux/actions";
 
 function HeaderUtil() {
     const { user } = useSelector((state) => state.auth);
-    console.log(user);
-
     const dispatch = useDispatch();
 
     // 로그아웃

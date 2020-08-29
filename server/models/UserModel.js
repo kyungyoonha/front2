@@ -18,7 +18,8 @@ const UserSchema = new mongoose.Schema({
     hobby: Object,
     createdAt: {
         type: Date,
-        default: Date.now(),
+        default: Date.now,
+        index: true,
     },
 });
 

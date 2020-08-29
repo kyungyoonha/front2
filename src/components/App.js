@@ -54,8 +54,8 @@ function App() {
                         <AuthRoute path="/page2/:id" exact component={Page} />
                         <AuthRoute path="/page1/:id/:id" component={Page} />
                         <AuthRoute path="/page2/:id/:id" component={Page} />
-                        <AuthRoute path="/page3" component={Page} />
-                        <AuthRoute path="/page4" component={Page} />
+                        <AuthRoute path="/page3" component={PageMain} />
+                        <AuthRoute path="/page4" component={PageMain} />
                     </Switch>
                     <Footer />
                 </div>
