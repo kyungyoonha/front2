@@ -3,9 +3,12 @@ import axios from "axios";
 
 //const apiUrl = "http://localhost:3000/json/boardItems.json";
 // Fetch data
-export const boardAction_fetch = () => async (dispatch) => {
-    const response = await axios.get("/apis/board");
-    const data = response.data.data;
+export const boardAction_fetch = (currentPage, find) => async (dispatch) => {
+    const response = await axios.post("/apis/board", {
+        currentPage: currentPage || 1,
+        find: find || "",
+    });
+    const data = response.data;
     // API data fetch
     dispatch({
         type: BOARD_FETCH,

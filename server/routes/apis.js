@@ -7,10 +7,18 @@ router.get("/user", (req, res) => {
     res.json({ user: req.body.user });
 });
 
-router.get("/board", (req, res) => {
-    BoardDB.find().then((data) => {
-        res.json({ data });
-    });
+router.post("/board", (req, res) => {
+    const pageSize = 4;
+    const { currentPage } = req.body;
+    BoardDB.find() //
+        .sort({ createdAt: -1 })
+        .skip((currentPage - 1) * pageSize)
+        .limit(pageSize)
+        .then((data) => {
+            BoardDB.count().then((cnt) => {
+                res.json({ data, totalPage: Math.ceil(cnt / pageSize) });
+            });
+        });
 });
 
 router.post("/board/insert", (req, res) => {

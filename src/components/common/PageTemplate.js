@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
-import SideNav from "../SideNav";
-import Slider from "../Slider";
+import SideNav from "../SideNav/SideNav";
+import Slider from "../Slider/Slider";
 
 // page Template
 function PageTemplate({ children }) {

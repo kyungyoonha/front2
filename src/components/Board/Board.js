@@ -23,7 +23,8 @@ import Button from "react-bootstrap/Button";
 dayjs.extend(relativeTime);
 
 function Board() {
-    const fetchitems = useSelector((state) => state.board);
+    const { boardItems, totalPage } = useSelector((state) => state.board);
+    console.log(boardItems, totalPage);
     const { user } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
 
@@ -37,12 +38,12 @@ function Board() {
 
     // paginate
     const [currentPage, setCurrentPage] = useState(1);
-    const pageSize = 4;
-    const totalPage = Math.ceil(fetchitems.length / pageSize);
+    // const pageSize = 4;
+    // const totalPage = Math.ceil(boardItems.length / pageSize);
 
     // genertate items
     // 현재 페이지랑 페이지 사이즈에 맞게 데이터 자름
-    const items = paginate(fetchitems, currentPage, pageSize, keyword); // 서버로 , 전체 건수
+    // const items = paginate(boardItems, currentPage, pageSize, keyword); // 서버로 , 전체 건수
 
     // Fetch Items
     useEffect(() => {
@@ -118,7 +119,7 @@ function Board() {
                     </tr>
                 </thead>
                 <tbody className="tbody">
-                    {items.map((item) => (
+                    {boardItems.map((item) => (
                         <tr key={item.id} onClick={() => handleShow(item)}>
                             <td>{item.title}</td>
                             <td>{item.userId}</td>

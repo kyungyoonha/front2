@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import Board from "../components/Board";
+import Board from "../components/Board/Board";
 import PageTemplate from "../components/common/PageTemplate";
 import CardMovie from "../components/common/CardMovie";
 import { dataAction_fetch } from "../redux/actions";
