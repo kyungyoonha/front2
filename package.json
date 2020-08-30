@@ -9,6 +9,7 @@
         "axios": "^0.19.2",
         "body-parser": "^1.19.0",
         "bootstrap": "^4.5.2",
+        "concurrently": "^5.3.0",
         "cors": "^2.8.5",
         "dayjs": "^1.8.34",
         "dotenv": "^8.2.0",
@@ -29,7 +30,7 @@
         "redux-thunk": "^2.3.0"
     },
     "scripts": {
-        "start": "npm-run-all --parallel start:**",
+        "start": "concurrently --kill-others-on-fail \"npm run client\" \"npm run server\"",
         "client": "react-scripts start",
         "server": "npx nodemon ./server/app.js",
         "build": "react-scripts build",

@@ -5,22 +5,19 @@ import CardMovie from "../components/common/CardMovie";
 import { dataAction_fetch } from "../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 
-function PageDetail() {
-    const query = new URLSearchParams(window.location.search);
-    const genre = query.get("genre");
-
+function PageDetail({ match }) {
+    const id = match.params.id;
     const { pageData } = useSelector((state) => state.data);
     const dispatch = useDispatch();
 
-    console.log(pageData);
     useEffect(() => {
-        dispatch(dataAction_fetch(genre));
-    }, [dispatch, genre]);
+        dispatch(dataAction_fetch(id));
+    }, [dispatch, id]);
 
     return (
         <PageTemplate>
             <div className="pageMain">
-                <CardMovie title={genre} menuItems={pageData} />
+                <CardMovie title={id} menuItems={pageData} />
                 <Board />
             </div>
         </PageTemplate>

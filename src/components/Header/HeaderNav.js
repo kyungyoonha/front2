@@ -3,26 +3,13 @@ import { NavLink } from "react-router-dom";
 
 import logo from "../../images/logo.png";
 import HeaderNavDepth1 from "./HeaderNavDepth1";
-import HeaderModal from "./HeaderModal";
 
 //redux
-import { useSelector, useDispatch } from "react-redux";
-import {
-    menuAction_updateSecond,
-    menuAction_updateThird,
-} from "../../redux/actions";
+import { useSelector } from "react-redux";
 
-const HeaderNav = ({ history }) => {
-    const dispatch = useDispatch();
+const HeaderNav = () => {
     const { menuItems } = useSelector((state) => state.menu); // 전체 메뉴 아이템
-    const [parentPath, setParentPath] = useState(""); // 3차 메뉴 추가시 설정
     const [menuPath, setMenuPath] = useState(""); // 자식 메뉴 오픈 여부
-    const [isOpen, setOpen] = useState(false); // 입력창 오픈 여부
-
-    //=======================================================================
-    const query = new URLSearchParams(history.location.search);
-    const genre = query.get("genre");
-    //=======================================================================
 
     // Open Menu
     const handleMouseEnter = (path) => {
@@ -31,47 +18,7 @@ const HeaderNav = ({ history }) => {
 
     // Close Menu
     const handleMouseLeave = () => {
-        if (!isOpen) {
-            setMenuPath("");
-        }
-    };
-
-    // Open Modal
-    const handleOpenModal = (newPath) => {
-        setOpen(true);
-        // 3차 메뉴 수정인경우 parentPath 값 지정
-        newPath && setParentPath(newPath);
-    };
-
-    // Close Modal
-    const handleCloseModal = () => {
-        setOpen(false);
-    };
-
-    // Insert Menu Item
-    const handleSubmit = (inputs) => {
-        // Insert 2th depth Menu Item
-        if (!parentPath) {
-            dispatch(
-                menuAction_updateSecond(inputs.path, {
-                    ...inputs,
-                    path: menuPath + inputs.path, // path => /page3/newpath
-                    children: [],
-                })
-            );
-        }
-        // Insert 3th depth Menu Item
-        else {
-            dispatch(
-                menuAction_updateThird(inputs.path, {
-                    ...inputs,
-                    path: parentPath + inputs.path, // path => /page3/product3/newpath
-                    children: [],
-                })
-            );
-        }
-        setOpen(false);
-        setParentPath("");
+        setMenuPath("");
     };
 
     return (
@@ -95,22 +42,13 @@ const HeaderNav = ({ history }) => {
                                     {item.name}
                                 </NavLink>
                                 {item.path === menuPath && item.children && (
-                                    <HeaderNavDepth1
-                                        menuItem={item}
-                                        handleOpenModal={handleOpenModal}
-                                    />
+                                    <HeaderNavDepth1 menuItem={item} />
                                 )}
                             </Fragment>
                         ))}
                     </div>
                 </div>
             </div>
-            {/* 모달 */}
-            <HeaderModal
-                isOpen={isOpen}
-                handleClose={handleCloseModal}
-                handleSubmit={handleSubmit}
-            />
         </div>
     );
 };

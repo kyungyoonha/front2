@@ -7,7 +7,7 @@ function CardList({ menuItem }) {
         <div className="cardList">
             <h2>{menuItem.name}</h2>
             {children.map((item) => (
-                <div className="cardList__container">
+                <div key={item.name} className="cardList__container">
                     <img src="http://localhost:3000/logo192.png" alt="" />
                     <span>{item.name}</span>
                 </div>

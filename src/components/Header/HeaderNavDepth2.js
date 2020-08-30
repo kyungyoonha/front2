@@ -1,26 +1,29 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import history from "../../history";
 
-function HeaderNavDepth2({ menuItem, handleOpenModal }) {
+function HeaderNavDepth2({ menuItem }) {
     const children = menuItem.children || [];
-    const query = new URLSearchParams(window.location.search);
-    const genre = query.get("genre");
+
+    const handleAddMenu = () => {
+        history.push("/nav?depth2=" + menuItem.path);
+    };
 
     return (
         <div className="headerNavDepth2">
             <div className="headerNavDepth2__items">
                 {children.map((item) => (
-                    <Link
+                    <NavLink
                         key={item.path}
-                        to={menuItem.path + "?genre=" + item.name}
-                        className={`${genre === item.name && "active"}`}
+                        to={item.path}
+                        activeClassName="active"
                     >
                         {item.name}
-                    </Link>
+                    </NavLink>
                 ))}
                 <i
                     className="fas fa-plus-circle"
-                    onClick={() => handleOpenModal(menuItem.path)}
+                    onClick={() => handleAddMenu()}
                 ></i>
             </div>
         </div>

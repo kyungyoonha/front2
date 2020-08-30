@@ -1,38 +1,38 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Board from "../components/Board";
 import PageTemplate from "../components/common/PageTemplate";
-import history from "../history";
+// import history from "../history";
 
 // redux
-import { useSelector, useDispatch } from "react-redux";
-import Tabs from "../components/common/Tabs";
-import { dataAction_fetch } from "../redux/actions";
+import { useSelector } from "react-redux";
+// import Tabs from "../components/common/Tabs";
+// import { dataAction_fetch } from "../redux/actions";
 import CardList from "../components/common/CardList";
 
 function Page({ match }) {
     const { menuItems } = useSelector((state) => state.menu);
-    const { pageData } = useSelector((state) => state.data);
-    const dispatch = useDispatch();
+    //const { pageData } = useSelector((state) => state.data);
+    // const dispatch = useDispatch();
     const currentPath = match.url;
 
-    const [itemDepth1, setItemDepth1] = useState("");
-    const [itemDepth2, setItemDepth2] = useState("");
+    // const [itemDepth1, setItemDepth1] = useState("");
+    // const [itemDepth2, setItemDepth2] = useState("");
 
-    useEffect(() => {
-        const pathSplit = currentPath.split("/");
-        setItemDepth1("/" + pathSplit[1]);
-        if (pathSplit.length > 2) {
-            setItemDepth2("/" + pathSplit[1] + "/" + pathSplit[2]);
-        } else {
-            setItemDepth2("");
-        }
-        console.log(match.params.id);
-        dispatch(dataAction_fetch(match.params.id));
-    }, [currentPath, dispatch, match]);
+    // useEffect(() => {
+    //     const pathSplit = currentPath.split("/");
+    //     setItemDepth1("/" + pathSplit[1]);
+    //     if (pathSplit.length > 2) {
+    //         setItemDepth2("/" + pathSplit[1] + "/" + pathSplit[2]);
+    //     } else {
+    //         setItemDepth2("");
+    //     }
+    //     console.log(match.params.id);
+    //     dispatch(dataAction_fetch(match.params.id));
+    // }, [currentPath, dispatch, match]);
 
-    const handleClick = (path) => {
-        history.push(path);
-    };
+    // const handleClick = (path) => {
+    //     history.push(path);
+    // };
 
     const menuItem = menuItems.find((item) => item.path === currentPath);
 

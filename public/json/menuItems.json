@@ -6,120 +6,105 @@
             "icon": "fa-home",
             "children": [
                 {
-                    "name": "장르1",
-                    "path": "/movies/product1",
+                    "name": "SF/히어로",
+                    "path": "/movies/type1",
                     "color": "green",
                     "children": [
-                        {
-                            "name": "comdy",
-                            "value": "comedy",
-                            "path": "/movies/product1/type1",
-                            "color": "blue"
-                        },
                         {
                             "name": "sci-fi",
                             "value": "sci-fi",
-                            "path": "/movies/product1/type2",
-                            "color": "pink"
+                            "path": "/movies/type1/sci-fi"
                         },
                         {
-                            "name": "horror",
-                            "value": "horror",
-                            "path": "/movies/product1/type3",
-                            "color": "orchid"
+                            "name": "슈퍼히어로",
+                            "value": "superhero",
+                            "path": "/movies/type1/superhero"
                         },
                         {
-                            "name": "romance",
-                            "value": "romance",
-                            "path": "/movies/product1/type4",
-                            "color": "greenyellow"
+                            "name": "판타지",
+                            "value": "fantasy",
+                            "path": "/movies/type1/fantasy"
+                        },
+                        {
+                            "name": "애니메이션",
+                            "value": "animation",
+                            "path": "/movies/type1/animation"
                         }
                     ]
                 },
                 {
-                    "name": "장르2",
-                    "path": "/movies/product2",
+                    "name": "로맨스/코메디",
+                    "path": "/movies/type2",
                     "color": "orange",
                     "children": [
                         {
-                            "name": "action",
-                            "value": "action",
-                            "path": "/movies/product2/type1",
-                            "color": "blue"
+                            "name": "코메디",
+                            "value": "comedy",
+                            "path": "/movies/type2/comedy"
                         },
                         {
-                            "name": "thriller",
-                            "value": "thriller",
-                            "path": "/movies/product2/type2",
-                            "color": "pink"
+                            "name": "로맨스",
+                            "value": "romance",
+                            "path": "/movies/type2/romance"
                         },
                         {
-                            "name": "drama",
+                            "name": "드라마",
                             "value": "drama",
-                            "path": "/movies/product2/type3",
-                            "color": "orchid"
+                            "path": "/movies/type2/drama"
+                        },
+                        {
+                            "name": "로맨스-코메디",
+                            "value": "comedy-romance",
+                            "path": "/movies/type2/comedy-romance"
                         }
                     ]
                 },
                 {
-                    "name": "장르3",
-                    "path": "/movies/product3",
+                    "name": "범죄/호러",
+                    "path": "/movies/type3",
                     "color": "yellow",
                     "children": [
                         {
-                            "name": "mystery",
+                            "name": "미스테리",
                             "value": "mystery",
-                            "path": "/movies/product3/type1",
-                            "color": "blue"
+                            "path": "/movies/type3/mystery"
                         },
                         {
-                            "name": "crime",
+                            "name": "범죄",
                             "value": "crime",
-                            "path": "/movies/product3/type2",
-                            "color": "pink"
+                            "path": "/movies/type3/crime"
                         },
                         {
-                            "name": "animation",
-                            "value": "animation",
-                            "path": "/movies/product3/type3",
-                            "color": "orchid"
+                            "name": "공포",
+                            "value": "horror",
+                            "path": "/movies/type3/horror"
                         },
                         {
-                            "name": "adventure",
-                            "value": "adventure",
-                            "path": "/movies/product3/type4",
-                            "color": "greenyellow"
-                        },
-                        {
-                            "name": "fantasy",
-                            "value": "fantasy",
-                            "path": "/movies/product3/type5",
-                            "color": "skyblue"
-                        },
-                        {
-                            "name": "comedy-romance",
-                            "value": "comedy-romance",
-                            "path": "/movies/product3/type6",
-                            "color": "red"
+                            "name": "스릴러",
+                            "value": "thriller",
+                            "path": "/movies/type3/thriller"
                         }
                     ]
                 },
                 {
-                    "name": "장르4",
-                    "path": "/movies/product4",
+                    "name": "액션/어드벤처",
+                    "path": "/movies/type4",
                     "color": "green",
                     "children": [
                         {
-                            "name": "action-comedy",
-                            "value": "action-comedy",
-                            "path": "/movies/product4/type1",
-                            "color": "green"
+                            "name": "액션",
+                            "value": "action",
+                            "path": "/movies/type4/action"
                         },
                         {
-                            "name": "superhero",
-                            "value": "superhero",
-                            "path": "/movies/product4/type2",
-                            "color": "blue"
+                            "name": "액션-코메디",
+                            "value": "action-comedy",
+                            "path": "/movies/type4/action-comedy"
+                        },
+                        {
+                            "name": "어드벤처",
+                            "value": "adventure",
+                            "path": "/movies/type4/adventure"
                         }
                     ]
                 }
@@ -128,127 +113,7 @@
         {
             "name": "소개",
             "path": "/page2",
-            "icon": "fa-question-circle",
-            "children": [
-                {
-                    "name": "소개1",
-                    "path": "/page2/about1",
-                    "color": "red",
-                    "children": [
-                        {
-                            "name": "인사1",
-                            "path": "/page2/about1/type1",
-                            "color": "skyblue"
-                        },
-                        {
-                            "name": "인사2",
-                            "path": "/page2/about1/type2",
-                            "color": "blue"
-                        },
-                        {
-                            "name": "인사3",
-                            "path": "/page2/about1/type3",
-                            "color": "red"
-                        },
-                        {
-                            "name": "인사4",
-                            "path": "/page2/about1/type4",
-                            "color": "pink"
-                        }
-                    ]
-                },
-                {
-                    "name": "소개2",
-                    "path": "/page2/about2",
-                    "color": "orange",
-                    "children": [
-                        {
-                            "name": "인사5",
-                            "path": "/page2/about2/type1",
-                            "color": "skyblue"
-                        },
-                        {
-                            "name": "인사6",
-                            "path": "/page2/about2/type2",
-                            "color": "blue"
-                        },
-                        {
-                            "name": "인사7",
-                            "path": "/page2/about2/type3",
-                            "color": "pink"
-                        },
-                        {
-                            "name": "인사8",
-                            "path": "/page2/about2/type4",
-                            "color": "yellow"
-                        },
-                        {
-                            "name": "인사9",
-                            "path": "/page2/about2/type5",
-                            "color": "greenyellow"
-                        },
-                        {
-                            "name": "인사10",
-                            "path": "/page2/about2/type6",
-                            "color": "red"
-                        },
-                        {
-                            "name": "인사11",
-                            "path": "/page2/about2/type7",
-                            "color": "orange"
-                        }
-                    ]
-                },
-                {
-                    "name": "소개3",
-                    "path": "/page2/about3",
-                    "color": "yellow",
-                    "children": [
-                        {
-                            "name": "인사12",
-                            "path": "/page2/about3/type1",
-                            "color": "red"
-                        },
-                        {
-                            "name": "인사13",
-                            "path": "/page2/about3/type2",
-                            "color": "skyblue"
-                        },
-                        {
-                            "name": "인사14",
-                            "path": "/page2/about3/type3",
-                            "color": "blue"
-                        },
-                        {
-                            "name": "인사15",
-                            "path": "/page2/about3/type4",
-                            "color": "pink"
-                        },
-                        {
-                            "name": "인사16",
-                            "path": "/page2/about3/type5",
-                            "color": "greenyellow"
-                        },
-                        {
-                            "name": "인사17",
-                            "path": "/page2/about3/type6",
-                            "color": "orange"
-                        }
-                    ]
-                },
-                {
-                    "name": "소개4",
-                    "path": "/page2/about4",
-                    "color": "green",
-                    "children": [
-                        {
-                            "name": "타입18",
-                            "path": "/page2/about4/type1",
-                            "color": "red"
-                        }
-                    ]
-                }
-            ]
+            "icon": "fa-question-circle"
         },
         {
             "name": "정보",

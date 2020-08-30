@@ -13,6 +13,8 @@ import HeaderNav from "./Header/HeaderNav";
 import { useSelector, useDispatch } from "react-redux";
 import { menuAction_fetch } from "../redux/actions";
 import PageMain from "../pages/PageMain";
+// import PageDetail from "../pages/PageDetail";
+import HeaderModal from "./Header/HeaderModal";
 import PageDetail from "../pages/PageDetail";
 
 function App() {
@@ -44,19 +46,27 @@ function App() {
             <Router history={history}>
                 <div className="app__container">
                     <HeaderUtil /> {/* 로그인 / 회원가입 / 유저정보 */}
-                    <HeaderNav history={history} />
+                    <HeaderNav />
                     <Switch>
                         <Route path="/" exact component={PageMain} />
                         <Route path="/signup" exact component={SignUp} />
                         <AuthRoute path="/login" exact component={Login} />
-                        <AuthRoute path="/movies" exact component={Page} />
-                        <AuthRoute path="/movies/:id" component={PageDetail} />
-                        {/* <AuthRoute path="/movies/:id/:id" component={Page} /> */}
+                        <AuthRoute path="/movies" exact component={PageMain} />
+                        <AuthRoute
+                            path="/movies/:id"
+                            exact
+                            component={PageMain}
+                        />
+                        <AuthRoute
+                            path="/movies/:id/:id"
+                            component={PageDetail}
+                        />
                         <AuthRoute path="/page2" exact component={Page} />
-                        <AuthRoute path="/page2/:id" exact component={Page} />
-                        <AuthRoute path="/page2/:id/:id" component={Page} />
+                        {/* <AuthRoute path="/page2/:id" exact component={Page} />
+                        <AuthRoute path="/page2/:id/:id" component={Page} /> */}
                         <AuthRoute path="/page3" component={PageMain} />
                         <AuthRoute path="/page4" component={PageMain} />
+                        <AuthRoute path="/nav" exact component={HeaderModal} />
                     </Switch>
                     <Footer />
                 </div>

@@ -1,7 +1,12 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import history from "../../history";
 
-function SideNavInnerChild({ menuItem, handleOpen }) {
+function SideNavDepth2({ menuItem }) {
+    const handleAddMenu = () => {
+        history.push("/nav?depth2=" + menuItem.path);
+    };
+
     return (
         <div className="sideNavInnerChild">
             {menuItem.children &&
@@ -11,16 +16,15 @@ function SideNavInnerChild({ menuItem, handleOpen }) {
                         key={item.path}
                         activeClassName="active"
                     >
-                        {"- "}
                         {item.name}
                     </NavLink>
                 ))}
             <i
                 className="fas fa-plus-circle"
-                onClick={() => handleOpen(menuItem.path)}
+                onClick={() => handleAddMenu()}
             ></i>
         </div>
     );
 }
 
-export default React.memo(SideNavInnerChild);
+export default React.memo(SideNavDepth2);

@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import SideNavInnerChild from "./SideNavInnerChild";
+import SideNavDepth2 from "./SideNavDepth2";
+import history from "../../history";
 
-// redux
-import { useSelector } from "react-redux";
+function SideNavDepth1({ menuItem }) {
+    const children = menuItem.children || [];
 
-function SideNavInner({ menuPath, handleOpen }) {
-    const { menuItems } = useSelector((state) => state.menu);
-    const menuItem = menuItems.find((item) => item.path === menuPath);
+    // const { menuItems } = useSelector((state) => state.menu);
+    // const menuItem = menuItems.find((item) => item.path === menuPath);
+
+    const handleAddMenu = () => {
+        history.push("/nav?depth1=" + menuItem.path);
+    };
 
     const [path, setPath] = useState("");
 
@@ -19,20 +23,15 @@ function SideNavInner({ menuPath, handleOpen }) {
         setPath("");
     };
 
-    if (!menuItem || !menuItem.children) {
-        return;
-    }
-
     return (
         <div className="sideNavInner" onMouseLeave={onMouseLeave}>
-            {menuItem.children.map((item) => (
+            {children.map((item) => (
                 <div key={item.path} className="sideNavInner__item">
                     <NavLink
                         to={item.path}
                         activeClassName="active"
                         onMouseEnter={() => onMouseEnter(item.path)}
                     >
-                        {"- "}
                         {item.name}
                         {item.children && (
                             <i
@@ -42,12 +41,7 @@ function SideNavInner({ menuPath, handleOpen }) {
                             ></i>
                         )}
                     </NavLink>
-                    {path === item.path && (
-                        <SideNavInnerChild
-                            menuItem={item}
-                            handleOpen={handleOpen}
-                        />
-                    )}
+                    {path === item.path && <SideNavDepth2 menuItem={item} />}
                 </div>
             ))}
 
@@ -57,11 +51,11 @@ function SideNavInner({ menuPath, handleOpen }) {
             >
                 <i
                     className="fas fa-plus-circle"
-                    onClick={() => handleOpen()}
+                    onClick={() => handleAddMenu()}
                 ></i>
             </div>
         </div>
     );
 }
 
-export default React.memo(SideNavInner);
+export default React.memo(SideNavDepth1);
