@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const jwt = require("jsonwebtoken");
+
+const { validateSignUp, validateLogin } = require("../lib/validateAuth");
+
 // Model
 const UserModel = require("../models/UserModel");
 
@@ -15,6 +17,9 @@ router.post("/checkid", (req, res) => {
 });
 
 router.post("/signup", (req, res) => {
+    const { valid, errors } = validateSignUp(req.body);
+    if (!valid) return res.status(400).json(errors);
+
     let userDB;
     UserModel.findOne({ userId: req.body.userId })
         .then((err, user) => {
@@ -38,14 +43,23 @@ router.post("/signup", (req, res) => {
 });
 
 router.post("/login", (req, res) => {
+    const { valid, errors } = validateLogin(req.body);
+    if (!valid) return res.status(400).json(errors);
+
     UserModel.findOne({ userId: req.body.userId }).then((user) => {
         if (!user) {
             res.status(400).json({
-                alert: "아이디 또는 비밀번호가 일치하지 않습니다.",
+                alert: "존재하지 않는 아이디 입니다.",
             });
         } else {
-            const token = new UserModel(user).generateToken();
-            res.json({ token });
+            if (user.password === req.body.password) {
+                const token = new UserModel(user).generateToken();
+                res.json({ token });
+            } else {
+                res.status(400).json({
+                    alert: "비밀번호를 다시 입력해주세요.",
+                });
+            }
         }
     });
 });

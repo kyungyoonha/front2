@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 function PageDetail({ match }) {
     const id = match.params.id;
-    const { pageData } = useSelector((state) => state.data);
+    const { pageData, isLoading } = useSelector((state) => state.data);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -17,7 +17,11 @@ function PageDetail({ match }) {
     return (
         <PageTemplate>
             <div className="pageMain">
-                <CardMovie title={id} menuItems={pageData} />
+                <CardMovie
+                    title={id}
+                    menuItems={pageData}
+                    isLoading={isLoading}
+                />
                 <Board />
             </div>
         </PageTemplate>

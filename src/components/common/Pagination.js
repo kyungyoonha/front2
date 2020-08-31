@@ -1,8 +1,4 @@
-import React, { useState } from "react";
-
-// redux
-import { useDispatch, useSelector } from "react-redux";
-import { boardAction_fetch } from "../../redux/actions";
+import React from "react";
 
 function Pagination({ totalPage, currentPage, handleCurrentPage }) {
     const pageNumbers = [...new Array(totalPage).keys()];

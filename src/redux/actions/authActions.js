@@ -35,63 +35,64 @@ export const authAction_checkId = (id) => (dispatch) => {
 };
 
 export const authAction_signup = (userData) => (dispatch) => {
-    const { valid, errors } = validateSignUp(userData);
-    if (!valid) {
-        dispatch({
-            type: AUTH_ERRORS,
-            payload: errors,
-        });
-    } else {
-        axios
-            .post("/auth/signup", userData)
-            .then((res) => {
-                alert("회원가입에 성공하였습니다.");
-                setAuthHeader(res.data.token);
-                dispatch({
-                    type: AUTH_CLEAR_ERRORS,
-                });
-                history.push("/login");
-            })
-            .catch((err) => {
-                if (err.response.data.alert) {
-                    alert(err.response.data.alert);
-                }
-                dispatch({
-                    type: AUTH_ERRORS,
-                    payload: err.response.data,
-                });
+    // const { valid, errors } = validateSignUp(userData);
+    // if (!valid) {
+    //     dispatch({
+    //         type: AUTH_ERRORS,
+    //         payload: errors,
+    //     });
+    // } else {
+    axios
+        .post("/auth/signup", userData)
+        .then((res) => {
+            alert("회원가입에 성공하였습니다.");
+            setAuthHeader(res.data.token);
+            dispatch({
+                type: AUTH_CLEAR_ERRORS,
             });
-    }
+            history.push("/login");
+        })
+        .catch((err) => {
+            if (err.response.data.alert) {
+                alert(err.response.data.alert);
+            }
+            dispatch({
+                type: AUTH_ERRORS,
+                payload: err.response.data,
+            });
+        });
+    // }
 };
 
 export const authAction_login = (userData) => (dispatch) => {
-    const { valid, errors } = validateLogin(userData);
-    if (!valid) {
-        dispatch({
-            type: AUTH_ERRORS,
-            payload: errors,
-        });
-    } else {
-        axios
-            .post("/auth/login", userData)
-            .then((res) => {
-                setAuthHeader(res.data.token);
-                dispatch(authAction_fetchUserData());
-                dispatch({
-                    type: AUTH_CLEAR_ERRORS,
-                });
-                history.push("/");
-            })
-            .catch((err) => {
-                if (err.response.data.alert) {
-                    alert(err.response.data.alert);
-                }
-                dispatch({
-                    type: AUTH_ERRORS,
-                    payload: err.response.data,
-                });
+    // const { valid, errors } = validateLogin(userData);
+    // if (!valid) {
+    //     dispatch({
+    //         type: AUTH_ERRORS,
+    //         payload: errors,
+    //     });
+    // } else {
+    axios
+        .post("/auth/login", userData)
+        .then((res) => {
+            setAuthHeader(res.data.token);
+            dispatch(authAction_fetchUserData());
+            dispatch({
+                type: AUTH_CLEAR_ERRORS,
             });
-    }
+            history.push("/");
+        })
+        .catch((err) => {
+            if (err.response.data.alert) {
+                alert(err.response.data.alert);
+            }
+            console.log(err.response);
+            dispatch({
+                type: AUTH_ERRORS,
+                payload: err.response.data,
+            });
+        });
+    // }
 };
 
 export const authAction_logout = () => {

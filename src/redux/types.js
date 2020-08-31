@@ -18,3 +18,4 @@ export const AUTH_LOGOUT = "auth/AUTH_LOGOUT";
 export const AUTH_ERRORS = "auth/AUTH_ERRORS";
 
 export const DATA_FETCH = "data/DATA_FETCH";
+export const DATA_LOADING = "data/DATA_LOADING";

@@ -1,7 +1,20 @@
 import React from "react";
+import no_img from "../../images/no-img.png";
 
-function CardMovie({ title, menuItems }) {
-    if (!menuItems) return <div>로딩중</div>;
+function CardMovie({ title, menuItems, isLoading }) {
+    if (!menuItems || isLoading)
+        return (
+            <div className="cardList">
+                <h2>{title.toUpperCase()}</h2>
+                {[...new Array(6)].map((item, i) => (
+                    <div key={i} className="cardList__container">
+                        <img src={no_img} alt="" />
+                        <span>Loading</span>
+                    </div>
+                ))}
+            </div>
+        );
+
     return (
         <div className="cardList">
             <h2>{title.toUpperCase()}</h2>

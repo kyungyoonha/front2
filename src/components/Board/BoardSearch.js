@@ -44,4 +44,4 @@ function BoardSearch({ handleSearch }) {
     );
 }
 
-export default BoardSearch;
+export default React.memo(BoardSearch);

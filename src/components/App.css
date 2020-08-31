@@ -85,12 +85,6 @@ a:link { text-decoration: none !important; }
 .auth { background-color: #b7b7b7; padding: 100px 0; height: auto; }
 .auth__container { overflow: hidden; margin: 0 auto; height: auto; padding: 30px; width: 60%; background-color: white; }
 .auth__header { margin-bottom: 30px; height: 60px; background-color: white; border-bottom: 1px solid #b7b7b7; }
-/* 텝 페이지 */
-.tabs { display: flex; flex-direction: column; border: 1px solid #b7b7b7; }
-.tabs__menu { display: flex; margin-top: -1px; height: 40px; line-height: 40px; }
-.tabs__menuItem { flex: 1; margin-left: -1px; border: 1px solid#b7b7b7; text-align: center; cursor: pointer; }
-.tabs__menuItem.on { background-color: #007bff; color: white; font-weight: bold; }
-.tabs__content { overflow: hidden; margin-top: -1px; padding: 10px; width: 100%; height: auto; text-align: center; }
 /* 게시판 */
 table td, table th { cursor: pointer; }
 .board { display: flex; flex-direction: column; min-height: 400px; margin-bottom: 50px; }
