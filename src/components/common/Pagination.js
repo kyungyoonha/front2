@@ -1,15 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 
-function Pagination({ currentPage, totalPage, handlePageChange }) {
+// redux
+import { useDispatch, useSelector } from "react-redux";
+import { boardAction_fetch } from "../../redux/actions";
+
+function Pagination({ totalPage, currentPage, handleCurrentPage }) {
     const pageNumbers = [...new Array(totalPage).keys()];
 
     const onClick = (page) => {
         if (page === "before" && currentPage > 1) {
-            handlePageChange(currentPage - 1);
+            handleCurrentPage(currentPage - 1);
         } else if (page === "next" && currentPage < totalPage)
-            handlePageChange(currentPage + 1);
+            handleCurrentPage(currentPage + 1);
         else if (page !== "before" && page !== "next") {
-            handlePageChange(page);
+            handleCurrentPage(page);
         }
     };
 

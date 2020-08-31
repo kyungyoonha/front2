@@ -1,17 +1,36 @@
-import { BOARD_FETCH, BOARD_INSERT, BOARD_EDIT, BOARD_DELETE } from "../types";
+import {
+    BOARD_FETCH,
+    BOARD_INSERT,
+    BOARD_EDIT,
+    BOARD_DELETE,
+    BOARD_FETCH_DETAIL,
+} from "../types";
 import axios from "axios";
 
 //const apiUrl = "http://localhost:3000/json/boardItems.json";
 // Fetch data
-export const boardAction_fetch = (currentPage, find) => async (dispatch) => {
+export const boardAction_fetch = ({ currentPage, find }) => async (
+    dispatch
+) => {
     const response = await axios.post("/apis/board", {
         currentPage: currentPage || 1,
         find: find || "",
     });
     const data = response.data;
+
     // API data fetch
     dispatch({
         type: BOARD_FETCH,
+        payload: data,
+    });
+};
+
+export const boardAction_fetch_detail = (id) => async (dispatch) => {
+    const response = await axios.get("/apis/board/" + id);
+    const data = response.data.data;
+
+    dispatch({
+        type: BOARD_FETCH_DETAIL,
         payload: data,
     });
 };

@@ -1,20 +1,14 @@
 import React, { useState, useEffect, Fragment } from "react";
-import BoardDetail from "./BoardDetail";
 import BoardSearch from "./BoardSearch";
 import Pagination from "../common/Pagination";
 
-import paginate from "../../util/paginate";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import history from "../../history";
 
 // redux
 import { useSelector, useDispatch } from "react-redux";
-import {
-    boardAction_fetch,
-    boardAction_update,
-    boardAction_delete,
-} from "../../redux/actions";
+import { boardAction_fetch, boardAction_delete } from "../../redux/actions";
 
 // BS
 import Table from "react-bootstrap/Table";
@@ -23,83 +17,44 @@ import Button from "react-bootstrap/Button";
 dayjs.extend(relativeTime);
 
 function Board() {
-    const { boardItems, totalPage } = useSelector((state) => state.board);
-    console.log(boardItems, totalPage);
-    const { user } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
-
-    // Board Search
-    const [keyword, setKeyword] = useState("");
-
-    // Board Detail
-    const [modalShow, setModalShow] = useState(false);
-    const [selectedItem, setSelectedItem] = useState("");
-    const [isEdit, setIsEdit] = useState(false);
-
-    // paginate
-    const [currentPage, setCurrentPage] = useState(1);
-    // const pageSize = 4;
-    // const totalPage = Math.ceil(boardItems.length / pageSize);
-
-    // genertate items
-    // 현재 페이지랑 페이지 사이즈에 맞게 데이터 자름
-    // const items = paginate(boardItems, currentPage, pageSize, keyword); // 서버로 , 전체 건수
+    const { boardItems, totalPage } = useSelector((state) => state.board);
+    const { user } = useSelector((state) => state.auth);
+    const [options, setOptions] = useState({
+        currentPage: 1,
+        find: "",
+    });
 
     // Fetch Items
     useEffect(() => {
-        dispatch(boardAction_fetch());
-    }, [dispatch]);
-
-    // Update Data
-    const handleUpdate = (item) => {
-        // 유저 ID 정보 추가
-        item.userId = user.userId;
-
-        dispatch(boardAction_update(item));
-        setSelectedItem("");
-        setModalShow(false);
-    };
-
+        dispatch(boardAction_fetch(options));
+    }, [dispatch, options]);
     // Delete Data
     const handleDelete = (item) => {
         dispatch(boardAction_delete(item));
-        setSelectedItem("");
     };
 
-    // Edit Detail
-    const handleEdit = (item) => {
-        // 유저 정보 없을 시, 로그인 화면 이동
+    const handleOpenModal = (id) => {
         if (!user.userId) {
             history.push("/login");
+        } else {
+            history.push("/board/" + id);
         }
-
-        setSelectedItem(item);
-        setIsEdit(true);
-        setModalShow(true);
     };
 
-    // Show Detail
-    const handleShow = (item) => {
-        setSelectedItem(item);
-        setIsEdit(false);
-        setModalShow(true);
-    };
-
-    // Hide Detail
-    const handleHide = () => {
-        setModalShow(false);
-        setSelectedItem("");
-        setIsEdit(false);
-    };
-
-    // Change Current Page
-    const handlePageChange = (page) => {
-        setCurrentPage(page);
+    const handleCurrentPage = (newPage) => {
+        setOptions({
+            ...options,
+            currentPage: newPage,
+        });
     };
 
     // Seach
     const handleSearch = (keyword) => {
-        setKeyword(keyword);
+        setOptions({
+            ...options,
+            find: keyword,
+        });
     };
 
     return (
@@ -120,7 +75,10 @@ function Board() {
                 </thead>
                 <tbody className="tbody">
                     {boardItems.map((item) => (
-                        <tr key={item.id} onClick={() => handleShow(item)}>
+                        <tr
+                            key={item.id}
+                            onClick={() => handleOpenModal(item._id)}
+                        >
                             <td>{item.title}</td>
                             <td>{item.userId}</td>
                             <td>{dayjs(item.date).fromNow()}</td>
@@ -132,7 +90,9 @@ function Board() {
                                     <Fragment>
                                         <i
                                             className="fas fa-edit"
-                                            onClick={() => handleEdit(item)}
+                                            onClick={() =>
+                                                handleOpenModal(item._id)
+                                            }
                                         ></i>
                                         <i
                                             className="far fa-trash-alt"
@@ -149,22 +109,15 @@ function Board() {
                 <Button
                     className="board__buttomBtn"
                     variant="dark"
-                    onClick={() => handleEdit()}
+                    onClick={() => handleOpenModal("new")}
                 >
                     글쓰기
                 </Button>
             </div>
             <Pagination
-                currentPage={currentPage}
                 totalPage={totalPage}
-                handlePageChange={handlePageChange}
-            />
-            <BoardDetail
-                show={modalShow}
-                isEdit={isEdit}
-                onHide={handleHide}
-                item={selectedItem}
-                handleUpdate={handleUpdate}
+                currentPage={options.currentPage}
+                handleCurrentPage={handleCurrentPage}
             />
         </div>
     );

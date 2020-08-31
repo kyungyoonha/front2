@@ -5,6 +5,7 @@ export const MENU_UPDATE_THIRD = "menu/MENU_UPDATE_THIRD";
 export const MENU_ERRORS = "menu/MENU_ERRORS";
 
 export const BOARD_FETCH = "board/BOARD_FETCH";
+export const BOARD_FETCH_DETAIL = "board/BORAD_FETCH_DETAIL";
 export const BOARD_INSERT = "board/BOARD_INSERT";
 export const BOARD_EDIT = "board/BOARD_EDIT";
 export const BOARD_DELETE = "board/BOARD_DELETE";

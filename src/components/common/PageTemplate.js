@@ -8,7 +8,7 @@ function PageTemplate({ children }) {
         <Fragment>
             <Slider />
             <div className="pageTemplate">
-                <div className="page">
+                <div className="pageTemplate__container">
                     <SideNav />
                     {children}
                 </div>

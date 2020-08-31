@@ -65,7 +65,7 @@ a:link { text-decoration: none !important; }
 .pagination__item { margin-right: -1px; width: 40px; height: 40px; text-align: center; line-height: 40px; border: 1px solid #b7b7b7; color: #b7b7b7; }
 .pagination__item.active { background-color: #61dafb; font-weight: bold; color: white; }
 .pageTemplate { overflow: hidden; margin: 10px auto 40px auto; height: auto; width: 1200px; background: #20232a; border: 1px solid#e3e3e4; border-radius: 1.5%; }
-.page { overflow: hidden; display: flex; height: auto; background-color: white; }
+.pageTemplate__container { overflow: hidden; display: flex; height: auto; background-color: white; }
 .pageMain { padding: 50px 30px; width: 900px; background-color: white;}
 .pageMain__Content { overflow: hidden; height: auto; }
 .pageMain__Content > div { float: left; margin-bottom: 30px; width: 50%; height: 300px; line-height: 300px; text-align: center; }

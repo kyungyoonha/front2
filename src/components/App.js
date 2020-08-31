@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Router, Route, Switch } from "react-router-dom";
 import "./App.css";
-import Page from "../pages/Page";
+import PageMain from "../pages/PageMain";
 import SignUp from "../pages/SignUp";
 import Login from "../pages/Login";
 import history from "../history";
@@ -12,10 +12,11 @@ import HeaderNav from "./Header/HeaderNav";
 // redux
 import { useSelector, useDispatch } from "react-redux";
 import { menuAction_fetch } from "../redux/actions";
-import PageMain from "../pages/PageMain";
+import Page from "../pages/Page";
 // import PageDetail from "../pages/PageDetail";
 import HeaderModal from "./Header/HeaderModal";
 import PageDetail from "../pages/PageDetail";
+import BoardModal from "./Board/BoardModal";
 
 function App() {
     const dispatch = useDispatch();
@@ -31,6 +32,7 @@ function App() {
             {...rest}
             render={(props) => {
                 if (!user.userId) {
+                    console.log(user);
                     return <Login />;
                 }
 
@@ -48,25 +50,20 @@ function App() {
                     <HeaderUtil /> {/* 로그인 / 회원가입 / 유저정보 */}
                     <HeaderNav />
                     <Switch>
-                        <Route path="/" exact component={PageMain} />
+                        <AuthRoute path="/" exact component={Page} />
                         <Route path="/signup" exact component={SignUp} />
-                        <AuthRoute path="/login" exact component={Login} />
-                        <AuthRoute path="/movies" exact component={PageMain} />
-                        <AuthRoute
-                            path="/movies/:id"
-                            exact
-                            component={PageMain}
-                        />
+                        <Route path="/login" exact component={Login} />
+                        <AuthRoute path="/movies" exact component={Page} />
+                        <AuthRoute path="/movies/:id" exact component={Page} />
                         <AuthRoute
                             path="/movies/:id/:id"
                             component={PageDetail}
                         />
-                        <AuthRoute path="/page2" exact component={Page} />
-                        {/* <AuthRoute path="/page2/:id" exact component={Page} />
-                        <AuthRoute path="/page2/:id/:id" component={Page} /> */}
-                        <AuthRoute path="/page3" component={PageMain} />
-                        <AuthRoute path="/page4" component={PageMain} />
+                        <AuthRoute path="/page2" exact component={PageMain} />
+                        <AuthRoute path="/page3" component={Page} />
+                        <AuthRoute path="/page4" component={Page} />
                         <AuthRoute path="/nav" exact component={HeaderModal} />
+                        <AuthRoute path="/board/:id" component={BoardModal} />
                     </Switch>
                     <Footer />
                 </div>

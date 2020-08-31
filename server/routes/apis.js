@@ -9,15 +9,44 @@ router.get("/user", (req, res) => {
 
 router.post("/board", (req, res) => {
     const pageSize = 4;
-    const { currentPage } = req.body;
-    BoardDB.find() //
-        .sort({ createdAt: -1 })
-        .skip((currentPage - 1) * pageSize)
-        .limit(pageSize)
-        .then((data) => {
-            BoardDB.count().then((cnt) => {
-                res.json({ data, totalPage: Math.ceil(cnt / pageSize) });
+    const { find, currentPage } = req.body;
+
+    if (find) {
+        BoardDB.find({
+            $or: [
+                { title: { $regex: ".*" + find + ".*" } },
+                { content: { $regex: ".*" + find + ".*" } },
+            ],
+        })
+            .sort({ createdAt: -1 })
+            .skip((currentPage - 1) * pageSize)
+            .limit(pageSize)
+            .then((data) => {
+                res.json({
+                    data,
+                    totalPage: Math.ceil(data.length / pageSize),
+                });
             });
+    } else {
+        BoardDB.find()
+            .sort({ createdAt: -1 })
+            .skip((currentPage - 1) * pageSize)
+            .limit(pageSize)
+            .then((data) => {
+                BoardDB.count().then((cnt) => {
+                    res.json({ data, totalPage: Math.ceil(cnt / pageSize) });
+                });
+            });
+    }
+});
+
+router.get("/board/:id", (req, res) => {
+    BoardDB.findOne({ _id: req.params.id })
+        .then((data) => {
+            res.json({ data: data });
+        })
+        .catch((err) => {
+            res.status(404).json({ data: {} });
         });
 });
 
@@ -33,7 +62,11 @@ router.post("/board/insert", (req, res) => {
             res.json({ data });
         })
         .catch((err) => {
-            console.error(err);
+            res.status(405).json({
+                // 서버에러
+                message: "POST /board/insert Error",
+                error: err,
+            });
         });
 });
 
