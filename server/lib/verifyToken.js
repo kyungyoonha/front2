@@ -2,13 +2,9 @@ const jwt = require("jsonwebtoken");
 const UserModel = require("../models/UserModel");
 
 const verifyToken = (req, res, next) => {
-    let idToken;
-    if (
-        req.headers.authorization &&
-        req.headers.authorization.indexOf("Bearer ") !== -1
-    ) {
-        idToken = req.headers.authorization.split("Bearer ")[1];
-    } else {
+    const idToken = getTokenIdfromToken(req.headers.authorization);
+
+    if (!idToken) {
         console.error("No Token Found");
         res.status(403).json({ error: "Unauthorized" });
     }
@@ -30,4 +26,15 @@ const verifyToken = (req, res, next) => {
         });
 };
 
-module.exports = verifyToken;
+const getTokenIdfromToken = (token) => {
+    let idToken;
+    if (token && token.indexOf("Bearer ") !== -1) {
+        idToken = token.split("Bearer ")[1];
+    }
+    return idToken;
+};
+
+module.exports = {
+    verifyToken,
+    getTokenIdfromToken,
+};

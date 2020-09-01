@@ -34,11 +34,22 @@ UserSchema.methods.serialize = function () {
     return data;
 };
 
-UserSchema.methods.generateToken = function () {
-    const addDay = 60 * 60 * 24 * 3; // 3일
+UserSchema.methods.generateAccessToken = function () {
+    const addDay = 60 * 30; // 30분
     const token = jwt.sign(
         {
             userId: this.userId,
+            exp: Math.floor(Date.now() / 1000) + addDay,
+        },
+        process.env.JWT_SECRET
+    );
+    return token;
+};
+
+UserSchema.methods.generateRefreshToken = function () {
+    const addDay = 60 * 60 * 24 * 3; // 7일
+    const token = jwt.sign(
+        {
             exp: Math.floor(Date.now() / 1000) + addDay,
         },
         process.env.JWT_SECRET

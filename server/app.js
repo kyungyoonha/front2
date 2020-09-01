@@ -5,7 +5,7 @@ const cors = require("cors");
 
 const app = express();
 const port = 8080;
-const verifyToken = require("./lib/verifyToken");
+const { verifyToken } = require("./lib/verifyToken");
 
 // DB
 const mongoose = require("mongoose");

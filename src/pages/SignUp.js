@@ -12,7 +12,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { authAction_signup, authAction_checkId } from "../redux/actions";
 
 function SignUp() {
-    const { isCheckId, success, errors } = useSelector((state) => state.auth);
+    const { isCheckId, errors } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
     const [inputs, setInputs] = useState({
         userId: "",
@@ -50,6 +50,12 @@ function SignUp() {
                 ...state,
                 [name]: value,
             }));
+        }
+
+        if (isCheckId) {
+            if (name === "userId") {
+                dispatch(authAction_checkId(inputs.userId));
+            }
         }
     };
 
@@ -108,7 +114,7 @@ function SignUp() {
                                         block
                                         onClick={handleClickValidateId}
                                     >
-                                        {isCheckId ? "다시 체크" : "중복 확인"}
+                                        {isCheckId ? "사용 가능" : "중복 확인"}
                                     </Button>
                                 </Col>
                             </Form.Row>

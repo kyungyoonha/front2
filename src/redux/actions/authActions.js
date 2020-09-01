@@ -24,7 +24,6 @@ export const authAction_checkId = (id) => (dispatch) => {
         axios
             .post("/auth/checkid", { userId: id })
             .then((res) => {
-                alert("사용 가능한 아이디 입니다.");
                 dispatch({
                     type: AUTH_CHECKID,
                     payload: true,
@@ -87,7 +86,9 @@ export const authAction_login = (userData) => (dispatch) => {
 };
 
 export const authAction_logout = () => {
-    localStorage.removeItem("FBIdToken");
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
+
     return {
         type: AUTH_LOGOUT,
     };
@@ -105,4 +106,18 @@ export const authAction_fetchUserData = () => async (dispatch) => {
         .catch((err) => {
             console.error("authAction_fetchUserData error", err);
         });
+};
+
+export const authAction_token = (token) => async (dispatch) => {
+    try {
+        const response = await axios.post("/auth/token", token);
+
+        const accessToken = "Bearer " + response.data.accessToken;
+        localStorage.setItem("accessToken", accessToken);
+
+        axios.defaults.headers.common["Authorization"] = accessToken;
+        dispatch(authAction_fetchUserData());
+    } catch (err) {
+        console.error("authAction_token error", err);
+    }
 };
