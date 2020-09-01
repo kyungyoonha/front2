@@ -32,7 +32,6 @@ function App() {
             {...rest}
             render={(props) => {
                 if (!user.userId) {
-                    console.log(user);
                     return <Login />;
                 }
 

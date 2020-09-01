@@ -12,7 +12,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { authAction_signup, authAction_checkId } from "../redux/actions";
 
 function SignUp() {
-    const { isCheckId, errors } = useSelector((state) => state.auth);
+    const { isCheckId, success, errors } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
     const [inputs, setInputs] = useState({
         userId: "",
@@ -66,6 +66,7 @@ function SignUp() {
                 checkbox: inputs.checkbox,
                 content: inputs.content,
             };
+
             dispatch(authAction_signup(userData));
         }
     };
@@ -102,7 +103,7 @@ function SignUp() {
                                 <Col>
                                     <Button
                                         variant={
-                                            isCheckId ? "secondary" : "success"
+                                            isCheckId ? "primary" : "success"
                                         }
                                         block
                                         onClick={handleClickValidateId}

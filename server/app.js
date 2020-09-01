@@ -31,11 +31,6 @@ app.use(cors());
 app.use("/auth", auth); // verifyToken
 app.use("/apis", verifyToken, apis); // 리프레시 토큰, 자동 재갱신
 
-// const token =
-//     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjIsInVzZXJJZCI6ImVlZWVlZWVlZWUxISIsImlhdCI6MTU5ODM1NTYxNn0.B47awMu2go8ccrnJQR8SadLiuhV7h9uI62ErRV0QTB4";
-// const decoded = jwt.verify(token, process.env.JWT_SECRET);
-// console.log(decoded);
-
 app.listen(port, () => {
     console.log("Express listening on port", port);
 });
@@ -67,6 +62,7 @@ UserModel.remove({ userId: req.body.userId }, (err) => {})
 유저정보 처리. 클라이언트. 현재 로그인 유저 정보는 로그인이나 회원가입시에 state에 저장하는 것보다는 따로 api요청을(GET /user) 보낸다.
 유저정보 처리. 클라이언트. 로그인 이나 회원가입은 에러가 있는지만 확인해주면 된다. 따로 response.data 받을 필요 없음
 
-jsonwebtoken. 
+MongoDB. methods. function.
+MongoDB. methods. function. 화살표 함수 쓰지말 것
 
 */

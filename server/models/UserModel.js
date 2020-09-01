@@ -1,17 +1,12 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 // const Schema = mongoose.Schema;
 const { autoIncrement } = require("mongoose-plugin-autoinc");
 
 const UserSchema = new mongoose.Schema({
-    userId: {
-        type: String,
-        required: [true, "아이디는 필수 입니다."],
-    },
-    password: {
-        type: String,
-        required: [true, "비밀번호는 필수 입니다."],
-    },
+    userId: String,
+    hashedPassword: String,
     name: String,
     gender: String,
     birth: Date,
@@ -22,6 +17,22 @@ const UserSchema = new mongoose.Schema({
         index: true,
     },
 });
+
+// 화살표 함수 사용하지 말것
+UserSchema.methods.setPassword = async function (password) {
+    this.hashedPassword = await bcrypt.hash(password, 10);
+};
+
+UserSchema.methods.checkPassword = async function (password) {
+    const result = await bcrypt.compare(password, this.hashedPassword);
+    return result; // true, false
+};
+
+UserSchema.methods.serialize = function () {
+    const data = this.toJSON();
+    delete data.hashedPassword;
+    return data;
+};
 
 UserSchema.methods.generateToken = function () {
     const addDay = 60 * 60 * 24 * 3; // 3일
