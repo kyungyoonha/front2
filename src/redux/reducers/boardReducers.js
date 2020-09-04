@@ -30,7 +30,7 @@ export default (state = INITIAL_STATE, action) => {
         case BOARD_INSERT:
             return {
                 ...state,
-                boardItems: [...state.boardItems, action.payload],
+                boardItems: [action.payload, ...state.boardItems],
             };
 
         // id 일치하는 item 업데이트

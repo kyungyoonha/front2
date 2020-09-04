@@ -10,7 +10,7 @@ import { checkRegId } from "../../util/validate";
 import setAuthHeader from "../../util/setAuthHeader";
 import axios from "axios";
 
-export const authAction_checkId = (id) => (dispatch) => {
+export const authAction_checkId = (id) => async (dispatch) => {
     if (!checkRegId(id)) {
         dispatch({
             type: AUTH_ERRORS,
@@ -21,68 +21,62 @@ export const authAction_checkId = (id) => (dispatch) => {
         });
     } else {
         dispatch({ type: AUTH_ERRORS, payload: { userId: "" } });
-        axios
-            .post("/auth/checkid", { userId: id })
-            .then((res) => {
-                dispatch({
-                    type: AUTH_CHECKID,
-                    payload: true,
-                });
-            })
-            .catch((err) => {
-                dispatch({
-                    type: AUTH_ERRORS,
-                    payload: err.response.data,
-                });
+        try {
+            await axios.post("/auth/checkid", { userId: id });
+            dispatch({
+                type: AUTH_CHECKID,
+                payload: true,
             });
+        } catch (err) {
+            dispatch({
+                type: AUTH_ERRORS,
+                payload: err.response.data,
+            });
+        }
     }
 };
 
-export const authAction_signup = (userData) => (dispatch) => {
+export const authAction_signup = (userData) => async (dispatch) => {
     dispatch({
         type: AUTH_CLEAR_ERRORS,
     });
-    axios
-        .post("/auth/signup", userData)
-        .then((res) => {
-            alert("회원가입에 성공하였습니다.");
-            setAuthHeader(res.data.token);
-            dispatch({
-                type: AUTH_CLEAR_ERRORS,
-            });
-            history.push("/login");
-        })
-        .catch((err) => {
-            if (err.response.data.alert) {
-                alert(err.response.data.alert);
-            }
-            dispatch({
-                type: AUTH_ERRORS,
-                payload: err.response.data,
-            });
+    try {
+        const response = await axios.post("/auth/signup", userData);
+        alert("회원가입에 성공하였습니다.");
+        setAuthHeader(response.data.token);
+        dispatch({
+            type: AUTH_CLEAR_ERRORS,
         });
+        history.push("/login");
+    } catch (err) {
+        if (err.response.data.alert) {
+            alert(err.response.data.alert);
+        }
+        dispatch({
+            type: AUTH_ERRORS,
+            payload: err.response.data,
+        });
+    }
 };
 
-export const authAction_login = (userData) => (dispatch) => {
+export const authAction_login = (userData) => async (dispatch) => {
     dispatch({
         type: AUTH_CLEAR_ERRORS,
     });
-    axios
-        .post("/auth/login", userData)
-        .then((res) => {
-            setAuthHeader(res.data.token);
-            dispatch(authAction_fetchUserData());
-            history.push("/");
-        })
-        .catch((err) => {
-            if (err.response.data.alert) {
-                alert(err.response.data.alert);
-            }
-            dispatch({
-                type: AUTH_ERRORS,
-                payload: err.response.data,
-            });
+    try {
+        const response = await axios.post("/auth/login", userData);
+        setAuthHeader(response.data.token);
+        dispatch(authAction_fetchUserData());
+        history.push("/");
+    } catch (err) {
+        if (err.response.data.alert) {
+            alert(err.response.data.alert);
+        }
+        dispatch({
+            type: AUTH_ERRORS,
+            payload: err.response.data,
         });
+    }
 };
 
 export const authAction_logout = () => {
@@ -95,17 +89,15 @@ export const authAction_logout = () => {
 };
 
 export const authAction_fetchUserData = () => async (dispatch) => {
-    axios
-        .get("/apis/user")
-        .then((res) =>
-            dispatch({
-                type: AUTH_FETCH_USER,
-                payload: res.data.user,
-            })
-        )
-        .catch((err) => {
-            console.error("authAction_fetchUserData error", err);
+    try {
+        const response = await axios.get("/apis/user");
+        dispatch({
+            type: AUTH_FETCH_USER,
+            payload: response.data.user,
         });
+    } catch (err) {
+        console.error("authAction_fetchUserData error", err);
+    }
 };
 
 export const authAction_token = (token) => async (dispatch) => {

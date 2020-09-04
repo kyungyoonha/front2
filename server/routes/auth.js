@@ -9,20 +9,20 @@ const { getTokenIdfromToken } = require("../lib/verifyToken");
 const UserModel = require("../models/UserModel");
 const TokenModel = require("../models/tokenModel");
 
-router.post("/checkid", (req, res) => {
-    UserModel.findOne({ userId: req.body.userId })
-        .then((user) => {
-            if (user) {
-                res.status(400).json({
-                    userId: "이미 존재하는 아이디 입니다.",
-                });
-            } else {
-                res.status(204).json({ alert: "사용 가능한 아이디입니다." });
-            }
-        })
-        .catch((err) =>
-            res.status(500).json({ message: "POST /checkId Error:", err })
-        );
+router.post("/checkid", async (req, res) => {
+    try {
+        const user = await UserModel.findOne({ userId: req.body.userId });
+
+        if (user) {
+            res.status(400).json({
+                userId: "이미 존재하는 아이디 입니다.",
+            });
+        } else {
+            res.status(204).json({ alert: "사용 가능한 아이디입니다." });
+        }
+    } catch (err) {
+        res.status(500).json({ message: "POST /checkId Error:", err });
+    }
 });
 
 router.post("/signup", async (req, res) => {
@@ -51,7 +51,6 @@ router.post("/signup", async (req, res) => {
             res.status(200).json({ token: { accessToken, refreshToken } });
         }
     } catch (err) {
-        console.log(err);
         res.status(500).json({ message: "POST /signup Error:", err });
     }
 });
