@@ -1,11 +1,12 @@
-## ※ 리액트 미션
+## ※ Personer Project [Front-End + Back-End]
 
-#### DESCRIPTION
+### DESCRIPTION
 
-This is a React + nodejs based personal project
+Personal project (React + NodeJs)
+
 ![img](./src/images/react_mission.gif)
 
-#### PROCEDURE:
+### PROCEDURE:
 
 ```
 $ git clone https://github.com/kyungyoonha/react_mission.git
@@ -19,21 +20,35 @@ $ npm run server // => run server only
 
 ```
 
-#### What I Leared from this project (Mission)
+### 구현 기능
 
--   React + nodeJS + MongoDB
--   Custom CSS for styling
--   API (Movie list)
--   LNB & GNB 3 depth MENU
--   Validate signup & login form
--   Pagination server side & client side
--   Access Token & Refresh Token
--   Board CRUD
--   Slider & Carousel
--   Responsive Page for desktop and tablet
+#### Common
+
+- Signup & Login
+- Social login (facebook)
+- Regular expression Validation
+- Access Token, Refresh Token
+
+#### Front-End
+
+- Custom CSS for styling
+- API (Movie list)
+- LNB & GNB 3 depth MENU
+- Board CRUD
+- Slider & Carousel
+- Responsive Page for desktop and tablet
+
+#### Back-End
+
+- NodeJS
+- Bcrypt
+- JWT
+- Facebook Social Login
+- pagination
+- MongoDB
 
 #### Next Step
 
--   styled-components
--   fullpage scroll
--   MySQL
+- styled-components
+- fullpage scroll
+- MySQL
